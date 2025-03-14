@@ -78,6 +78,7 @@ class STLSpecialAlloc;
 #include <set>
 #include <stack>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 //------------------------------------------------------------------------------------ RTS Includes
