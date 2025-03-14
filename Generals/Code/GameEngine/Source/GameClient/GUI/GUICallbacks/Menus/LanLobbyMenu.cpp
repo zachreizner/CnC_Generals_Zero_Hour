@@ -32,7 +32,7 @@
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
 #include "Lib/BaseType.h"
-#include "Common/CRC.h"
+#include "Common/crc.h"
 #include "Common/GameEngine.h"
 #include "Common/GlobalData.h"
 #include "Common/MultiplayerSettings.h"
@@ -151,7 +151,7 @@ Bool LANPreferences::usesSystemMapDir(void)
 	if (it == end())
 		return TRUE;
 
-	if (stricmp(it->second.str(), "yes") == 0) {
+	if (strcasecmp(it->second.str(), "yes") == 0) {
 		return TRUE;
 	}
 	return FALSE;

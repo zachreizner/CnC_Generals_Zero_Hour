@@ -44,8 +44,8 @@ class Locomotor;
 class LocomotorTemplate;
 class INI;
 class PhysicsBehavior;
-enum BodyDamageType;
-enum PhysicsTurningType;
+enum BodyDamageType : int32_t;
+enum PhysicsTurningType : int32_t;
 
 // if we ever re-enable jets circling for landing, we need this. so keep in around just in case. (srj)
 #define NO_CIRCLE_FOR_LANDING

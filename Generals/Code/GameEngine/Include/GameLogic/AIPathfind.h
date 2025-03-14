@@ -422,7 +422,7 @@ private:
 	ICoord2D m_startCell; // pathfind cell indexes for center cell on the from side.
 	ICoord2D m_endCell; // pathfind cell indexes for center cell on the to side.
 
-	PathfindLayerEnum m_layer;
+	PathfindLayerenum m_layer : int32_t;
 	Int m_zone;			// Whole bridge is in same zone.
 	Bridge *m_bridge; // Corresponding bridge in TerrainLogic.
 	Bool m_destroyed;

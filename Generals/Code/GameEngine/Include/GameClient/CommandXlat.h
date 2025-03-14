@@ -32,7 +32,7 @@
 
 #include "GameClient/InGameUI.h"
 
-enum GUICommandType;
+enum GUICommandType : int32_t;
 
 //-----------------------------------------------------------------------------
 class CommandTranslator : public GameMessageTranslator

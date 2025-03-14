@@ -51,11 +51,11 @@ class PolygonTrigger;
 class UpgradeTemplate;
 class WeaponTemplate;
 
-enum GUICommandType;
-enum HackerAttackMode;
-enum WeaponSetType;
-enum WeaponLockType;
-enum SpecialPowerType;
+enum GUICommandType : int32_t;
+enum HackerAttackMode : int32_t;
+enum WeaponSetType : int32_t;
+enum WeaponLockType : int32_t;
+enum SpecialPowerType : int32_t;
 
 typedef std::vector<ObjectID> VecObjectID;
 typedef VecObjectID::iterator VecObjectIDIt;
@@ -307,7 +307,7 @@ class Weapon;
 // Note - written out in save/load xfer and .map files, don't change these numbers.  
 enum AttitudeType { AI_SLEEP = -2, AI_PASSIVE=-1, AI_NORMAL=0, AI_ALERT=1, AI_AGGRESSIVE=2, AI_INVALID=3 };		///< AI "attitude" behavior modifiers
 
-enum CommandSourceType;
+enum CommandSourceType : int32_t;
 
 typedef UnsignedInt CommandSourceMask;
 

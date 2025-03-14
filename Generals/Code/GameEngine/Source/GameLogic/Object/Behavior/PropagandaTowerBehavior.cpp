@@ -44,7 +44,7 @@
 #include "GameLogic/Module/BodyModule.h"
 
 // FORWARD REFERENCES /////////////////////////////////////////////////////////////////////////////
-enum ObjectID;
+enum ObjectID : int32_t;
 
 // ------------------------------------------------------------------------------------------------
 /** This class is used to track objects as they exit our area of influence */

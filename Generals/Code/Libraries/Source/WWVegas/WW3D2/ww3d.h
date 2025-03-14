@@ -354,9 +354,9 @@ private:
 	static bool							SnapshotActivated;
 
 	static MeshDrawModeEnum			MeshDrawMode;
-	static TextureThumbnailModeEnum TextureThumbnailMode;
-	static TextureCompressionModeEnum TextureCompressionMode;
-	static NPatchesGapFillingModeEnum NPatchesGapFillingMode;
+	static TextureThumbnailModeenum TextureThumbnailMode : int32_t;
+	static TextureCompressionModeenum TextureCompressionMode : int32_t;
+	static NPatchesGapFillingModeenum NPatchesGapFillingMode : int32_t;
 	static unsigned NPatchesLevel;
 	static bool							IsTexturingEnabled;
 	static unsigned int			IsColoringEnabled;

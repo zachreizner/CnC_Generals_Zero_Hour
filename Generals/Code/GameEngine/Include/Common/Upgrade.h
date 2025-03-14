@@ -40,7 +40,7 @@
 // FORWARD REFERENCES /////////////////////////////////////////////////////////////////////////////
 class Player;
 class UpgradeTemplate;
-enum NameKeyType;
+enum NameKeyType : int32_t;
 class Image;
 
 //-------------------------------------------------------------------------------------------------

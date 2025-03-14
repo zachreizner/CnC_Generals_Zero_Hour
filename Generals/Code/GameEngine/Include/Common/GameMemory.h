@@ -62,7 +62,7 @@
 
 // SYSTEM INCLUDES ////////////////////////////////////////////////////////////
 
-#include <new.h>
+// #include <new.h>
 #include <stdio.h>
 #ifdef MEMORYPOOL_OVERRIDE_MALLOC
 	#include <malloc.h>
@@ -857,6 +857,8 @@ extern void userMemoryManagerInitPools();
 extern void userMemoryAdjustPoolSize(const char *poolName, Int& initialAllocationCount, Int& overflowAllocationCount);
 
 #ifdef __cplusplus
+
+#define _OPERATOR_NEW_DEFINED_
 
 #ifndef _OPERATOR_NEW_DEFINED_
 

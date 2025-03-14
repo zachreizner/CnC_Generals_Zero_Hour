@@ -3433,7 +3433,7 @@ void HLodClass::Update_Obj_Space_Bounding_Volumes(void)
 			//
 			//	Does the name match the designator we are looking for?
 			//
-			if (::stricmp (name, "BOUNDINGBOX") == 0) {				
+			if (::strcasecmp (name, "BOUNDINGBOX") == 0) {				
 				BoundingBoxIndex = index;
 			}
 		}

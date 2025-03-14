@@ -58,8 +58,8 @@ class WorkerAIInterface;
 class HackInternetAIInterface;
 class AssaultTransportAIInterface;
 
-enum AIStateType;
-enum ObjectID;
+enum AIStateType : int32_t;
+enum ObjectID : int32_t;
 
 
 //-------------------------------------------------------------------------------------------------

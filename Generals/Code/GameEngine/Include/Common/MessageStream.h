@@ -46,8 +46,8 @@ typedef UnsignedInt TranslatorID;								///< Unique identifiers for message str
 
 class Drawable;
 class GameMessageList;
-enum ObjectID;
-enum DrawableID;
+enum ObjectID : int32_t;
+enum DrawableID : int32_t;
 
 union GameMessageArgumentType														///< Union of possible data for given message type
 {

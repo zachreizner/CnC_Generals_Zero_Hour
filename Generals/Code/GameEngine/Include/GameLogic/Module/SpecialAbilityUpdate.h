@@ -42,7 +42,7 @@ class DamageInfo;
 class SpecialPowerTemplate;
 class SpecialPowerModule;
 class FXList;
-enum SpecialPowerType;
+enum SpecialPowerType : int32_t;
 
 #define SPECIAL_ABILITY_HUGE_DISTANCE 10000000.0f
 

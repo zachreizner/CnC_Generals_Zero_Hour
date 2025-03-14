@@ -100,18 +100,18 @@ class ObjectRepulsorHelper;
 class ObjectWeaponStatusHelper;
 class ObjectDefectionHelper;
 
-enum CommandSourceType;
-enum DamageType;
-enum HackerAttackMode;
-enum NameKeyType;
-enum SpecialPowerType;
-enum WeaponBonusConditionType;
-enum WeaponChoiceCriteria;
-enum WeaponSetConditionType;
-enum WeaponSetType;
-enum WeaponStatus;
-enum RadarPriorityType;
-enum CanAttackResult;
+enum CommandSourceType : int32_t;
+enum DamageType : int32_t;
+enum HackerAttackMode : int32_t;
+enum NameKeyType : int32_t;
+enum SpecialPowerType : int32_t;
+enum WeaponBonusConditionType : int32_t;
+enum WeaponChoiceCriteria : int32_t;
+enum WeaponSetConditionType : int32_t;
+enum WeaponSetType : int32_t;
+enum WeaponStatus : int32_t;
+enum RadarPriorityType : int32_t;
+enum CanAttackResult : int32_t;
 
 // For ObjectStatusBits and TheObjectStatusBitNames
 #include "GameLogic/ObjectStatusBits.h"

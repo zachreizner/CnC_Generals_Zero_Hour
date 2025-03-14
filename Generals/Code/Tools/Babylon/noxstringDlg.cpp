@@ -523,7 +523,7 @@ void CNoxstringDlg::OnDropFiles(HDROP hDropInfo)
 //DEL 	char *p;
 //DEL 	CWnd *wnd = GetDlgItem ( IDC_EXPORT );
 //DEL 
-//DEL 	if ( buffer && (p = strchr ( buffer, '.' )) && !stricmp ( p, ".xls"))
+//DEL 	if ( buffer && (p = strchr ( buffer, '.' )) && !strcasecmp ( p, ".xls"))
 //DEL 	{
 //DEL 		SetDlgItemText ( IDC_XLFILE, buffer );
 //DEL 		SetDlgItemText ( IDC_STATUS, "File selected: Click 'convert' to start process");
@@ -546,7 +546,7 @@ void CNoxstringDlg::OnDropFiles(HDROP hDropInfo)
 //DEL 	char *p;
 //DEL 	char filename[400];
 //DEL 
-//DEL 	if ( buffer && (p = strchr ( buffer, '.' )) && !stricmp ( p, ".str"))
+//DEL 	if ( buffer && (p = strchr ( buffer, '.' )) && !strcasecmp ( p, ".str"))
 //DEL 	{
 //DEL 		ParseDB	db;
 //DEL 		SetDlgItemText ( IDC_XLFILE, buffer );
@@ -980,27 +980,27 @@ static int parseComment ( FILE *file, char *buffer, INFO *info )
 		return new_lines;
 	}
 
-	if ( !stricmp ( token, "COMMENT" ) )
+	if ( !strcasecmp ( token, "COMMENT" ) )
 	{
 		new_lines += getString ( file, buffer, info->comment );
 	}
-	else if ( !stricmp ( token, "CONTEXT" ) )
+	else if ( !strcasecmp ( token, "CONTEXT" ) )
 	{
 		new_lines += getString ( file, buffer, info->context );
 	}
-	else if ( !stricmp ( token, "SPEAKER" ) )
+	else if ( !strcasecmp ( token, "SPEAKER" ) )
 	{
 		new_lines += getString ( file, buffer, info->speaker );
 	}
-	else if ( !stricmp ( token, "LISTENER" ) )
+	else if ( !strcasecmp ( token, "LISTENER" ) )
 	{
 		new_lines += getString ( file, buffer, info->listener );
 	}
-	else if ( !stricmp ( token, "MAXLEN" ) )
+	else if ( !strcasecmp ( token, "MAXLEN" ) )
 	{
 		info->maxlen = atoi ( buffer );
 	}
-	else if ( !stricmp ( token, "WAVE" ) )
+	else if ( !strcasecmp ( token, "WAVE" ) )
 	{
 		new_lines += getString ( file, buffer, info->wave );
 	}
@@ -1024,7 +1024,7 @@ static int getLabelCount( char *filename )
 		if( fscanf( fp, "%s", buffer ) == EOF )
 			break;
 
-		if ( !stricmp( buffer, "END" ) )
+		if ( !strcasecmp( buffer, "END" ) )
 		{
 			count++;
 		}
@@ -1083,7 +1083,7 @@ int CNoxstringDlg::LoadStrFile ( TransDB *db, const char *filename, void (*cb) (
 			line_number++;
 			removeLeadingAndTrailing ( buffer );
 
-			if ( !stricmp ( buffer, "END" )	)
+			if ( !strcasecmp ( buffer, "END" )	)
 			{
 				break;
 			}

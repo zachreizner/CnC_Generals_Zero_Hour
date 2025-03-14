@@ -81,7 +81,7 @@ struct TCheckMovementInfo
 {
 	// Input
 	ICoord2D					cell;
-	PathfindLayerEnum layer;
+	PathfindLayerenum layer : int32_t;
 	Int								radius;	
 	Bool							centerInCell;
 	Bool							considerTransient;
@@ -303,7 +303,7 @@ void Path::xfer( Xfer *xfer )
 			DEBUG_ASSERTCRASH(nodeId==count, ("Bad data"));
 			Coord3D pos;
 			xfer->xferCoord3D(&pos);
-			PathfindLayerEnum layer;
+			PathfindLayerenum layer : int32_t;
 			xfer->xferUser(&layer, sizeof(layer));
 			Bool canOpt;
 			xfer->xferBool(&canOpt);
@@ -7791,7 +7791,7 @@ struct TightenPathStruct
 {
 	Object *obj;
 	const LocomotorSet *locomotorSet;
-	PathfindLayerEnum layer;
+	PathfindLayerenum layer : int32_t;
 	Int		radius;
 	Bool	center;
 	Bool	foundDest;

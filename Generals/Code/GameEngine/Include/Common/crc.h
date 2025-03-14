@@ -32,7 +32,6 @@
 #define _CRC_H_
 
 #include "Lib/BaseType.h"
-#include "winsock2.h" // for htonl
 
 class CRC
 {
@@ -41,7 +40,6 @@ public:
 
 	void computeCRC( const void *buf, Int len );		///< Compute the CRC for a buffer, added into current CRC
 	void clear( void ) { crc = 0; }									///< Clears the CRC to 0
-//	UnsignedInt get( void ) { return htonl(crc); }	///< Get the combined CRC
 	UnsignedInt get( void );
 
 private:

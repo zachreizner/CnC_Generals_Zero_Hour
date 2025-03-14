@@ -783,7 +783,7 @@ Bool GameTextManager::getStringCount( char *filename )
 				m_buffer[ len+1] = 0;
 			readToEndOfQuote( &file, &m_buffer[1], m_buffer2, m_buffer3, MAX_UITEXT_LENGTH );
 		}
-		else if( !stricmp( m_buffer, "END") )
+		else if( !strcasecmp( m_buffer, "END") )
 		{
 			m_textCount++;
 		}
@@ -979,7 +979,7 @@ Bool GameTextManager::parseStringFile( char *filename )
 
 		for ( Int i = 0; i < listCount; i++ )
 		{
-			if ( !stricmp ( m_stringInfo[i].label.c_str(), m_buffer ))
+			if ( !strcasecmp ( m_stringInfo[i].label.c_str(), m_buffer ))
 			{
 				DEBUG_ASSERTCRASH ( FALSE, ("String label '%s' multiply defined!", m_buffer ));
 			}
@@ -1030,7 +1030,7 @@ Bool GameTextManager::parseStringFile( char *filename )
 					readString = TRUE;
 				}
 			}
-			else if ( !stricmp ( m_buffer, "END" ))
+			else if ( !strcasecmp ( m_buffer, "END" ))
 			{
 				break;
 			}
@@ -1148,5 +1148,5 @@ static int __cdecl compareLUT ( const void *i1,  const void*i2)
 	StringLookUp *lut1 = (StringLookUp*) i1;
 	StringLookUp *lut2 = (StringLookUp*) i2;
 
-	return stricmp( lut1->label->c_str(), lut2->label->c_str());
+	return strcasecmp( lut1->label->c_str(), lut2->label->c_str());
 }

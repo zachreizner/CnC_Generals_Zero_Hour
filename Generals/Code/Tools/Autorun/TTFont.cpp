@@ -189,7 +189,7 @@ TTFontClass::TTFontClass(
 		old_object = SelectObject( hdc, Font );
 		GetTextFace( hdc, ( sizeof( real_facename ) / sizeof( TCHAR )), real_facename );
 
-		if( _stricmp( real_facename, szFacename ) != 0 ) {
+		if( _strcasecmp( real_facename, szFacename ) != 0 ) {
 
 			strcpy( szFilename, "Arial.ttf" );
 			strcpy( szFacename, "Arial" );
@@ -514,7 +514,7 @@ UINT TTFontClass::Get_Double_Byte_Char	( const char *string, int *num_bytes ) co
 
 	//--------------------------------------------------------------------------
 	// The IsDBCSLeadByte function determines whether a character is a 
-	// lead byte — that is, the first byte of a character in a double-byte 
+	// lead byte ï¿½ that is, the first byte of a character in a double-byte 
 	// character set (DBCS). 
 	//
 	//	BOOL IsDBCSLeadByte(  BYTE TestChar  /* character to test */ );

@@ -42,8 +42,8 @@ class Object;
 class Weapon;
 class WeaponTemplate;
 
-enum CommandSourceType;
-enum DamageType;
+enum CommandSourceType : int32_t;
+enum DamageType : int32_t;
 
 // for WeaponSetType. Part of detangling.
 #include "GameLogic/WeaponSetType.h"

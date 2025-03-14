@@ -632,7 +632,7 @@ void ImagePacker::addDirectory( char *path, Bool subDirs )
 	// check to see if path is already in list
 	ImageDirectory *dir;
 	for( dir = m_dirList; dir; dir = dir->m_next )
-		if( stricmp( dir->m_path, path ) == 0 )
+		if( strcasecmp( dir->m_path, path ) == 0 )
 			return;  // already in list
 
 	// save our current directory

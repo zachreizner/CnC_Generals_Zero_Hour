@@ -841,7 +841,7 @@ Bool GameTextManager::getStringCount( const char *filename, Int& textCount )
 				m_buffer[ len+1] = 0;
 			readToEndOfQuote( file, &m_buffer[1], m_buffer2, m_buffer3, MAX_UITEXT_LENGTH );
 		}
-		else if( !stricmp( m_buffer, "END") )
+		else if( !strcasecmp( m_buffer, "END") )
 		{
 			textCount++;
 		}
@@ -1052,7 +1052,7 @@ Bool GameTextManager::parseStringFile( const char *filename )
 
 		for ( Int i = 0; i < listCount; i++ )
 		{
-			if ( !stricmp ( m_stringInfo[i].label.str(), m_buffer ))
+			if ( !strcasecmp ( m_stringInfo[i].label.str(), m_buffer ))
 			{
 				DEBUG_ASSERTCRASH ( FALSE, ("String label '%s' multiply defined!", m_buffer ));
 			}
@@ -1103,7 +1103,7 @@ Bool GameTextManager::parseStringFile( const char *filename )
 					readString = TRUE;
 				}
 			}
-			else if ( !stricmp ( m_buffer, "END" ))
+			else if ( !strcasecmp ( m_buffer, "END" ))
 			{
 				break;
 			}
@@ -1183,7 +1183,7 @@ Bool GameTextManager::parseMapStringFile( const char *filename )
 
 		for ( Int i = 0; i < listCount; i++ )
 		{
-			if ( !stricmp ( m_mapStringInfo[i].label.str(), m_buffer ))
+			if ( !strcasecmp ( m_mapStringInfo[i].label.str(), m_buffer ))
 			{
 				DEBUG_ASSERTCRASH ( FALSE, ("String label '%s' multiply defined!", m_buffer ));
 			}
@@ -1238,7 +1238,7 @@ Bool GameTextManager::parseMapStringFile( const char *filename )
 					readString = TRUE;
 				}
 			}
-			else if ( !stricmp ( m_buffer, "END" ))
+			else if ( !strcasecmp ( m_buffer, "END" ))
 			{
 				break;
 			}
@@ -1402,5 +1402,5 @@ static int __cdecl compareLUT ( const void *i1,  const void*i2)
 	StringLookUp *lut1 = (StringLookUp*) i1;
 	StringLookUp *lut2 = (StringLookUp*) i2;
 
-	return stricmp( lut1->label->str(), lut2->label->str());
+	return strcasecmp( lut1->label->str(), lut2->label->str());
 }

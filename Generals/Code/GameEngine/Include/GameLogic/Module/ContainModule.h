@@ -40,7 +40,7 @@ class Player;
 class ExitInterface;
 class Matrix3D;
 class Weapon;
-enum CommandSourceType;
+enum CommandSourceType : int32_t;
 
 //-------------------------------------------------------------------------------------------------
 enum ObjectEnterExitType

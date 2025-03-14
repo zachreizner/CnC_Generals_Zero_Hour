@@ -65,8 +65,8 @@ class WindowLayout;
 class TerrainLogic;
 class GhostObjectManager;
 class CommandButton;
-enum BuildableStatus;
-enum ObjectStatusBits;
+enum BuildableStatus : int32_t;
+enum ObjectStatusBits : int32_t;
 
 typedef const CommandButton* ConstCommandButtonPtr;
 

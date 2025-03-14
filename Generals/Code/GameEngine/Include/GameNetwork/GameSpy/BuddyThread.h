@@ -85,7 +85,7 @@ public:
 
 		struct
 		{
-			GPEnum status;
+			GPenum status : int32_t;
 			char statusString[GP_STATUS_STRING_LEN];
 			char locationString[GP_LOCATION_STRING_LEN];
 		} status;
@@ -134,7 +134,7 @@ public:
 			//GPResult result;
 			GPErrorCode errorCode;
 			char errorString[MAX_BUDDY_CHAT_LEN];
-			GPEnum fatal;
+			GPenum fatal : int32_t;
 		} error;
 
 		struct
@@ -143,7 +143,7 @@ public:
 			char email[GP_EMAIL_LEN];
 			char countrycode[GP_COUNTRYCODE_LEN];
 			char location[GP_LOCATION_STRING_LEN];
-			GPEnum status;
+			GPenum status : int32_t;
 			char statusString[GP_STATUS_STRING_LEN];
 		} status;
 	} arg;

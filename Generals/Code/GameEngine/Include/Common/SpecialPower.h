@@ -45,7 +45,7 @@
 // FORWARD REFERENCES /////////////////////////////////////////////////////////////////////////////
 class ObjectCreationList;
 class Object;
-enum ScienceType;
+enum ScienceType : int32_t;
 struct FieldParse;
 
 // For SpecialPowerType and SpecialPowerMaskType::s_bitNameList. Part of detangling.

@@ -1822,7 +1822,7 @@ void PeerThreadClass::handleQMMatch(PEER peer, Int mapIndex, Int seed,
 
 		for (Int i=0; i<MAX_SLOTS; ++i)
 		{
-			if (playerName[i] && stricmp(playerName[i], m_loginName.c_str()))
+			if (playerName[i] && strcasecmp(playerName[i], m_loginName.c_str()))
 			{
 				peerMessagePlayer( peer, playerName[i], "We're matched!", NormalMessage );
 			}
@@ -2691,7 +2691,7 @@ void playerLeftCallback(PEER peer, RoomType roomType, const char * nick, const c
 
 	if (t->getQMStatus() != QM_IDLE && t->getQMStatus() != QM_STOPPED)
 	{
-		if (!stricmp(t->getQMBotName().c_str(), nick))
+		if (!strcasecmp(t->getQMBotName().c_str(), nick))
 		{
 			// matchbot left - bail
 			PeerResponse resp;

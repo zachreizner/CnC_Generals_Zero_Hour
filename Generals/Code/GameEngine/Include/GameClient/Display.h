@@ -51,7 +51,7 @@ class DebugDisplayInterface;
 class Radar;
 class Image;
 class DisplayString;
-enum StaticGameLODLevel;
+enum StaticGameLODLevel : int32_t;
 /**
  * The Display class implements the Display interface
  */

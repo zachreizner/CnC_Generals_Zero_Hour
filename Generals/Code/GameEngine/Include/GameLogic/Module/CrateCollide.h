@@ -39,7 +39,7 @@
 class Thing;
 class Anim2DTemplate;
 class FXList;
-enum ScienceType;
+enum ScienceType : int32_t;
 
 //-------------------------------------------------------------------------------------------------
 class CrateCollideModuleData : public CollideModuleData 

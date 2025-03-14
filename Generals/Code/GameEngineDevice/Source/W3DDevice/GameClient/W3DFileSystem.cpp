@@ -160,11 +160,11 @@ char const * GameFileClass::Set_Name( char const *filename )
 
 	// test the extension to recognize a few key file types
 	GameFileType fileType = FILE_TYPE_UNKNOWN;
-	if( stricmp( extension, ".w3d" ) == 0 )
+	if( strcasecmp( extension, ".w3d" ) == 0 )
 		fileType = FILE_TYPE_W3D;
-	else if( stricmp( extension, ".tga" ) == 0 )
+	else if( strcasecmp( extension, ".tga" ) == 0 )
 		fileType = FILE_TYPE_TGA;
-	else if( stricmp( extension, ".dds" ) == 0 )
+	else if( strcasecmp( extension, ".dds" ) == 0 )
 		fileType = FILE_TYPE_DDS;
 
 	// all .w3d files are in W3D_DIR_PATH, all .tga files are in TGA_DIR_PATH

@@ -39,7 +39,7 @@
 #include "Common/GameType.h"
 #include "Common/MultiplayerSettings.h"
 #include "Common/NameKeyGenerator.h"
-#include "Common/OVERRIDE.h"
+#include "Common/Override.h"
 #include "Common/PlayerTemplate.h"
 #include "Common/Player.h"
 #include "Common/PlayerList.h"
@@ -481,7 +481,7 @@ void CommandButton::parseCommand( INI* ini, void *instance, void *store, const v
 	for( i = 0; TheGuiCommandNames[ i ]; i++ )
 	{
 
-		if( stricmp( TheGuiCommandNames[ i ], token ) == 0 )
+		if( strcasecmp( TheGuiCommandNames[ i ], token ) == 0 )
 		{
 
 			GUICommandType *command = (GUICommandType *)store;

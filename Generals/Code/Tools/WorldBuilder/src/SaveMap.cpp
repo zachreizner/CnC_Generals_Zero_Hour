@@ -177,7 +177,7 @@ void SaveMap::populateMapListbox( Bool systemMaps )
 	if (pEdit != NULL) {
 		strcpy(fileBuf, m_pInfo->filename);
 		Int len = strlen(fileBuf);
-		if (len>4 && stricmp(".map", fileBuf+(len-4)) == 0) {
+		if (len>4 && strcasecmp(".map", fileBuf+(len-4)) == 0) {
 			// strip of the .map
 			fileBuf[len-4] = 0;
 		}

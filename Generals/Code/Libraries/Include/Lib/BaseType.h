@@ -126,10 +126,10 @@ typedef char							Byte;							// 1 byte		USED TO BE "SignedByte"
 typedef char							Char;							// 1 byte of text
 typedef bool							Bool;							// 
 // note, the types below should use "long long", but MSVC doesn't support it yet
-typedef __int64						Int64;							// 8 bytes 
-typedef unsigned __int64	UnsignedInt64;	  	// 8 bytes 
+typedef int64_t						Int64;							// 8 bytes 
+typedef uint64_t	UnsignedInt64;	  	// 8 bytes 
 
-#include "Lib/Trig.h"
+#include "Lib/trig.h"
 
 //-----------------------------------------------------------------------------
 typedef wchar_t WideChar;  ///< multi-byte character representations
@@ -178,12 +178,7 @@ __forceinline long fast_float2long_round(float f)
 {
 	long i;
 
-	__asm {
-		fld [f]
-		fistp [i]
-	}
-
-	return i;
+	return (float)i;
 }
 
 //-------------------------------------------------------------------------------------------------

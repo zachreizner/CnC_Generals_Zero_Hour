@@ -62,7 +62,7 @@ void main(int argc, char **argv)
 
 	for (int i=1; i<argc; ++i)
 	{
-		if ( !stricmp(argv[i], "-help") )
+		if ( !strcasecmp(argv[i], "-help") )
 		{
 			dumpHelp(argv[0]);
 			exit(0);
@@ -93,7 +93,7 @@ void main(int argc, char **argv)
 			{
 				for (int j=COMPRESSION_MIN; j<=COMPRESSION_MAX; ++j)
 				{
-					if ( !stricmp(CompressionManager::getCompressionNameByType((CompressionType)j), argv[i]) )
+					if ( !strcasecmp(CompressionManager::getCompressionNameByType((CompressionType)j), argv[i]) )
 					{
 						compressType = (CompressionType)j;
 						break;

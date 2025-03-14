@@ -35,7 +35,7 @@
 // INCLUDES ///////////////////////////////////////////////////////////////////////////////////////
 #include "W3DDevice/GameClient/Module/W3DModelDraw.h"
 
-enum ScienceType;
+enum ScienceType : int32_t;
 
 //-------------------------------------------------------------------------------------------------
 class W3DScienceModelDrawModuleData : public W3DModelDrawModuleData

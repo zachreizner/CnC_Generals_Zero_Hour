@@ -60,14 +60,14 @@ class UpgradeTemplate;
 class ControlBarResizer;
 class GameWindowTransitionsHandler;
 
-enum ProductionID;
+enum ProductionID : int32_t;
 
-enum CommandSourceType;
-enum ProductionType;
-enum GadgetGameMessage;
-enum ScienceType;
-enum TimeOfDay;
-enum RadiusCursorType;
+enum CommandSourceType : int32_t;
+enum ProductionType : int32_t;
+enum GadgetGameMessage : int32_t;
+enum ScienceType : int32_t;
+enum TimeOfDay : int32_t;
+enum RadiusCursorType : int32_t;
 
 //-------------------------------------------------------------------------------------------------
 /** Command options */

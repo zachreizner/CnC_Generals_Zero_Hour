@@ -448,7 +448,7 @@ Bool AsciiString::endsWithNoCase(const char* p) const
 //-----------------------------------------------------------------------------
 Bool AsciiString::isNone() const
 {
-	return m_data && stricmp(peek(), "None") == 0;
+	return m_data && strcasecmp(peek(), "None") == 0;
 }
 
 //-----------------------------------------------------------------------------

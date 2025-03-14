@@ -67,7 +67,7 @@ public:
 	AsciiString m_name;
 	AsciiString m_email;
 	AsciiString m_countryCode;
-	GPEnum m_status;
+	GPenum m_status : int32_t;
 	UnicodeString m_statusString;
 	UnicodeString m_locationString;
 };

@@ -81,7 +81,7 @@ typedef enum
 #define GameStrcat wcscat
 #define GameStrcmp wcscmp
 #define GameStrncmp wcsncmp
-#define GameStricmp wcsicmp
+#define Gamestrcasecmp wcsicmp
 #define GameStrnicmp wcsnicmp
 #define GameStrtok wcstok
 #define GameSprintf swprintf

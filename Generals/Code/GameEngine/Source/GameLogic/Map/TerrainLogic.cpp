@@ -1513,7 +1513,7 @@ void makeAlignToNormalMatrix( Real angle, const Coord3D& pos, const Coord3D& nor
 PathfindLayerEnum TerrainLogic::alignOnTerrain( Real angle, const Coord3D& pos, Bool stickToGround, Matrix3D& mtx)
 {
 	Coord3D terrainNormal;
-	PathfindLayerEnum layer;
+	PathfindLayerenum layer : int32_t;
 
 	layer = getLayerForDestination(&pos);
 

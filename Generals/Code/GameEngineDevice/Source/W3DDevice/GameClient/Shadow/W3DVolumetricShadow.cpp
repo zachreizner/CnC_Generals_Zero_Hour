@@ -756,7 +756,7 @@ Int W3DShadowGeometry::init(RenderObjClass *robj)
 	for (Int modelIndex=0; modelIndex<fileInfo->ModelCount; modelIndex++)
 	{
 		granny_model *sourceModel =  fileInfo->Models[modelIndex];
-		if (stricmp(sourceModel->Name,"AABOX") == 0)
+		if (strcasecmp(sourceModel->Name,"AABOX") == 0)
 		{	//found a collision box, copy out data
 			int MeshCount = sourceModel->MeshBindingCount;
 			if (MeshCount==1)

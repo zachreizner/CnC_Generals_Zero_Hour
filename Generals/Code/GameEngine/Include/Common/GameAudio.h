@@ -61,8 +61,8 @@ class Object;
 class SoundManager;
 
 
-enum AudioAffect;
-enum AudioType;
+enum AudioAffect : int32_t;
+enum AudioType : int32_t;
 
 struct AudioEventInfo;
 struct AudioRequest;

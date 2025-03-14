@@ -96,7 +96,7 @@ LANGINFO *GetLangInfo ( char *language )
 
 	while ( item->langid != LANGID_UNKNOWN )
 	{
-		if ( !stricmp ( language, item->name ) )
+		if ( !strcasecmp ( language, item->name ) )
 		{
 			return item;
 		}

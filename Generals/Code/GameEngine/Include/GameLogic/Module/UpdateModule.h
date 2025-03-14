@@ -62,7 +62,7 @@ class WeaponTemplate;
 class DamageInfo;
 class ParticleSystemTemplate;
 class CommandButton;
-enum CommandOption;
+enum CommandOption : int32_t;
 
 //-------------------------------------------------------------------------------------------------
 enum UpdateSleepTime 

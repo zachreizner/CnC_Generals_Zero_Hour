@@ -552,7 +552,7 @@ Bool CustomMatchPreferences::usesSystemMapDir(void)
 	if (it == end())
 		return TRUE;
 
-	if (stricmp(it->second.str(), "1") == 0) {
+	if (strcasecmp(it->second.str(), "1") == 0) {
 		return TRUE;
 	}
 	return FALSE;
@@ -572,7 +572,7 @@ Bool CustomMatchPreferences::usesLongGameList(void)
 	if (it == end())
 		return FALSE;
 
-	if (stricmp(it->second.str(), "1") == 0) {
+	if (strcasecmp(it->second.str(), "1") == 0) {
 		return TRUE;
 	}
 	return FALSE;
@@ -591,7 +591,7 @@ Bool CustomMatchPreferences::allowsObservers(void)
 	if (it == end())
 		return TRUE;
 
-	if (stricmp(it->second.str(), "1") == 0) {
+	if (strcasecmp(it->second.str(), "1") == 0) {
 		return TRUE;
 	}
 	return FALSE;
@@ -617,7 +617,7 @@ Bool CustomMatchPreferences::getDisallowAsianText( void )
 			return TRUE;
 	}
 
-	if (stricmp(it->second.str(), "1") == 0) {
+	if (strcasecmp(it->second.str(), "1") == 0) {
 		return TRUE;
 	}
 	return FALSE;
@@ -637,7 +637,7 @@ Bool CustomMatchPreferences::getDisallowNonAsianText( void )
 	if (it == end())
 		return FALSE;
 
-	if (stricmp(it->second.str(), "1") == 0) {
+	if (strcasecmp(it->second.str(), "1") == 0) {
 		return TRUE;
 	}
 	return FALSE;
