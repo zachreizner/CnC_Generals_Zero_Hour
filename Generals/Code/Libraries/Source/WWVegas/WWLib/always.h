@@ -246,9 +246,4 @@ template <class T> T max(T a,T b)
 #define	ARRAY_SIZE(x)		int(sizeof(x)/sizeof(x[0]))
 #endif
 
-#ifndef size_of
-#define size_of(typ,id) sizeof(((typ*)0)->id)
-#endif
-
-
 #endif

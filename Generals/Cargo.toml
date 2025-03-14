@@ -1,0 +1,12 @@
+[package]
+name = "generals"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+autocxx = "0.30.0"
+cxx = "1.0.146"
+
+[build-dependencies]
+autocxx-build = "0.30.0"
+miette = { version = "5.10.0", features = ["fancy"] }
