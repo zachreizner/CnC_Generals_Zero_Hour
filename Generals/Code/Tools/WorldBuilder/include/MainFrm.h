@@ -27,7 +27,7 @@
 #pragma once
 #endif // _MSC_VER > 1000
 
-#include "lib/BaseType.h"
+#include "Lib/BaseType.h"
 #include "MyToolbar.h"
 #include "BrushOptions.h"
 #include "FeatherOptions.h"

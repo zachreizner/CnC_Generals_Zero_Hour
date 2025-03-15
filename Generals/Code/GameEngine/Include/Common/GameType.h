@@ -63,7 +63,7 @@ class INI;
 //-------------------------------------------------------------------------------------------------
 /** The time of day enumeration, keep in sync with TimeOfDayNames[] */
 //-------------------------------------------------------------------------------------------------
-enum TimeOfDay
+enum TimeOfDay : int32_t 
 {
 	TIME_OF_DAY_INVALID = 0,
 	TIME_OF_DAY_FIRST = 1,
@@ -79,7 +79,7 @@ extern char *TimeOfDayNames[];
 // defined in Common/GameType.cpp
 
 //-------------------------------------------------------------------------------------------------
-enum Weather
+enum Weather : int32_t 
 {
 	WEATHER_NORMAL = 0,
 	WEATHER_SNOWY = 1,
@@ -89,7 +89,7 @@ enum Weather
 
 extern char *WeatherNames[];
 
-enum Scorches
+enum Scorches : int32_t 
 {
 	SCORCH_1 = 0,
 	SCORCH_2 = 1,
@@ -168,7 +168,7 @@ enum Scorches
 };
 
 //-------------------------------------------------------------------------------------------------
-enum WeaponSlotType
+enum WeaponSlotType : int32_t 
 {
 	PRIMARY_WEAPON = 0,
 	SECONDARY_WEAPON,
@@ -186,7 +186,7 @@ enum WeaponSlotType
 // made of structures.
 // Note that the bridges just index in the pathfinder, so you don't actually
 // have a LAYER_BRIDGE_1 enum value.
-enum PathfindLayerEnum {LAYER_INVALID = 0, LAYER_GROUND = 1, LAYER_WALL = 15, LAYER_LAST=15};
+enum PathfindLayerEnum : int32_t {LAYER_INVALID = 0, LAYER_GROUND = 1, LAYER_WALL = 15, LAYER_LAST=15};
 
 //-------------------------------------------------------------------------------------------------
 

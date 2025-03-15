@@ -444,10 +444,10 @@ Int PingThreadClass::doPing(UnsignedInt IP, Int timeout)
    char achRepData[sizeof(ICMPECHO) + BUFSIZE];
 
 
-   HANDLE ( WINAPI *lpfnIcmpCreateFile )( VOID ) = NULL;
-   BOOL ( WINAPI *lpfnIcmpCloseHandle )( HANDLE ) = NULL;
+   HANDLE ( WINAPI *lpfnIcmpCreateFile )( VOID ) = 0;
+   BOOL ( WINAPI *lpfnIcmpCloseHandle )( HANDLE ) = 0;
    DWORD (WINAPI *lpfnIcmpSendEcho)(HANDLE, DWORD, LPVOID, WORD, LPVOID,
-                                    LPVOID, DWORD, DWORD) = NULL;
+                                    LPVOID, DWORD, DWORD) = 0;
 
 
    /*

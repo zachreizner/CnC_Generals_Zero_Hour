@@ -62,7 +62,7 @@
 #	define DIRECTINPUT_VERSION	0x800
 #endif
 
-#include <dinput.h>
+// #include <dinput.h>
 
 // USER INCLUDES //////////////////////////////////////////////////////////////
 
@@ -71,6 +71,107 @@
 ///////////////////////////////////////////////////////////////////////////////
 // TYPE DEFINES ///////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
+
+#define DIK_NUMPAD0 0
+#define DIK_NUMPAD1 0
+#define DIK_NUMPAD2 0
+#define DIK_NUMPAD3 0
+#define DIK_NUMPAD4 0
+#define DIK_NUMPAD5 0
+#define DIK_NUMPAD6 0
+#define DIK_NUMPAD7 0
+#define DIK_NUMPAD8 0
+#define DIK_NUMPAD9 0
+#define DIK_NUMPADPERIOD 0
+#define DIK_NUMPADSTAR 0
+#define DIK_NUMPADMINUS 0
+#define DIK_NUMPADPLUS 0
+#define DIK_ESCAPE 0
+#define DIK_BACK 0
+#define DIK_RETURN 0
+#define DIK_SPACE 0
+#define DIK_TAB 0
+#define DIK_F1 0
+#define DIK_F2 0
+#define DIK_F3 0
+#define DIK_F4 0
+#define DIK_F5 0
+#define DIK_F6 0
+#define DIK_F7 0
+#define DIK_F8 0
+#define DIK_F9 0
+#define DIK_F10 0
+#define DIK_F11 0
+#define DIK_F12 0
+#define DIK_A 0
+#define DIK_B 0
+#define DIK_C 0
+#define DIK_D 0
+#define DIK_E 0
+#define DIK_F 0
+#define DIK_G 0
+#define DIK_H 0
+#define DIK_I 0
+#define DIK_J 0
+#define DIK_K 0
+#define DIK_L 0
+#define DIK_M 0
+#define DIK_N 0
+#define DIK_O 0
+#define DIK_P 0
+#define DIK_Q 0
+#define DIK_R 0
+#define DIK_S 0
+#define DIK_T 0
+#define DIK_U 0
+#define DIK_V 0
+#define DIK_W 0
+#define DIK_X 0
+#define DIK_Y 0
+#define DIK_Z 0
+#define DIK_1 0
+#define DIK_2 0
+#define DIK_3 0
+#define DIK_4 0
+#define DIK_5 0
+#define DIK_6 0
+#define DIK_7 0
+#define DIK_8 0
+#define DIK_9 0
+#define DIK_0 0
+#define DIK_MINUS 0
+#define DIK_EQUALS 0
+#define DIK_LBRACKET 0
+#define DIK_RBRACKET 0
+#define DIK_SEMICOLON 0
+#define DIK_APOSTROPHE 0
+#define DIK_GRAVE 0
+#define DIK_BACKSLASH 0
+#define DIK_COMMA 0
+#define DIK_PERIOD 0
+#define DIK_SLASH 0
+#define DIK_SYSRQ 0
+#define DIK_CAPSLOCK 0
+#define DIK_NUMLOCK 0
+#define DIK_SCROLL 0
+#define DIK_LCONTROL 0
+#define DIK_LALT 0
+#define DIK_LSHIFT 0
+#define DIK_RSHIFT 0
+#define DIK_UPARROW 0
+#define DIK_DOWNARROW 0
+#define DIK_LEFTARROW 0
+#define DIK_RIGHTARROW 0
+#define DIK_RALT 0
+#define DIK_RCONTROL 0
+#define DIK_HOME 0
+#define DIK_END 0
+#define DIK_PGUP 0
+#define DIK_PGDN 0
+#define DIK_INSERT 0
+#define DIK_DELETE 0
+#define DIK_NUMPADENTER 0
+#define DIK_NUMPADSLASH 0
 
 #ifndef DIK_OEM_102
 #define DIK_OEM_102         0x56    /* < > | on UK/Germany keyboards  */

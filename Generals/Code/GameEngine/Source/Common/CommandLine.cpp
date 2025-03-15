@@ -29,7 +29,7 @@
 #include "Common/CommandLine.h"
 #include "Common/CRCDebug.h"
 #include "Common/LocalFileSystem.h"
-#include "Common/Version.h"
+#include "Common/version.h"
 #include "GameClient/TerrainVisual.h" // for TERRAIN_LOD_MIN definition
 #include "GameClient/GameText.h"
 
@@ -1226,7 +1226,7 @@ void parseCommandLine(int argc, char *argv[])
 			int len2 = strlen(argv[arg]);
 			if (len2 != len)
 				continue;
-			if (!strnicmp(argv[arg], params[param].name, len))
+			if (!strncasecmp(argv[arg], params[param].name, len))
 			{
 				arg += params[param].func(argv+arg, argc-arg);
 				found = true;

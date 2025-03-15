@@ -97,7 +97,7 @@ public:
 	void Log ( const char *string, LogFormat format = NEW_LINE );
 	CNoxstringDlg(CWnd* pParent = NULL);	// standard constructor
 	virtual ~CNoxstringDlg();
-	int LoadStrFile ( TransDB *db, const char *fileaname, void (*cb ) (void ) = NULL );
+	int LoadStrFile ( TransDB *db, const char *fileaname, void (*cb ) (void ) = 0 );
 	void Ready ( void ) { Status ( "Ready", FALSE ); ProgressComplete(); };
 
 // Dialog Data

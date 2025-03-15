@@ -63,6 +63,63 @@ class STLSpecialAlloc;
 #include <sys/types.h>
 #include <time.h>
 
+typedef void* HANDLE;
+typedef HANDLE HWND;
+typedef HANDLE HMODULE;
+typedef const char* LPSTR;
+typedef const char* LPCTSTR;
+typedef uint16_t WORD;
+typedef uint32_t DWORD;
+typedef uint32_t ULONG;
+typedef uint32_t UINT;
+typedef uint32_t MMRESULT;
+typedef int32_t BOOL;
+MMRESULT timeBeginPeriod(UINT uPeriod);
+MMRESULT timeEndPeriod(UINT uPeriod);
+DWORD timeGetTime();
+void Sleep(DWORD dwMilliseconds);
+
+#define _MAX_PATH 260
+#define MAX_PATH _MAX_PATH
+
+DWORD GetModuleFileName(
+    HMODULE hModule,
+    LPSTR   lpFilename,
+    DWORD   nSize
+);
+
+UINT GetDoubleClickTime();
+
+#define CSIDL_PERSONAL 0 // chosen arbitrarily
+
+BOOL SHGetSpecialFolderPath(
+    HWND  hwnd,
+    LPSTR pszPath,
+    int   csidl,
+    BOOL  fCreate
+);
+
+BOOL CreateDirectory(
+    LPCTSTR               lpPathName,
+    void * lpSecurityAttributes // Always NULL
+);
+
+typedef struct _SYSTEMTIME {
+    WORD wYear;
+    WORD wMonth;
+    WORD wDayOfWeek;
+    WORD wDay;
+    WORD wHour;
+    WORD wMinute;
+    WORD wSecond;
+    WORD wMilliseconds;
+} SYSTEMTIME, *LPSYSTEMTIME;
+
+void GetLocalTime(
+    LPSYSTEMTIME lpSystemTime
+);
+
+
 #ifndef DIRECTINPUT_VERSION
 #	define DIRECTINPUT_VERSION	0x800
 #endif
@@ -80,6 +137,7 @@ class STLSpecialAlloc;
 #include <string>
 #include <unordered_map>
 #include <vector>
+
 
 //------------------------------------------------------------------------------------ RTS Includes
 // Icky. These have to be in this order.

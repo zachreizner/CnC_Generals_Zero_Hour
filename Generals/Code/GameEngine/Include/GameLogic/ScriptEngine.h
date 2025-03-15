@@ -127,7 +127,7 @@ class AttackPriorityInfo : public MemoryPoolObject, public Snapshot
 	MEMORY_POOL_GLUE_WITH_USERLOOKUP_CREATE(AttackPriorityInfo, "AttackPriorityInfo")		
 
 // friend bad for MPOs. (srj)
-//friend class ScriptEngine;
+friend class ScriptEngine;
 
 public:
 
@@ -149,7 +149,6 @@ public:
 	void reset(void);
 
 protected:
-
 	// sanapshot methods
 	virtual void crc( Xfer *xfer );
 	virtual void xfer( Xfer *xfer );

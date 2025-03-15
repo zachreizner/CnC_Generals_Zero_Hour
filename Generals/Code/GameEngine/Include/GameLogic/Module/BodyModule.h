@@ -50,7 +50,7 @@ class WeaponTemplate;
 	* enumeration being in sequential order
 	*/
 //-------------------------------------------------------------------------------------------------
-enum BodyDamageType
+enum BodyDamageType : int32_t
 {
 	BODY_PRISTINE,				///< unit should appear in pristine condition
 	BODY_DAMAGED,					///< unit has been damaged

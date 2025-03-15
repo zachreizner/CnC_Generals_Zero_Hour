@@ -10,3 +10,4 @@ cxx = "1.0.146"
 [build-dependencies]
 autocxx-build = "0.30.0"
 miette = { version = "5.10.0", features = ["fancy"] }
+glob = "0.3.2"

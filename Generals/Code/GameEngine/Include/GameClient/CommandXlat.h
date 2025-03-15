@@ -72,7 +72,7 @@ private:
 };
 
 
-enum FilterTypes
+enum FilterTypes : int32_t
 {
 	FT_NULL_FILTER=0,
 	// The following are screen filter shaders, that modify the rendered viewport after it is drawn.
@@ -82,7 +82,7 @@ enum FilterTypes
 	FT_MAX
 };
 
-enum FilterModes
+enum FilterModes : int32_t
 {
 	FM_NULL_MODE = 0,
 
@@ -115,7 +115,7 @@ enum FilterModes
 class PickAndPlayInfo
 {
 public:
-	PickAndPlayInfo::PickAndPlayInfo(); //INITIALIZE THE CONSTRUCTOR IN CPP
+	PickAndPlayInfo(); //INITIALIZE THE CONSTRUCTOR IN CPP
 
 	Bool						m_air;					//Are we attacking an airborned target?
 	Drawable				*m_drawTarget;	//Do we have an override draw target?

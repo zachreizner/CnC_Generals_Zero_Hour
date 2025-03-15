@@ -199,7 +199,7 @@ public:
 //-------------------------------------------------------------------------------------------------
 /** Object class type enumeration */
 //-------------------------------------------------------------------------------------------------
-enum BuildCompletionType
+enum BuildCompletionType : int32_t
 {
 	BC_INVALID = 0,
 	BC_APPEARS_AT_RALLY_POINT,	///< unit appears at rally point of its #1 prereq
@@ -218,7 +218,7 @@ static const char *BuildCompletionNames[] =
 };
 #endif  // end DEFINE_BUILD_COMPLETION_NAMES
 
-enum BuildableStatus
+enum BuildableStatus : int32_t
 {
 	// saved into savegames... do not change or remove values!
 	BSTATUS_YES = 0,
@@ -279,7 +279,7 @@ public:
 	ModuleInfo() { }
 
 	void addModuleInfo(ThingTemplate *thingTemplate, const AsciiString& name, const AsciiString& moduleTag, const ModuleData* data, Int interfaceMask, Bool inheritable);
-	const ModuleInfo::Nugget *ModuleInfo::getNuggetWithTag( const AsciiString& tag ) const;
+	const ModuleInfo::Nugget *getNuggetWithTag( const AsciiString& tag ) const;
 
 	Int getCount() const 
 	{ 

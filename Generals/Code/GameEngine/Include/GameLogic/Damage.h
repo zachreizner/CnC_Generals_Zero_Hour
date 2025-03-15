@@ -43,7 +43,7 @@ class INI;
 //-------------------------------------------------------------------------------------------------
 /** Damage types, keep this in sync with TheDamageNames[] */
 //-------------------------------------------------------------------------------------------------
-enum DamageType
+enum DamageType : int32_t
 {	
 	DAMAGE_EXPLOSION							= 0,			
 	DAMAGE_CRUSH									= 1,					

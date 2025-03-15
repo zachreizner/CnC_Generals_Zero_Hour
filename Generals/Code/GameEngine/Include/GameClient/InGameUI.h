@@ -43,6 +43,7 @@
 #include "GameClient/DisplayString.h"
 #include "GameClient/Mouse.h"
 #include "GameClient/RadiusDecal.h"
+#include "GameClient/ControlBar.h"
 #include "GameClient/View.h"
 #include "Common/Snapshot.h"
 
@@ -65,7 +66,7 @@ enum ShadowType : int32_t;
 enum CanAttackResult : int32_t;
 
 // ------------------------------------------------------------------------------------------------
-enum RadiusCursorType
+enum RadiusCursorType : int32_t
 {
 	RADIUSCURSOR_NONE = 0,
 	RADIUSCURSOR_ATTACK_DAMAGE_AREA,

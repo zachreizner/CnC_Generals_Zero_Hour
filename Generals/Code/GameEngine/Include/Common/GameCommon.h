@@ -185,7 +185,7 @@ enum
 
 /// Veterancy level define needed by several files that don't need the full Experience code.
 // NOTE NOTE NOTE: Keep TheVeterencyNames in sync with these.
-enum VeterancyLevel
+enum VeterancyLevel : int32_t
 {
 	LEVEL_REGULAR = 0,
 	LEVEL_VETERAN,
@@ -204,7 +204,7 @@ extern const char *TheVeterancyNames[];
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
-enum CommandSourceType 
+enum CommandSourceType : int32_t
 { 
 
 	CMD_FROM_PLAYER = 0, 
@@ -215,7 +215,7 @@ enum CommandSourceType
 };		///< the source of a command
 
 //-------------------------------------------------------------------------------------------------
-enum AbleToAttackType
+enum AbleToAttackType : int32_t
 {
 	_ATTACK_FORCED			= 0x01,
 	_ATTACK_CONTINUED		= 0x02,
@@ -299,7 +299,7 @@ public:																																								\
 	inline DLINK_ITERATOR<OBJCLASS> iterate_##LISTNAME() const													\
 	{																																										\
 		DEBUG_ASSERTCRASH(!BOGUSPTR(m_dlinkhead_##LISTNAME.m_head), ("bogus head ptr"));	\
-		return DLINK_ITERATOR<OBJCLASS>(m_dlinkhead_##LISTNAME.m_head, OBJCLASS::dlink_next_##LISTNAME);	\
+		return DLINK_ITERATOR<OBJCLASS>(m_dlinkhead_##LISTNAME.m_head, &OBJCLASS::dlink_next_##LISTNAME);	\
 	}																																										\
 	inline OBJCLASS *getFirstItemIn_##LISTNAME() const																	\
 	{																																										\
