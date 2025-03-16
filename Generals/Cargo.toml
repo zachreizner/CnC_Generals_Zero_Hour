@@ -6,6 +6,7 @@ edition = "2021"
 [dependencies]
 autocxx = "0.30.0"
 cxx = "1.0.146"
+generals-sys = { path = "generals-sys" }
 
 [build-dependencies]
 autocxx-build = "0.30.0"

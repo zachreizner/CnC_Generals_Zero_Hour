@@ -93,7 +93,7 @@ fn main() -> miette::Result<()> {
         .flag_if_supported("-Wno-unused-function")
         .flag_if_supported("-Wno-conversion-null")
         .flag_if_supported("-Wno-narrowing") // This one affects Trig.cpp
-        .files(files)
+        // .files(files);
         .compile("autocxx-demo"); // arbitrary library name, pick anything
 
     println!("cargo:rerun-if-changed=src/main.rs");

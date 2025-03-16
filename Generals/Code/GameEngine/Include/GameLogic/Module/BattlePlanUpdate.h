@@ -41,8 +41,8 @@ class SpecialPowerModule;
 class ParticleSystem;
 class FXList;
 class AudioEventRTS;
-enum  MaxHealthChangeType;
-enum  CommandOption;
+enum  MaxHealthChangeType : int32_t;
+enum  CommandOption : int32_t;
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
