@@ -99,7 +99,7 @@
 #include "Common/DataChunk.h"
 #include "GameLogic/Scripts.h"
 
-#include "GameNetwork/GameSpy/BuddyThread.h"
+// #include "GameNetwork/GameSpy/BuddyThread.h"
 #include "GameNetwork/GameSpy/PeerDefs.h"
 #include "GameNetwork/GameSpy/ThreadUtils.h"
 #include "GameNetwork/LANAPICallbacks.h"
@@ -195,15 +195,15 @@ void setFPMode( void )
 	// anything as long as it is consistent, really, but this
 	// is in the (vain?) hope of any slight speed boost.
 	//
-	_fpreset();
+	// _fpreset();
 
-	UnsignedInt curVal = _statusfp();
-	UnsignedInt newVal = curVal;
-	newVal = (newVal & ~_MCW_RC) | (_RC_NEAR & _MCW_RC);
-	//newVal = (newVal & ~_MCW_RC) | (_RC_CHOP & _MCW_RC);
-	newVal = (newVal & ~_MCW_PC) | (_PC_24   & _MCW_PC);
+	// UnsignedInt curVal = _statusfp();
+	// UnsignedInt newVal = curVal;
+	// newVal = (newVal & ~_MCW_RC) | (_RC_NEAR & _MCW_RC);
+	// newVal = (newVal & ~_MCW_RC) | (_RC_CHOP & _MCW_RC);
+	// newVal = (newVal & ~_MCW_PC) | (_PC_24   & _MCW_PC);
 
-	_controlfp(newVal, _MCW_PC | _MCW_RC);
+	// _controlfp(newVal, _MCW_PC | _MCW_RC);
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -423,7 +423,6 @@ void GameLogic::reset( void )
 
 	// set the hash to be rather large. We need to optimize this value later.
 	m_objHash.clear();
-	m_objHash.resize(OBJ_HASH_SIZE);
 	m_gamePaused = FALSE;
 	m_inputEnabledMemory = TRUE;
 	m_mouseVisibleMemory = TRUE;
@@ -2023,15 +2022,15 @@ void GameLogic::startNewGame( Bool saveGame )
 	TheWritableGlobalData->m_loadScreenRender = FALSE;	///< mark to resume rendering as normal
 	
 	// if we're in a gamespy game, mark us as playing
-	if (TheGameSpyBuddyMessageQueue && TheGameSpyGame && isInInternetGame())
-	{
-		BuddyRequest req;
-		req.buddyRequestType = BuddyRequest::BUDDYREQUEST_SETSTATUS;
-		req.arg.status.status = GP_PLAYING;
-		strcpy(req.arg.status.statusString, "Playing");
-		sprintf(req.arg.status.locationString, "%s", WideCharStringToMultiByte(TheGameSpyGame->getGameName().str()).c_str());
-		TheGameSpyBuddyMessageQueue->addRequest(req);
-	}	
+	// if (TheGameSpyBuddyMessageQueue && TheGameSpyGame && isInInternetGame())
+	// {
+	// 	BuddyRequest req;
+	// 	req.buddyRequestType = BuddyRequest::BUDDYREQUEST_SETSTATUS;
+	// 	req.arg.status.status = GP_PLAYING;
+	// 	strcpy(req.arg.status.statusString, "Playing");
+	// 	sprintf(req.arg.status.locationString, "%s", WideCharStringToMultiByte(TheGameSpyGame->getGameName().str()).c_str());
+	// 	TheGameSpyBuddyMessageQueue->addRequest(req);
+	// }
 	
 	//Added By Sadullah Nader
 	//Added to fix the quit menu 

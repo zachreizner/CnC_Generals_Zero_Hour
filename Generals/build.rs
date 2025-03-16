@@ -1,18 +1,4 @@
-use miette::IntoDiagnostic;
 use std::path::PathBuf;
-
-fn concat_globs(globs: &[&str], excludes: &[&str]) -> miette::Result<Vec<PathBuf>> {
-    let mut files = Vec::new();
-    for pattern in globs {
-        for p in glob::glob(pattern).into_diagnostic()? {
-            let p = p.into_diagnostic()?;
-            if excludes.iter().all(|e| !p.ends_with(e)) {
-                files.push(p);
-            }
-        }
-    }
-    Ok(files)
-}
 
 fn main() -> miette::Result<()> {
     let incs: Vec<_> = [
@@ -27,43 +13,6 @@ fn main() -> miette::Result<()> {
     .iter()
     .map(PathBuf::from)
     .collect();
-
-    let files = concat_globs(
-        &[
-            "Code/GameEngine/Source/Common/Audio/*.cpp",
-            "Code/GameEngine/Source/Common/INI/*.cpp",
-            "Code/GameEngine/Source/Common/RTS/*.cpp",
-            "Code/GameEngine/Source/Common/Thing/*.cpp",
-            "Code/GameEngine/Source/Common/System/*.cpp",
-            "Code/GameEngine/Source/Common/*.cpp",
-            "Code/GameEngine/Source/GameLogic/Object/*.cpp",
-            "Code/GameEngine/Source/GameLogic/Object/Behavior/*.cpp",
-            "Code/GameEngine/Source/GameLogic/Object/Body/*.cpp",
-            "Code/GameEngine/Source/GameLogic/Object/Collide/*.cpp",
-            "Code/GameEngine/Source/GameLogic/Object/Contain/*.cpp",
-            "Code/GameEngine/Source/GameLogic/Object/Create/*.cpp",
-            "Code/GameEngine/Source/GameLogic/Object/Damage/*.cpp",
-            "Code/GameEngine/Source/GameLogic/Object/Destroy/*.cpp",
-            "Code/GameEngine/Source/GameLogic/Object/Die/*.cpp",
-            "Code/GameEngine/Source/GameLogic/Object/Helper/*.cpp",
-            "Code/GameEngine/Source/GameLogic/Object/SpecialPower/*.cpp",
-            "Code/GameEngine/Source/GameLogic/Object/Update/*.cpp",
-            "Code/GameEngine/Source/GameLogic/Object/Upgrade/*.cpp",
-        ],
-        &[
-            "LocalFile.cpp",
-            "registry.cpp",
-            "Debug.cpp",
-            "simpleplayer.cpp",
-            "urllaunch.cpp",
-            "GameSpeech.cpp",
-        ],
-    )?;
-
-    eprintln!("C++ files to build");
-    for f in files.iter() {
-        eprintln!("  {}", f.display());
-    }
 
     // This assumes all your C++ bindings are in main.rs
     let mut b = autocxx_build::Builder::new("src/main.rs", &incs).build()?;
@@ -93,10 +42,19 @@ fn main() -> miette::Result<()> {
         .flag_if_supported("-Wno-unused-function")
         .flag_if_supported("-Wno-conversion-null")
         .flag_if_supported("-Wno-narrowing") // This one affects Trig.cpp
-        .files(files)
         .compile("autocxx-demo"); // arbitrary library name, pick anything
 
+    let dst = cmake::Config::new(".")
+        .no_default_flags(true)
+        .generator("Ninja")
+        .build_target("generals_lib")
+        .build();
+
+    println!("cargo:rustc-link-search=native={}/build", dst.display());
+    println!("cargo:rustc-link-lib=static=generals_lib");
+
     println!("cargo:rerun-if-changed=src/main.rs");
+    println!("cargo:rerun-if-changed=CMakeLists.txt");
 
     Ok(())
 }
