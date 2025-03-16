@@ -16,6 +16,7 @@ fn concat_globs(globs: &[&str], excludes: &[&str]) -> miette::Result<Vec<PathBuf
 
 fn main() -> miette::Result<()> {
     let incs: Vec<_> = [
+        "include",
         "Code/GameEngine/Include",
         "Code/GameEngine/Include/Precompiled",
         "Code/Libraries/Include",
@@ -29,12 +30,20 @@ fn main() -> miette::Result<()> {
 
     let files = concat_globs(
         &[
+            "Code/GameEngine/Source/Common/Audio/*.cpp",
             "Code/GameEngine/Source/Common/INI/*.cpp",
             "Code/GameEngine/Source/Common/RTS/*.cpp",
             "Code/GameEngine/Source/Common/System/*.cpp",
             "Code/GameEngine/Source/Common/*.cpp",
         ],
-        &["LocalFile.cpp", "registry.cpp", "Debug.cpp"],
+        &[
+            "LocalFile.cpp",
+            "registry.cpp",
+            "Debug.cpp",
+            "simpleplayer.cpp",
+            "urllaunch.cpp",
+            "GameSpeech.cpp",
+        ],
     )?;
 
     eprintln!("C++ files to build");

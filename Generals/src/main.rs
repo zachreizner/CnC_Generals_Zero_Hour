@@ -16,49 +16,48 @@ include_cpp! {
     subclass!("LocalFileSystem", GeneralsLocalFileSystem)
 }
 
-
 #[subclass]
 #[derive(Default)]
 pub struct GeneralsGameEngine;
 
 impl GameEngine_methods for GeneralsGameEngine {
-    fn createLocalFileSystem(&mut self) ->  *mut LocalFileSystem {
+    fn createLocalFileSystem(&mut self) -> *mut LocalFileSystem {
         todo!()
     }
 
-    fn createArchiveFileSystem(&mut self) ->  *mut ArchiveFileSystem {
+    fn createArchiveFileSystem(&mut self) -> *mut ArchiveFileSystem {
         todo!()
     }
 
-    fn createGameLogic(&mut self) ->  *mut GameLogic {
+    fn createGameLogic(&mut self) -> *mut GameLogic {
         todo!()
     }
 
-    fn createGameClient(&mut self) ->  *mut GameClient {
+    fn createGameClient(&mut self) -> *mut GameClient {
         todo!()
     }
 
-    fn createModuleFactory(&mut self) ->  *mut ModuleFactory {
+    fn createModuleFactory(&mut self) -> *mut ModuleFactory {
         todo!()
     }
 
-    fn createThingFactory(&mut self) ->  *mut ThingFactory {
+    fn createThingFactory(&mut self) -> *mut ThingFactory {
         todo!()
     }
 
-    fn createFunctionLexicon(&mut self) ->  *mut FunctionLexicon {
+    fn createFunctionLexicon(&mut self) -> *mut FunctionLexicon {
         todo!()
     }
 
-    fn createRadar(&mut self) ->  *mut Radar {
+    fn createRadar(&mut self) -> *mut Radar {
         todo!()
     }
 
-    fn createParticleSystemManager(&mut self) ->  *mut ParticleSystemManager {
+    fn createParticleSystemManager(&mut self) -> *mut ParticleSystemManager {
         todo!()
     }
 
-    fn createAudioManager(&mut self) ->  *mut AudioManager {
+    fn createAudioManager(&mut self) -> *mut AudioManager {
         todo!()
     }
 }
@@ -102,11 +101,7 @@ impl LocalFileSystem_methods for GeneralsLocalFileSystem {
         todo!()
     }
 
-    unsafe fn getFileInfo(
-        &self,
-        filename: &AsciiString,
-        fileInfo: *mut FileInfo,
-    ) -> bool {
+    unsafe fn getFileInfo(&self, filename: &AsciiString, fileInfo: *mut FileInfo) -> bool {
         todo!()
     }
 
