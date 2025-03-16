@@ -29,6 +29,7 @@ fn main() -> miette::Result<()> {
 
     let files = concat_globs(
         &[
+            "Code/GameEngine/Source/Common/INI/*.cpp",
             "Code/GameEngine/Source/Common/System/*.cpp",
             "Code/GameEngine/Source/Common/*.cpp",
         ],
