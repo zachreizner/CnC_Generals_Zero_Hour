@@ -33,6 +33,7 @@ fn main() -> miette::Result<()> {
             "Code/GameEngine/Source/Common/Audio/*.cpp",
             "Code/GameEngine/Source/Common/INI/*.cpp",
             "Code/GameEngine/Source/Common/RTS/*.cpp",
+            "Code/GameEngine/Source/Common/Thing/*.cpp",
             "Code/GameEngine/Source/Common/System/*.cpp",
             "Code/GameEngine/Source/Common/*.cpp",
         ],
@@ -54,6 +55,7 @@ fn main() -> miette::Result<()> {
     // This assumes all your C++ bindings are in main.rs
     let mut b = autocxx_build::Builder::new("src/main.rs", &incs).build()?;
     b.flag_if_supported("-std=c++14")
+        .extra_warnings(false)
         .flag_if_supported("-Wno-deprecated-copy")
         .flag_if_supported("-Wno-deprecated")
         .flag_if_supported("-Wno-endif-labels")
@@ -76,6 +78,7 @@ fn main() -> miette::Result<()> {
         .flag_if_supported("-Wno-write-strings")
         .flag_if_supported("-Wno-type-limits")
         .flag_if_supported("-Wno-unused-function")
+        .flag_if_supported("-Wno-conversion-null")
         .flag_if_supported("-Wno-narrowing") // This one affects Trig.cpp
         .files(files)
         .compile("autocxx-demo"); // arbitrary library name, pick anything
