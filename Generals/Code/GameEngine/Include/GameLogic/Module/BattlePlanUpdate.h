@@ -90,7 +90,7 @@ private:
 
 };
 
-enum TransitionStatus
+enum TransitionStatus : int32_t
 {
 	TRANSITIONSTATUS_IDLE,
 	TRANSITIONSTATUS_UNPACKING,
@@ -98,7 +98,7 @@ enum TransitionStatus
 	TRANSITIONSTATUS_PACKING,
 };
 
-enum BattlePlanStatus
+enum BattlePlanStatus : int32_t
 {
 	PLANSTATUS_NONE,
 	PLANSTATUS_BOMBARDMENT,

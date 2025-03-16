@@ -487,7 +487,7 @@ UpdateSleepTime ParticleUplinkCannonUpdate::update()
 				cartesianTargetVector.Normalize();
 
 				Real dotProduct = Vector2::Dot_Product( buildingToTargetVector, cartesianTargetVector );
-				dotProduct = __min( 0.99999f, __max( -0.99999f, dotProduct ) ); //Account for numerical errors.  Also, acos(-1.00000) is coming out QNAN on the superweapon general map.  Heh.
+				dotProduct = min( 0.99999f, max( -0.99999f, dotProduct ) ); //Account for numerical errors.  Also, acos(-1.00000) is coming out QNAN on the superweapon general map.  Heh.
 
 				Real angle = (Real)ACos( dotProduct );
 
