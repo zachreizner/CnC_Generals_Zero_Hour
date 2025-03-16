@@ -25,7 +25,7 @@
 #include "stdafx.h"
 #include "worldbuilder.h"
 #include "MapSettings.h"
-#include "Common\GlobalData.h"
+#include "Common/GlobalData.h"
 #include "Common/WellKnownKeys.h"
 #include "Compression.h"
 

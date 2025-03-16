@@ -29,7 +29,7 @@ so forth is all handled in the object options panel.  jba. */
 
 #include "stdafx.h"
 #include "resource.h"
-#include "Lib\BaseType.h"
+#include "Lib/BaseType.h"
 #include "FenceOptions.h"
 #include "ObjectOptions.h"
 #include "WHeightMapEdit.h"

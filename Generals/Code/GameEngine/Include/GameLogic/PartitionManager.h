@@ -1184,6 +1184,16 @@ protected:
 #endif
 };
 
+void hLineAddLooker(Int x1, Int x2, Int y, void *playerIndex);
+void hLineRemoveLooker(Int x1, Int x2, Int y, void *playerIndex);
+void hLineAddShrouder(Int x1, Int x2, Int y, void *playerIndex);
+void hLineRemoveShrouder(Int x1, Int x2, Int y, void *playerIndex);
+
+void hLineAddThreat(Int x1, Int x2, Int y, void *threatValueParms);
+void hLineRemoveThreat(Int x1, Int x2, Int y, void *threatValueParms);
+void hLineAddValue(Int x1, Int x2, Int y, void *threatValueParms);
+void hLineRemoveValue(Int x1, Int x2, Int y, void *threatValueParms);
+
 //=====================================
 /** 
 	PartitionManager is the singleton class that manages the entire partition/collision

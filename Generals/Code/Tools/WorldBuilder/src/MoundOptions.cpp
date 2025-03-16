@@ -21,7 +21,7 @@
 
 #include "stdafx.h"
 #include "resource.h"
-#include "Lib\BaseType.h"
+#include "Lib/BaseType.h"
 #include "MoundOptions.h"
 #include "WorldBuilderView.h"
 #include "MoundTool.h"

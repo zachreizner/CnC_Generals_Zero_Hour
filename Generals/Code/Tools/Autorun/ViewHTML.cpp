@@ -36,7 +36,7 @@
 #include	<windows.h>
 
 #include "ViewHTML.h"
-//#include "..\win.h"
+//#include "../win.h"
 #include <stdio.h>
 //#include "debugprint.h"
 #include "wnd_file.h"

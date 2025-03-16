@@ -23,6 +23,7 @@ typedef uint32_t LSTATUS;
 typedef uintptr_t SIZE_T;
 typedef uintptr_t ULONG_PTR;
 typedef uintptr_t DWORD_PTR;
+typedef float FLOAT;
 MMRESULT timeBeginPeriod(UINT uPeriod);
 MMRESULT timeEndPeriod(UINT uPeriod);
 DWORD timeGetTime();
@@ -94,5 +95,26 @@ void * GlobalAlloc(
 void* GlobalFree(
     void* hMem
 );
+
+typedef struct D3DXMATRIX {
+    FLOAT _11;
+    FLOAT _12;
+    FLOAT _13;
+    FLOAT _14;
+    FLOAT _21;
+    FLOAT _22;
+    FLOAT _23;
+    FLOAT _24;
+    FLOAT _31;
+    FLOAT _32;
+    FLOAT _33;
+    FLOAT _34;
+    FLOAT _41;
+    FLOAT _42;
+    FLOAT _43;
+    FLOAT _44;
+} D3DXMATRIX;
+
+extern "C" char *itoa (int value, char *str, int base);
 
 #endif

@@ -23,7 +23,7 @@
 
 #include "stdafx.h"
 #include "resource.h"
-#include "Lib\BaseType.h"
+#include "Lib/BaseType.h"
 #include "BlendMaterial.h"
 #include "WHeightMapEdit.h"
 #include "WorldBuilderDoc.h"

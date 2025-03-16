@@ -31,7 +31,8 @@
 #ifndef __BEZIERSEGMENT_H__
 #define __BEZIERSEGMENT_H__
 
-#include <D3DX8Math.h>
+// #include <D3DX8Math.h>
+#include "MockWindows.h"
 #include "Common/STLTypedefs.h"
 
 #define USUAL_TOLERANCE 1.0f

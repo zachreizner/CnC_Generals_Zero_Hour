@@ -21,7 +21,7 @@
 
 #include "stdafx.h"
 #include "resource.h"
-#include "Lib\BaseType.h"
+#include "Lib/BaseType.h"
 #include "BuildList.h"
 #include "BuildListTool.h"
 #include "BaseBuildProps.h"

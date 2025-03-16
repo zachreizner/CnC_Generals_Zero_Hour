@@ -39,7 +39,7 @@
 
 enum ObjectID : int32_t;
 
-enum PhysicsTurningType
+enum PhysicsTurningType : int32_t
 {
 	TURN_NEGATIVE = -1,
 	TURN_NONE = 0,

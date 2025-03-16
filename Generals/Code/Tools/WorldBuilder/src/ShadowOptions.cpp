@@ -21,7 +21,7 @@
 
 #include "stdafx.h"
 #include "worldbuilder.h"
-#include "Lib\BaseType.h"
+#include "Lib/BaseType.h"
 #include "rendobj.h"
 #include "Common/GlobalData.h"
 #include "ShadowOptions.h"

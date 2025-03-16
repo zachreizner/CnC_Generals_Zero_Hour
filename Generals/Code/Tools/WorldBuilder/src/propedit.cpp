@@ -21,7 +21,7 @@
 
 #include "stdafx.h"
 #include "worldbuilder.h"
-#include "..\include\propedit.h"
+#include "../include/propedit.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // PropEdit dialog

@@ -53,8 +53,8 @@
 #include <wpaudio/source.h>
 #include <wsys/file.h>
 
-//#include "asimp3\mss.h"
-//#include "asimp3\mp3dec.h"
+//#include "asimp3/mss.h"
+//#include "asimp3/mp3dec.h"
 
 // 'assignment within condition expression'.
 #pragma warning(disable : 4706)

@@ -21,7 +21,7 @@
 
 #include "stdafx.h"
 #include "resource.h"
-#include "Lib\BaseType.h"
+#include "Lib/BaseType.h"
 #include "CUndoable.h"
 #include "WaypointOptions.h"
 #include "WorldBuilder.h"

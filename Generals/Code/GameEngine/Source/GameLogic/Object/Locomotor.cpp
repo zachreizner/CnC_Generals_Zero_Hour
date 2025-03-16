@@ -2332,7 +2332,7 @@ void Locomotor::moveTowardsPositionOther(Object* obj, PhysicsBehavior *physics, 
 	// Locomotion for other things, ie don't know what it is jba :)
 	//
 	// Orient toward goal position
-	// exception: if very close (ie, we could get there in 2 frames or less),\
+	// exception: if very close (ie, we could get there in 2 frames or less),
 	// and ULTRA_ACCURATE, just slide into place
 	//
 	const Coord3D* pos =  obj->getPosition();
