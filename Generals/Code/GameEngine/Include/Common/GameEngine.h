@@ -112,9 +112,9 @@ inline Bool GameEngine::getQuitting(void) { return m_quitting; }
 extern GameEngine *TheGameEngine;
 
 /// This function creates a new game engine instance, and is device specific
-extern GameEngine *CreateGameEngine( void );
+extern "C"  GameEngine *CreateGameEngine( void );
 
 /// The entry point for the game system
-extern void GameMain( int argc, char *argv[] );
+extern void GameMain( int argc, void *argv );
 
 #endif // _GAME_ENGINE_H_

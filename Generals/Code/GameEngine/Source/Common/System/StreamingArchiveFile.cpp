@@ -49,7 +49,7 @@
 
 #include <stdio.h>
 #include <fcntl.h>
-#include <io.h>
+// #include <io.h>
 #include <string.h>
 #include <sys/stat.h>
 
@@ -148,7 +148,8 @@ Bool StreamingArchiveFile::open( const Char *filename, Int access )
 		return FALSE;
 	}	
 
-	return (open( file ) != NULL);
+	// return (open( file ) != NULL);
+	return open ( file );
 }
 
 //============================================================================

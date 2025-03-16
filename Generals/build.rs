@@ -1,6 +1,18 @@
 use miette::IntoDiagnostic;
 use std::path::PathBuf;
 
+fn concat_globs(globs: &[&str], excludes: &[&str]) -> miette::Result<Vec<PathBuf>> {
+    let mut files = Vec::new();
+    for pattern in globs {
+        for p in glob::glob(pattern).into_diagnostic()? {
+            let p = p.into_diagnostic()?;
+            if excludes.iter().all(|e| !p.ends_with(e)) {
+                files.push(p);
+            }
+        }
+    }
+    Ok(files)
+}
 
 fn main() -> miette::Result<()> {
     let incs: Vec<_> = [
@@ -9,15 +21,19 @@ fn main() -> miette::Result<()> {
         "Code/Libraries/Include",
         "Code/Libraries/Source/WWVegas",
         "Code/Libraries/Source/WWVegas/WWLib",
+        "Code/Libraries/Source/Compression/",
     ]
     .iter()
     .map(PathBuf::from)
     .collect();
 
-    let files: Result<Vec<PathBuf>, _> = glob::glob("Code/GameEngine/Source/Common/*.cpp")
-        .into_diagnostic()?
-        .collect();
-    let files = files.into_diagnostic()?;
+    let files = concat_globs(
+        &[
+            "Code/GameEngine/Source/Common/System/*.cpp",
+            "Code/GameEngine/Source/Common/*.cpp",
+        ],
+        &["LocalFile.cpp", "registry.cpp", "Debug.cpp"],
+    )?;
 
     eprintln!("C++ files to build");
     for f in files.iter() {
@@ -47,6 +63,9 @@ fn main() -> miette::Result<()> {
         .flag_if_supported("-Wno-unused-value")
         .flag_if_supported("-Wno-unused-variable")
         .flag_if_supported("-Wno-write-strings")
+        .flag_if_supported("-Wno-type-limits")
+        .flag_if_supported("-Wno-unused-function")
+        .flag_if_supported("-Wno-narrowing") // This one affects Trig.cpp
         .files(files)
         .compile("autocxx-demo"); // arbitrary library name, pick anything
 

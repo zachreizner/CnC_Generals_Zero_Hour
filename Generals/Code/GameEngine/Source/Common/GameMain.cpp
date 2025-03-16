@@ -34,11 +34,11 @@
 /**
  * This is the entry point for the game system.
  */
-void GameMain( int argc, char *argv[] )
+void GameMain( int argc, void *argv )
 {
 	// initialize the game engine using factory function
 	TheGameEngine = CreateGameEngine();
-	TheGameEngine->init(argc, argv);
+	TheGameEngine->init(argc, (char **)argv);
 
 	// run it
 	TheGameEngine->execute();

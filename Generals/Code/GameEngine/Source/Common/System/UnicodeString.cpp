@@ -67,6 +67,38 @@ void UnicodeString::validate() const
 }
 #endif
 
+int char16_compare(const WideChar *s1, const WideChar *s2) {
+	auto s1Len = std::char_traits<WideChar>::length(s1);
+	auto s2Len = std::char_traits<WideChar>::length(s2);
+	auto count = min(s1Len, s2Len);
+	return std::char_traits<WideChar>::compare(s1, s2, count);
+}
+
+int char16_compare_no_case(const WideChar *s1, const WideChar *s2) {
+	auto s1Len = std::char_traits<WideChar>::length(s1);
+	auto s2Len = std::char_traits<WideChar>::length(s2);
+	auto count = min(s1Len, s2Len);
+
+	while (count-- != 0)
+	{
+		WideChar c1 = *s1;
+		WideChar c2 = *s2;
+		if (c1 >= u'a' && c1 <= u'z') {
+			c1 -= 32;
+		}
+		if (c2 >= u'a' && c2 <= u'z') {
+			c2 -= 32;
+		}
+		if (c1 < c2)
+			return -1;
+		if (c1 > c2)
+			return 1;
+		++s1;
+		++s2;
+	}
+	return s1Len > s2Len ? 1 : (s1Len < s2Len ? -1 : 0);
+}
+
 // -----------------------------------------------------
 UnicodeString::UnicodeString(const UnicodeString& stringSrc) : m_data(stringSrc.m_data)
 {
@@ -309,7 +341,7 @@ void UnicodeString::format_va(const UnicodeString& format, va_list args)
 {
 	validate();
 	WideChar buf[MAX_FORMAT_BUF_LEN];
-  if (_vsnwprintf(buf, sizeof(buf)/sizeof(WideChar)-1, format.str(), args) < 0)
+  if (vswprintf(buf, sizeof(buf)/sizeof(WideChar)-1, format.str(), args) < 0)
 			throw ERROR_OUT_OF_MEMORY;
 	set(buf);
 	validate();
@@ -320,7 +352,7 @@ void UnicodeString::format_va(const WideChar* format, va_list args)
 {
 	validate();
 	WideChar buf[MAX_FORMAT_BUF_LEN];
-  if (_vsnwprintf(buf, sizeof(buf)/sizeof(WideChar)-1, format, args) < 0)
+  if (vswprintf(buf, sizeof(buf)/sizeof(WideChar)-1, format, args) < 0)
 			throw ERROR_OUT_OF_MEMORY;
 	set(buf);
 	validate();

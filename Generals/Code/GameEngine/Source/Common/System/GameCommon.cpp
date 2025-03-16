@@ -52,7 +52,7 @@ Real normalizeAngle(Real angle)
 {
 	DEBUG_ASSERTCRASH(!_isnan(angle), ("Angle is NAN in normalizeAngle!\n"));
 	
-	if( _isnan(angle) )
+	if( isnan(angle) )
 		return 0;// ARGH!!!! Don't assert and then not handle it!  Error bad!  Fix error!
 
 	while (angle > PI) 

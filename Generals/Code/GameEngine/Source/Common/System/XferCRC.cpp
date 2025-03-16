@@ -34,7 +34,7 @@
 #include "Common/XferDeepCRC.h"
 #include "Common/crc.h"
 #include "Common/Snapshot.h"
-#include "winsock2.h" // for htonl
+#include <arpa/inet.h> // for htonl
 
 //-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------

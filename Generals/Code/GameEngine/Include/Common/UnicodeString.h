@@ -316,7 +316,7 @@ inline UnicodeString::~UnicodeString()
 inline int UnicodeString::getLength() const
 {
 	validate();
-	return m_data ? wcslen(peek()) : 0;
+	return m_data ? std::char_traits<WideChar>::length(peek()) : 0;
 }
 
 // -----------------------------------------------------
@@ -386,68 +386,71 @@ inline void UnicodeString::concat(const WideChar c)
 	validate();
 }
 
+int char16_compare(const WideChar *s1, const WideChar *s2);
+int char16_compare_no_case(const WideChar *s1, const WideChar *s2);
+
 // -----------------------------------------------------
 inline int UnicodeString::compare(const UnicodeString& stringSrc) const
 {
 	validate();
-	return wcscmp(this->str(), stringSrc.str());
+	return char16_compare(this->str(), stringSrc.str());
 }
 
 // -----------------------------------------------------
 inline int UnicodeString::compare(const WideChar* s) const
 {
 	validate();
-	return wcscmp(this->str(), s);
+	return char16_compare(this->str(), s);
 }
 
 // -----------------------------------------------------
 inline int UnicodeString::compareNoCase(const UnicodeString& stringSrc) const
 {
 	validate();
-	return wcscasecmp(this->str(), stringSrc.str());
+	return char16_compare_no_case(this->str(), stringSrc.str());
 }
 
 // -----------------------------------------------------
 inline int UnicodeString::compareNoCase(const WideChar* s) const
 {
 	validate();
-	return wcscasecmp(this->str(), s);
+	return char16_compare_no_case(this->str(), s);
 }
 
 // -----------------------------------------------------
 inline Bool operator==(const UnicodeString& s1, const UnicodeString& s2)
 {
-	return wcscmp(s1.str(), s2.str()) == 0;
+	return char16_compare(s1.str(), s2.str()) == 0;
 }
 
 // -----------------------------------------------------
 inline Bool operator!=(const UnicodeString& s1, const UnicodeString& s2)
 {
-	return wcscmp(s1.str(), s2.str()) != 0;
+	return char16_compare(s1.str(), s2.str()) != 0;
 }
 
 // -----------------------------------------------------
 inline Bool operator<(const UnicodeString& s1, const UnicodeString& s2)
 {
-	return wcscmp(s1.str(), s2.str()) < 0;
+	return char16_compare(s1.str(), s2.str()) < 0;
 }
 
 // -----------------------------------------------------
 inline Bool operator<=(const UnicodeString& s1, const UnicodeString& s2)
 {
-	return wcscmp(s1.str(), s2.str()) <= 0;
+	return char16_compare(s1.str(), s2.str()) <= 0;
 }
 
 // -----------------------------------------------------
 inline Bool operator>(const UnicodeString& s1, const UnicodeString& s2)
 {
-	return wcscmp(s1.str(), s2.str()) > 0;
+	return char16_compare(s1.str(), s2.str()) > 0;
 }
 
 // -----------------------------------------------------
 inline Bool operator>=(const UnicodeString& s1, const UnicodeString& s2)
 {
-	return wcscmp(s1.str(), s2.str()) >= 0;
+	return char16_compare(s1.str(), s2.str()) >= 0;
 }
 
 #endif // UNICODESTRING_H

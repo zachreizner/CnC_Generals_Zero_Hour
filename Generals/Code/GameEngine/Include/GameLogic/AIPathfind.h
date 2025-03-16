@@ -196,6 +196,8 @@ protected:
 // See GameType.h for
 // enum {LAYER_INVALID = 0, LAYER_GROUND = 1, LAYER_TOP=2 };
 
+class PathfindCell;
+
 // Fits in 4 bits for now
 enum {MAX_WALL_PIECES = 128};
 
@@ -422,7 +424,7 @@ private:
 	ICoord2D m_startCell; // pathfind cell indexes for center cell on the from side.
 	ICoord2D m_endCell; // pathfind cell indexes for center cell on the to side.
 
-	PathfindLayerenum m_layer : int32_t;
+	PathfindLayerEnum m_layer;
 	Int m_zone;			// Whole bridge is in same zone.
 	Bridge *m_bridge; // Corresponding bridge in TerrainLogic.
 	Bool m_destroyed;

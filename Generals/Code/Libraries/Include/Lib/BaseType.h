@@ -176,9 +176,7 @@ inline Real deg2rad(Real rad) { return rad * (PI/180); }
 // code, so use this function with caution -- it might not round in the way you want.
 __forceinline long fast_float2long_round(float f)
 {
-	long i;
-
-	return (float)i;
+	return (long)f;
 }
 
 //-------------------------------------------------------------------------------------------------
