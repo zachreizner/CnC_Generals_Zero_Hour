@@ -163,6 +163,148 @@ set(GENERALS_SRC
     Code/GameEngine/Source/Common/UserPreferences.cpp
     Code/GameEngine/Source/Common/crc.cpp
     Code/GameEngine/Source/Common/version.cpp
+    Code/GameEngine/Source/GameClient/Color.cpp
+    Code/GameEngine/Source/GameClient/Credits.cpp
+    Code/GameEngine/Source/GameClient/Display.cpp
+    Code/GameEngine/Source/GameClient/DisplayString.cpp
+    Code/GameEngine/Source/GameClient/DisplayStringManager.cpp
+    Code/GameEngine/Source/GameClient/Drawable.cpp
+    Code/GameEngine/Source/GameClient/Drawable/DrawableManager.cpp
+    Code/GameEngine/Source/GameClient/Drawable/Update/AnimatedParticleSysBoneClientUpdate.cpp
+    Code/GameEngine/Source/GameClient/Drawable/Update/BeaconClientUpdate.cpp
+    Code/GameEngine/Source/GameClient/Drawable/Update/SwayClientUpdate.cpp
+    Code/GameEngine/Source/GameClient/DrawableManager.cpp
+    Code/GameEngine/Source/GameClient/DrawGroupInfo.cpp
+    Code/GameEngine/Source/GameClient/Eva.cpp
+    Code/GameEngine/Source/GameClient/FXList.cpp
+    Code/GameEngine/Source/GameClient/GameClient.cpp
+    Code/GameEngine/Source/GameClient/GameClientDispatch.cpp
+    Code/GameEngine/Source/GameClient/GameText.cpp
+    Code/GameEngine/Source/GameClient/GlobalLanguage.cpp
+    Code/GameEngine/Source/GameClient/GraphDraw.cpp
+    Code/GameEngine/Source/GameClient/GUI/AnimateWindowManager.cpp
+    Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBar.cpp
+    Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarBeacon.cpp
+    Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarCommand.cpp
+    Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarCommandProcessing.cpp
+    Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarMultiSelect.cpp
+    Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarObserver.cpp
+    Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarOCLTimer.cpp
+    Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarPrintPositions.cpp
+    Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarResizer.cpp
+    Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarScheme.cpp
+    Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarStructureInventory.cpp
+    Code/GameEngine/Source/GameClient/GUI/ControlBar/ControlBarUnderConstruction.cpp
+    Code/GameEngine/Source/GameClient/GUI/DisconnectMenu/DisconnectMenu.cpp
+    Code/GameEngine/Source/GameClient/GUI/EstablishConnectionsMenu/EstablishConnectionsMenu.cpp
+    Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetCheckBox.cpp
+    Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetComboBox.cpp
+    Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetHorizontalSlider.cpp
+    Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetListBox.cpp
+    Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetProgressBar.cpp
+    Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetPushButton.cpp
+    Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetRadioButton.cpp
+    Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetStaticText.cpp
+    Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetTabControl.cpp
+    Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetTextEntry.cpp
+    Code/GameEngine/Source/GameClient/GUI/Gadget/GadgetVerticalSlider.cpp
+    Code/GameEngine/Source/GameClient/GUI/GameFont.cpp
+    Code/GameEngine/Source/GameClient/GUI/GameWindow.cpp
+    Code/GameEngine/Source/GameClient/GUI/GameWindowGlobal.cpp
+    Code/GameEngine/Source/GameClient/GUI/GameWindowManager.cpp
+    Code/GameEngine/Source/GameClient/GUI/GameWindowManagerScript.cpp
+    Code/GameEngine/Source/GameClient/GUI/GameWindowTransitions.cpp
+    Code/GameEngine/Source/GameClient/GUI/GameWindowTransitionsStyles.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/ControlBarCallback.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/ControlBarPopupDescription.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Diplomacy.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/ExtendedMessageBox.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/GeneralsExpPoints.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/IMECandidate.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/InGameChat.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/InGamePopupMessage.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/CreditsMenu.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/DifficultySelect.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/DisconnectWindow.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/DownloadMenu.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/EstablishConnectionsWindow.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/GameInfoWindow.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/KeyboardOptionsMenu.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/LanGameOptionsMenu.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/LanLobbyMenu.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/LanMapSelectMenu.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/MainMenu.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/MapSelectMenu.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/NetworkDirectConnect.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/OptionsMenu.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupCommunicator.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupHostGame.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupJoinGame.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupLadderSelect.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupPlayerInfo.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupReplay.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/PopupSaveLoad.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/QuitMenu.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ReplayMenu.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/ScoreScreen.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SinglePlayerMenu.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SkirmishGameOptionsMenu.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SkirmishMapSelectMenu.cpp
+    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLBuddyOverlay.cpp
+    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLCustomScoreScreen.cpp
+    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLGameSetupMenu.cpp
+    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLadderScreen.cpp
+    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenu.cpp
+    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLocaleSelectPopup.cpp
+    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp
+    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLMapSelectMenu.cpp
+    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLMessageWindow.cpp
+    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQMScoreScreen.cpp
+    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQuickMatchMenu.cpp
+    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLStatusMenu.cpp
+    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLWelcomeMenu.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/MessageBox.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/ReplayControls.cpp
+    Code/GameEngine/Source/GameClient/GUI/HeaderTemplate.cpp
+    # Code/GameEngine/Source/GameClient/GUI/IMEManager.cpp
+    Code/GameEngine/Source/GameClient/GUI/LoadScreen.cpp
+    Code/GameEngine/Source/GameClient/GUI/ProcessAnimateWindow.cpp
+    Code/GameEngine/Source/GameClient/GUI/Shell/Shell.cpp
+    Code/GameEngine/Source/GameClient/GUI/Shell/ShellMenuScheme.cpp
+    Code/GameEngine/Source/GameClient/GUI/WindowLayout.cpp
+    Code/GameEngine/Source/GameClient/GUI/WindowVideoManager.cpp
+    Code/GameEngine/Source/GameClient/GUI/WinInstanceData.cpp
+    Code/GameEngine/Source/GameClient/InGameUI.cpp
+    Code/GameEngine/Source/GameClient/Input/Keyboard.cpp
+    Code/GameEngine/Source/GameClient/Input/Mouse.cpp
+    Code/GameEngine/Source/GameClient/LanguageFilter.cpp
+    Code/GameEngine/Source/GameClient/Line2D.cpp
+    Code/GameEngine/Source/GameClient/MapUtil.cpp
+    Code/GameEngine/Source/GameClient/MessageStream/CommandXlat.cpp
+    Code/GameEngine/Source/GameClient/MessageStream/GUICommandTranslator.cpp
+    Code/GameEngine/Source/GameClient/MessageStream/HintSpy.cpp
+    Code/GameEngine/Source/GameClient/MessageStream/HotKey.cpp
+    Code/GameEngine/Source/GameClient/MessageStream/LookAtXlat.cpp
+    Code/GameEngine/Source/GameClient/MessageStream/MetaEvent.cpp
+    Code/GameEngine/Source/GameClient/MessageStream/PlaceEventTranslator.cpp
+    Code/GameEngine/Source/GameClient/MessageStream/SelectionXlat.cpp
+    Code/GameEngine/Source/GameClient/MessageStream/WindowXlat.cpp
+    Code/GameEngine/Source/GameClient/RadiusDecal.cpp
+    Code/GameEngine/Source/GameClient/SelectionInfo.cpp
+    Code/GameEngine/Source/GameClient/Statistics.cpp
+    Code/GameEngine/Source/GameClient/System/Anim2D.cpp
+    Code/GameEngine/Source/GameClient/System/CampaignManager.cpp
+    Code/GameEngine/Source/GameClient/System/Debug\ Displayers/AudioDebugDisplay.cpp
+    Code/GameEngine/Source/GameClient/System/DebugDisplay.cpp
+    Code/GameEngine/Source/GameClient/System/Image.cpp
+    Code/GameEngine/Source/GameClient/System/ParticleSys.cpp
+    Code/GameEngine/Source/GameClient/System/RayEffect.cpp
+    Code/GameEngine/Source/GameClient/Terrain/TerrainRoads.cpp
+    Code/GameEngine/Source/GameClient/Terrain/TerrainVisual.cpp
+    Code/GameEngine/Source/GameClient/VideoPlayer.cpp
+    Code/GameEngine/Source/GameClient/VideoStream.cpp
+    Code/GameEngine/Source/GameClient/View.cpp
+    Code/GameEngine/Source/GameClient/Water.cpp
     Code/GameEngine/Source/GameLogic/AI/AI.cpp
     Code/GameEngine/Source/GameLogic/AI/AIDock.cpp
     Code/GameEngine/Source/GameLogic/AI/AIGroup.cpp

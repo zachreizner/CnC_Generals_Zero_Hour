@@ -46,6 +46,7 @@ fn main() -> miette::Result<()> {
 
     let dst = cmake::Config::new(".")
         .no_default_flags(true)
+        .profile("Debug")
         .generator("Ninja")
         .build_target("generals_lib")
         .build();

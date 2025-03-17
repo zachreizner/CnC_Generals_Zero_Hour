@@ -317,17 +317,17 @@ void ImageCollection::load( Int textureSize )
 	char buffer[ _MAX_PATH ];
 	INI ini;
 	// first load in the user created mapped image files if we have them.
-	WIN32_FIND_DATA findData;
-	AsciiString userDataPath;	
-	if(TheGlobalData)
-	{
-		userDataPath.format("%sINI\\MappedImages\\*.ini",TheGlobalData->getPath_UserData().str());
-		if(FindFirstFile(userDataPath.str(), &findData) !=INVALID_HANDLE_VALUE)
-		{
-			userDataPath.format("%sINI\\MappedImages",TheGlobalData->getPath_UserData().str());
-			ini.loadDirectory(userDataPath, TRUE, INI_LOAD_OVERWRITE, NULL );
-		}
-	}
+	// WIN32_FIND_DATA findData;
+	// AsciiString userDataPath;	
+	// if(TheGlobalData)
+	// {
+	// 	userDataPath.format("%sINI\\MappedImages\\*.ini",TheGlobalData->getPath_UserData().str());
+	// 	if(FindFirstFile(userDataPath.str(), &findData) !=INVALID_HANDLE_VALUE)
+	// 	{
+	// 		userDataPath.format("%sINI\\MappedImages",TheGlobalData->getPath_UserData().str());
+	// 		ini.loadDirectory(userDataPath, TRUE, INI_LOAD_OVERWRITE, NULL );
+	// 	}
+	// }
 
 	// construct path to the mapped images folder of the correct texture size
 	sprintf( buffer, "Data\\INI\\MappedImages\\TextureSize_%d", textureSize );

@@ -28,10 +28,28 @@
 
 #pragma once
 
+#include "PeerDefs.h"
 #ifndef __BUDDYTHREAD_H__
 #define __BUDDYTHREAD_H__
 
-#include "GameSpy/GP/GP.h"
+// #include "GameSpy/GP/GP.h"
+
+#define GP_NICK_LEN 16
+#define GP_EMAIL_LEN 64
+#define GP_PASSWORD_LEN 64
+#define GP_STATUS_STRING_LEN 32
+#define GP_LOCATION_STRING_LEN 128
+#define GP_COUNTRYCODE_LEN 2
+#define GP_REASON_LEN 16
+
+#define GP_ONLINE 0
+#define GP_OFFLINE 1
+
+typedef uint32_t GPResult;
+typedef uint32_t GPErrorCode;
+typedef int32_t GPenum;
+typedef uint64_t GPProfile;
+
 
 #define MAX_BUDDY_CHAT_LEN 128
 
@@ -85,7 +103,7 @@ public:
 
 		struct
 		{
-			GPenum status : int32_t;
+			GPenum status;
 			char statusString[GP_STATUS_STRING_LEN];
 			char locationString[GP_LOCATION_STRING_LEN];
 		} status;
@@ -134,7 +152,7 @@ public:
 			//GPResult result;
 			GPErrorCode errorCode;
 			char errorString[MAX_BUDDY_CHAT_LEN];
-			GPenum fatal : int32_t;
+			GPenum fatal;
 		} error;
 
 		struct
@@ -143,7 +161,7 @@ public:
 			char email[GP_EMAIL_LEN];
 			char countrycode[GP_COUNTRYCODE_LEN];
 			char location[GP_LOCATION_STRING_LEN];
-			GPenum status : int32_t;
+			GPenum status;
 			char statusString[GP_STATUS_STRING_LEN];
 		} status;
 	} arg;

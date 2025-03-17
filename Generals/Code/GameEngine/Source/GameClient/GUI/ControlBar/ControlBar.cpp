@@ -716,7 +716,7 @@ void CommandSet::parseCommandButton( INI* ini, void *instance, void *store, cons
 
 	// get the index to store the command at, and the command array itself
 	const CommandButton **buttonArray = (const CommandButton **)store;
-	Int buttonIndex = (Int)userData;
+	Int buttonIndex = (Int)(uintptr_t)userData;
 
 	// sanity
 	DEBUG_ASSERTCRASH( buttonIndex < MAX_COMMANDS_PER_SET, ("parseCommandButton: button index '%d' out of range\n", 
@@ -3093,8 +3093,8 @@ void ControlBar::updateRadarAttackGlow ( void )
 }
 void ControlBar::initSpecialPowershortcutBar( Player *player)
 {
-
-	for( Int i = 0; i < MAX_SPECIAL_POWER_SHORTCUTS; ++i )
+	Int i;
+	for( i = 0; i < MAX_SPECIAL_POWER_SHORTCUTS; ++i )
 	{
 		m_specialPowerShortcutButtonParents[i] = NULL;
 		m_specialPowerShortcutButtons[i] = NULL;

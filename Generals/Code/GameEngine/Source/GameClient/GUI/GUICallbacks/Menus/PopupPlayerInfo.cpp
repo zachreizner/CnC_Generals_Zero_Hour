@@ -35,8 +35,8 @@
 #include "Common/BattleHonors.h"
 #include "Common/CustomMatchPreferences.h"
 #include "Common/GameSpyMiscPreferences.h"
-#include "Common/Filesystem.h"
-#include "GameClient/mouse.h"
+#include "Common/FileSystem.h"
+#include "GameClient/Mouse.h"
 #include "GameClient/GameText.h"
 #include "GameClient/WindowLayout.h"
 #include "GameClient/Gadget.h"
@@ -329,7 +329,7 @@ void BattleHonorTooltip(GameWindow *window,
 		return;
 	}
 
-	Int battleHonor = (Int)GadgetListBoxGetItemData( window, row, col );
+	Int battleHonor = (Int)(uintptr_t)GadgetListBoxGetItemData( window, row, col );
 	if (battleHonor == 0)
 	{
 		//DEBUG_CRASH(("No Battle Honor in listbox row %d, col %d!", row, col));
@@ -1234,18 +1234,18 @@ void GameSpyPlayerInfoOverlayInit( WindowLayout *layout, void *userData )
 	GadgetCheckBoxSetChecked(checkBoxAsianFont,!pref.getDisallowAsianText());
 	GadgetCheckBoxSetChecked(checkBoxNonAsianFont,!pref.getDisallowNonAsianText());
 
-	OSVERSIONINFO	osvi;
-	osvi.dwOSVersionInfoSize=sizeof(OSVERSIONINFO);
-	if (GetVersionEx(&osvi))
-	{	//check if we're running Win9x variant since they may need different fonts
-		if (osvi.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS)
-		{
-			if (checkBoxAsianFont)
-				checkBoxAsianFont->winEnable(FALSE);
-			if (checkBoxNonAsianFont)
-				checkBoxNonAsianFont->winEnable(FALSE);
-		}
-	}
+	// OSVERSIONINFO	osvi;
+	// osvi.dwOSVersionInfoSize=sizeof(OSVERSIONINFO);
+	// if (GetVersionEx(&osvi))
+	// {	//check if we're running Win9x variant since they may need different fonts
+	// 	if (osvi.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS)
+	// 	{
+	// 		if (checkBoxAsianFont)
+	// 			checkBoxAsianFont->winEnable(FALSE);
+	// 		if (checkBoxNonAsianFont)
+	// 			checkBoxNonAsianFont->winEnable(FALSE);
+	// 	}
+	// }
 
 	//TheWindowManager->winSetModal(parent);
 } // GameSpyPlayerInfoOverlayInit
@@ -1321,7 +1321,7 @@ WindowMsgHandledType GameSpyPlayerInfoOverlayInput( GameWindow *window, Unsigned
 
 	return MSG_IGNORED;
 }// GameSpyPlayerInfoOverlayInput
-void messageBoxYes( void );
+static void messageBoxYes( void );
 //-------------------------------------------------------------------------------------------------
 /** Overlay window system callback */
 //-------------------------------------------------------------------------------------------------

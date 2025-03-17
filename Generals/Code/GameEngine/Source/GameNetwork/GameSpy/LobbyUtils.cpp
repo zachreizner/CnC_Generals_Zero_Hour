@@ -210,7 +210,7 @@ static void gameTooltip(GameWindow *window,
 		return;
 	}
 
-	Int gameID = (Int)GadgetListBoxGetItemData(window, row, 0);
+	Int gameID = (Int)(uintptr_t)GadgetListBoxGetItemData(window, row, 0);
 	GameSpyStagingRoom *room = TheGameSpyInfo->findStagingRoomByID(gameID);
 	if (!room)
 	{
@@ -672,7 +672,7 @@ void RefreshGameListBox( GameWindow *win, Bool showMap )
 	GadgetListBoxGetSelected(win, &selectedIndex);
 	if (selectedIndex != -1 )
 	{
-		selectedID = (Int)GadgetListBoxGetItemData(win, selectedIndex);
+		selectedID = (Int)(uintptr_t)GadgetListBoxGetItemData(win, selectedIndex);
 	}
 	int prevPos = GadgetListBoxGetTopVisibleEntry( win );
 
@@ -730,7 +730,7 @@ void RefreshGameInfoListBox( GameWindow *mainWin, GameWindow *win )
 //		return;
 //	}
 //
-//	Int selectedID = (Int)GadgetListBoxGetItemData(mainWin, selected);
+//	Int selectedID = (Int)(uintptr_t)GadgetListBoxGetItemData(mainWin, selected);
 //	if (selectedID < 0)
 //	{
 //		return;

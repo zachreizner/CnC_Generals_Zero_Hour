@@ -70,7 +70,7 @@ PickDrawableStruct::PickDrawableStruct() : drawableListToFill(NULL)
 {
 	//Added By Sadullah Nader
 	//Initializations inserted
-	drawableListToFill = FALSE;
+	// drawableListToFill = FALSE;
 	//
 	forceAttackMode = TheInGameUI->isInForceAttackMode();
 	UnsignedInt pickType = getPickTypesForContext(forceAttackMode);

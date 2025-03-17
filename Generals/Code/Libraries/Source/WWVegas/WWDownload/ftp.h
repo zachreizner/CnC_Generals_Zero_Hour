@@ -24,7 +24,7 @@
 
 //#include "../resource.h"       // main symbols
 
-#include "winsock.h"
+#include <netinet/in.h>
 #include "stdio.h"
 
 #include "WWDownload/ftpdefs.h"

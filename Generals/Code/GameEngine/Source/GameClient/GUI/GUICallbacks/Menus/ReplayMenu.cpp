@@ -39,7 +39,7 @@
 #include "Common/version.h"
 #include "GameClient/WindowLayout.h"
 #include "GameClient/Gadget.h"
-#include "GameClient/GadgetListbox.h"
+#include "GameClient/GadgetListBox.h"
 #include "GameClient/Shell.h"
 #include "GameClient/KeyDefs.h"
 #include "GameClient/GameWindowManager.h"
@@ -659,9 +659,10 @@ void copyReplay( void )
 	filename.concat(translate);
 	
 	char path[1024];
-	LPITEMIDLIST pidl;
-	SHGetSpecialFolderLocation(NULL, CSIDL_DESKTOPDIRECTORY, &pidl);
-	SHGetPathFromIDList(pidl,path);
+	// LPITEMIDLIST pidl;
+	// SHGetSpecialFolderLocation(NULL, CSIDL_DESKTOPDIRECTORY, &pidl);
+	// SHGetPathFromIDList(pidl,path);
+	GetDesktopDirectory(path);
 	AsciiString newFilename;
 	newFilename.set(path);
 	newFilename.concat("\\");

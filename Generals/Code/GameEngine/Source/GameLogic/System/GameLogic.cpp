@@ -99,7 +99,7 @@
 #include "Common/DataChunk.h"
 #include "GameLogic/Scripts.h"
 
-// #include "GameNetwork/GameSpy/BuddyThread.h"
+#include "GameNetwork/GameSpy/BuddyThread.h"
 #include "GameNetwork/GameSpy/PeerDefs.h"
 #include "GameNetwork/GameSpy/ThreadUtils.h"
 #include "GameNetwork/LANAPICallbacks.h"

@@ -52,7 +52,7 @@
 #include "Resource.h"
 #include "GameClient/GadgetListBox.h"
 #include "GameClient/GadgetPushButton.h"
-#include "Gameclient/GadgetSlider.h"
+#include "GameClient/GadgetSlider.h"
 #include "GameClient/GameWindowManager.h"
 
 // DEFINES ////////////////////////////////////////////////////////////////////

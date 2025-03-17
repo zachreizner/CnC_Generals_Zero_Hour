@@ -3,15 +3,24 @@
 
 #include <stdint.h>
 
+#define S_OK 0
+
+typedef uint32_t HRESULT;
 typedef void* HANDLE;
 typedef HANDLE HKEY;
 typedef HANDLE* PHKEY;
 typedef HANDLE HWND;
 typedef HANDLE HMODULE;
+typedef const void* LPCVOID;
 typedef int (*FARPROC)();
 typedef char* LPSTR;
 typedef const char* LPCTSTR;
+typedef char* LPTSTR;
 typedef const char* LPCSTR;
+typedef const wchar_t* LPCWSTR;
+typedef wchar_t* LPWSTR;
+typedef uint8_t CHAR;
+typedef uint16_t USHORT;
 typedef uint16_t WORD;
 typedef uint32_t DWORD;
 typedef uint32_t ULONG;
@@ -130,5 +139,77 @@ HMODULE LoadLibrary(
 BOOL FreeLibrary(
     HMODULE hLibModule
 );
+
+BOOL SetWindowTextW(
+    HWND    hWnd,
+    LPCWSTR lpString
+);
+
+typedef struct _MEMORYSTATUS {
+    DWORD  dwLength;
+    DWORD  dwMemoryLoad;
+    SIZE_T dwTotalPhys;
+    SIZE_T dwAvailPhys;
+    SIZE_T dwTotalPageFile;
+    SIZE_T dwAvailPageFile;
+    SIZE_T dwTotalVirtual;
+    SIZE_T dwAvailVirtual;
+} MEMORYSTATUS, *LPMEMORYSTATUS;
+
+void GlobalMemoryStatus(
+    LPMEMORYSTATUS lpBuffer
+);
+
+int iswascii(
+   int c
+);
+
+int AddFontResource(
+    LPCSTR lpFileName
+);
+
+BOOL RemoveFontResource(
+    LPCSTR lpFileName
+);
+
+#define VK_RETURN 0x0D
+
+DWORD GetTickCount();
+
+#define FORMAT_MESSAGE_FROM_SYSTEM 0x00001000
+
+DWORD FormatMessageW(
+    DWORD   dwFlags,
+    LPCVOID lpSource,
+    DWORD   dwMessageId,
+    DWORD   dwLanguageId,
+    LPWSTR  lpBuffer,
+    DWORD   nSize,
+    void *Arguments // always NULL
+);
+
+DWORD FormatMessage(
+    DWORD   dwFlags,
+    LPCVOID lpSource,
+    DWORD   dwMessageId,
+    DWORD   dwLanguageId,
+    LPTSTR  lpBuffer,
+    DWORD   nSize,
+    void *Arguments // always NULL
+);
+
+DWORD GetLastError();
+
+BOOL DeleteFile(
+    LPCTSTR lpFileName
+);
+
+BOOL CopyFile(
+    LPCTSTR lpExistingFileName,
+    LPCTSTR lpNewFileName,
+    BOOL    bFailIfExists
+);
+
+void GetDesktopDirectory(char *path);
 
 #endif

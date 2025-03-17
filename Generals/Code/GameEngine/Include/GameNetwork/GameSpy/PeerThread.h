@@ -31,8 +31,13 @@
 #ifndef __PEERTHREAD_H__
 #define __PEERTHREAD_H__
 
-#include "GameSpy/Peer/Peer.h"
+// #include "GameSpy/Peer/Peer.h"
 #include "GameNetwork/NetworkDefs.h"
+
+enum RoomType {
+	GroupRoom,
+	StagingRoom
+};
 
 enum SerialAuthResult
 {

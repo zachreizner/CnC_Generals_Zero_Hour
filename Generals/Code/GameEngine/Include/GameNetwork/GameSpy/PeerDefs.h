@@ -34,7 +34,7 @@
 // #include "GameSpy/Peer/Peer.h"
 // #include "GameSpy/GP/GP.h"
 
-#define GPenum enum
+typedef int32_t GPenum;
 typedef uint64_t GPProfile;
 
 #include "GameClient/Color.h"
@@ -70,7 +70,7 @@ public:
 	AsciiString m_name;
 	AsciiString m_email;
 	AsciiString m_countryCode;
-	GPenum m_status : int32_t;
+	GPenum m_status;
 	UnicodeString m_statusString;
 	UnicodeString m_locationString;
 };
