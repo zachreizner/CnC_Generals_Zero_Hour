@@ -3,10 +3,10 @@ project(generals LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} \
-    -Wall \
     -Wno-char-subscripts \
     -Wno-conversion-null \
     -Wno-nonnull-compare \
+    -Wno-int-to-pointer-cast \
     -Wno-deprecated \
     -Wno-deprecated-copy \
     -Wno-endif-labels \
@@ -163,18 +163,21 @@ set(GENERALS_SRC
     Code/GameEngine/Source/Common/UserPreferences.cpp
     Code/GameEngine/Source/Common/crc.cpp
     Code/GameEngine/Source/Common/version.cpp
+    Code/GameEngine/Source/GameLogic/AI/AI.cpp
+    Code/GameEngine/Source/GameLogic/AI/AIDock.cpp
+    Code/GameEngine/Source/GameLogic/AI/AIGroup.cpp
+    Code/GameEngine/Source/GameLogic/AI/AIGuard.cpp
+    Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp
+    Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp
+    Code/GameEngine/Source/GameLogic/AI/AISkirmishPlayer.cpp
+    Code/GameEngine/Source/GameLogic/AI/AIStates.cpp
+    Code/GameEngine/Source/GameLogic/AI/AITNGuard.cpp
+    Code/GameEngine/Source/GameLogic/AI/Squad.cpp
+    Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp
+    Code/GameEngine/Source/GameLogic/Map/PolygonTrigger.cpp
+    Code/GameEngine/Source/GameLogic/Map/SidesList.cpp
+    Code/GameEngine/Source/GameLogic/Map/TerrainLogic.cpp
     Code/GameEngine/Source/GameLogic/Object/Armor.cpp
-    Code/GameEngine/Source/GameLogic/Object/ExperienceTracker.cpp
-    Code/GameEngine/Source/GameLogic/Object/FiringTracker.cpp
-    Code/GameEngine/Source/GameLogic/Object/GhostObject.cpp
-    Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp
-    Code/GameEngine/Source/GameLogic/Object/Object.cpp
-    Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp
-    Code/GameEngine/Source/GameLogic/Object/ObjectTypes.cpp
-    Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp
-    Code/GameEngine/Source/GameLogic/Object/SimpleObjectIterator.cpp
-    Code/GameEngine/Source/GameLogic/Object/Weapon.cpp
-    Code/GameEngine/Source/GameLogic/Object/WeaponSet.cpp
     Code/GameEngine/Source/GameLogic/Object/Behavior/AutoHealBehavior.cpp
     Code/GameEngine/Source/GameLogic/Object/Behavior/BehaviorModule.cpp
     Code/GameEngine/Source/GameLogic/Object/Behavior/BridgeBehavior.cpp
@@ -188,9 +191,9 @@ set(GENERALS_SRC
     Code/GameEngine/Source/GameLogic/Object/Behavior/JetSlowDeathBehavior.cpp
     Code/GameEngine/Source/GameLogic/Object/Behavior/MinefieldBehavior.cpp
     Code/GameEngine/Source/GameLogic/Object/Behavior/OverchargeBehavior.cpp
-    Code/GameEngine/Source/GameLogic/Object/Behavior/POWTruckBehavior.cpp
     Code/GameEngine/Source/GameLogic/Object/Behavior/ParkingPlaceBehavior.cpp
     Code/GameEngine/Source/GameLogic/Object/Behavior/PoisonedBehavior.cpp
+    Code/GameEngine/Source/GameLogic/Object/Behavior/POWTruckBehavior.cpp
     Code/GameEngine/Source/GameLogic/Object/Behavior/PrisonBehavior.cpp
     Code/GameEngine/Source/GameLogic/Object/Behavior/PropagandaCenterBehavior.cpp
     Code/GameEngine/Source/GameLogic/Object/Behavior/PropagandaTowerBehavior.cpp
@@ -207,6 +210,15 @@ set(GENERALS_SRC
     Code/GameEngine/Source/GameLogic/Object/Body/InactiveBody.cpp
     Code/GameEngine/Source/GameLogic/Object/Body/StructureBody.cpp
     Code/GameEngine/Source/GameLogic/Object/Collide/CollideModule.cpp
+    Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/ConvertToCarBombCrateCollide.cpp
+    Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/ConvertToHijackedVehicleCrateCollide.cpp
+    Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/CrateCollide.cpp
+    Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/HealCrateCollide.cpp
+    Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/MoneyCrateCollide.cpp
+    Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/SalvageCrateCollide.cpp
+    Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/ShroudCrateCollide.cpp
+    Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/UnitCrateCollide.cpp
+    Code/GameEngine/Source/GameLogic/Object/Collide/CrateCollide/VeterancyCrateCollide.cpp
     Code/GameEngine/Source/GameLogic/Object/Collide/FireWeaponCollide.cpp
     Code/GameEngine/Source/GameLogic/Object/Collide/SquishCollide.cpp
     Code/GameEngine/Source/GameLogic/Object/Contain/CaveContain.cpp
@@ -242,11 +254,20 @@ set(GENERALS_SRC
     Code/GameEngine/Source/GameLogic/Object/Die/RebuildHoleExposeDie.cpp
     Code/GameEngine/Source/GameLogic/Object/Die/SpecialPowerCompletionDie.cpp
     Code/GameEngine/Source/GameLogic/Object/Die/UpgradeDie.cpp
+    Code/GameEngine/Source/GameLogic/Object/ExperienceTracker.cpp
+    Code/GameEngine/Source/GameLogic/Object/FiringTracker.cpp
+    Code/GameEngine/Source/GameLogic/Object/GhostObject.cpp
     Code/GameEngine/Source/GameLogic/Object/Helper/ObjectDefectionHelper.cpp
     Code/GameEngine/Source/GameLogic/Object/Helper/ObjectHelper.cpp
     Code/GameEngine/Source/GameLogic/Object/Helper/ObjectRepulsorHelper.cpp
     Code/GameEngine/Source/GameLogic/Object/Helper/ObjectSMCHelper.cpp
     Code/GameEngine/Source/GameLogic/Object/Helper/ObjectWeaponStatusHelper.cpp
+    Code/GameEngine/Source/GameLogic/Object/Locomotor.cpp
+    Code/GameEngine/Source/GameLogic/Object/Object.cpp
+    Code/GameEngine/Source/GameLogic/Object/ObjectCreationList.cpp
+    Code/GameEngine/Source/GameLogic/Object/ObjectTypes.cpp
+    Code/GameEngine/Source/GameLogic/Object/PartitionManager.cpp
+    Code/GameEngine/Source/GameLogic/Object/SimpleObjectIterator.cpp
     Code/GameEngine/Source/GameLogic/Object/SpecialPower/BaikonurLaunchPower.cpp
     Code/GameEngine/Source/GameLogic/Object/SpecialPower/CashBountyPower.cpp
     Code/GameEngine/Source/GameLogic/Object/SpecialPower/CashHackSpecialPower.cpp
@@ -258,6 +279,21 @@ set(GENERALS_SRC
     Code/GameEngine/Source/GameLogic/Object/SpecialPower/SpecialPowerModule.cpp
     Code/GameEngine/Source/GameLogic/Object/SpecialPower/SpyVisionSpecialPower.cpp
     Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/AssaultTransportAIUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/ChinookAIUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/DeliverPayloadAIUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/DeployStyleAIUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/DozerAIUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/HackInternetAIUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/JetAIUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/MissileAIUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/POWTruckAIUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/RailedTransportAIUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/RailroadGuideAIUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/SupplyTruckAIUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/TransportAIUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/WanderAIUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/AIUpdate/WorkerAIUpdate.cpp
     Code/GameEngine/Source/GameLogic/Object/Update/AssistedTargetingUpdate.cpp
     Code/GameEngine/Source/GameLogic/Object/Update/AutoDepositUpdate.cpp
     Code/GameEngine/Source/GameLogic/Object/Update/AutoFindHealingUpdate.cpp
@@ -270,14 +306,20 @@ set(GENERALS_SRC
     Code/GameEngine/Source/GameLogic/Object/Update/DelayedWeaponSetUpgradeUpdate.cpp
     Code/GameEngine/Source/GameLogic/Object/Update/DeletionUpdate.cpp
     Code/GameEngine/Source/GameLogic/Object/Update/DemoTrapUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/DockUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/PrisonDockUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/RailedTransportDockUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/RepairDockUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/SupplyCenterDockUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/DockUpdate/SupplyWarehouseDockUpdate.cpp
     Code/GameEngine/Source/GameLogic/Object/Update/DynamicGeometryInfoUpdate.cpp
     Code/GameEngine/Source/GameLogic/Object/Update/DynamicShroudClearingRangeUpdate.cpp
     Code/GameEngine/Source/GameLogic/Object/Update/EMPUpdate.cpp
     Code/GameEngine/Source/GameLogic/Object/Update/EnemyNearUpdate.cpp
     Code/GameEngine/Source/GameLogic/Object/Update/FireOCLAfterWeaponCooldownUpdate.cpp
     Code/GameEngine/Source/GameLogic/Object/Update/FireSpreadUpdate.cpp
-    Code/GameEngine/Source/GameLogic/Object/Update/FireWeaponUpdate.cpp
     Code/GameEngine/Source/GameLogic/Object/Update/FirestormDynamicGeometryInfoUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/FireWeaponUpdate.cpp
     Code/GameEngine/Source/GameLogic/Object/Update/FlammableUpdate.cpp
     Code/GameEngine/Source/GameLogic/Object/Update/FloatUpdate.cpp
     Code/GameEngine/Source/GameLogic/Object/Update/HeightDieUpdate.cpp
@@ -296,6 +338,10 @@ set(GENERALS_SRC
     Code/GameEngine/Source/GameLogic/Object/Update/PilotFindVehicleUpdate.cpp
     Code/GameEngine/Source/GameLogic/Object/Update/PointDefenseLaserUpdate.cpp
     Code/GameEngine/Source/GameLogic/Object/Update/PowerPlantUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/ProductionExitUpdate/DefaultProductionExitUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/ProductionExitUpdate/QueueProductionExitUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/ProductionExitUpdate/SpawnPointProductionExitUpdate.cpp
+    Code/GameEngine/Source/GameLogic/Object/Update/ProductionExitUpdate/SupplyCenterProductionExitUpdate.cpp
     Code/GameEngine/Source/GameLogic/Object/Update/ProductionUpdate.cpp
     Code/GameEngine/Source/GameLogic/Object/Update/ProjectileStreamUpdate.cpp
     Code/GameEngine/Source/GameLogic/Object/Update/ProneUpdate.cpp
@@ -331,23 +377,19 @@ set(GENERALS_SRC
     Code/GameEngine/Source/GameLogic/Object/Upgrade/UpgradeModule.cpp
     Code/GameEngine/Source/GameLogic/Object/Upgrade/WeaponBonusUpgrade.cpp
     Code/GameEngine/Source/GameLogic/Object/Upgrade/WeaponSetUpgrade.cpp
+    Code/GameEngine/Source/GameLogic/Object/Weapon.cpp
+    Code/GameEngine/Source/GameLogic/Object/WeaponSet.cpp
+    Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptActions.cpp
+    Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptConditions.cpp
+    Code/GameEngine/Source/GameLogic/ScriptEngine/ScriptEngine.cpp
+    Code/GameEngine/Source/GameLogic/ScriptEngine/Scripts.cpp
+    Code/GameEngine/Source/GameLogic/ScriptEngine/VictoryConditions.cpp
     Code/GameEngine/Source/GameLogic/System/CaveSystem.cpp
     Code/GameEngine/Source/GameLogic/System/CrateSystem.cpp
     Code/GameEngine/Source/GameLogic/System/Damage.cpp
     Code/GameEngine/Source/GameLogic/System/GameLogic.cpp
     Code/GameEngine/Source/GameLogic/System/GameLogicDispatch.cpp
     Code/GameEngine/Source/GameLogic/System/RankInfo.cpp
-    Code/GameEngine/Source/GameLogic/AI/AI.cpp
-    Code/GameEngine/Source/GameLogic/AI/AIDock.cpp
-    Code/GameEngine/Source/GameLogic/AI/AIGroup.cpp
-    Code/GameEngine/Source/GameLogic/AI/AIGuard.cpp
-    Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp
-    Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp
-    Code/GameEngine/Source/GameLogic/AI/AISkirmishPlayer.cpp
-    Code/GameEngine/Source/GameLogic/AI/AIStates.cpp
-    Code/GameEngine/Source/GameLogic/AI/AITNGuard.cpp
-    Code/GameEngine/Source/GameLogic/AI/Squad.cpp
-    Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp
 )
 
 target_sources(generals_lib PRIVATE ${GENERALS_SRC})

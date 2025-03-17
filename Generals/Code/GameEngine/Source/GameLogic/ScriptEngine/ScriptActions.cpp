@@ -2498,7 +2498,7 @@ void ScriptActions::doDisplayCinematicText(const AsciiString& displayText, const
 	char buf[256];
 	char *c;
 	strcpy(buf, fontType.str());
-	for( c = buf; c != '\0'; *c++ )
+	for( c = buf; *c != '\0'; c++ )
 	{
 		if( *c != ' ' && *c++ != '-' ) 
 			fontName.concat(c);
@@ -4674,7 +4674,7 @@ void ScriptActions::doForceObjectSelection(const AsciiString& teamName, const As
 	}
 }
 
-void* __cdecl killTheObject( Object *obj, void* userObj )
+void* killTheObject( Object *obj, void* userObj )
 {
 	userObj;
 	if (obj)

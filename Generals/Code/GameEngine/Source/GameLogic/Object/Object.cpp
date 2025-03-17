@@ -3307,7 +3307,7 @@ void Object::onDisabledEdge(Bool becomingDisabled)
 		//@todo jkmcd - Colin suggested we rewrite this to use the interface stuff. I agree, but need
 		// to get some more bugs fixed today. 
 		static NameKeyType radar = NAMEKEY("RadarUpgrade");
-		Module *mod = mod = findModule(radar);
+		Module *mod = findModule(radar);
 		if (mod) {
 			RadarUpgrade *radarMod = (RadarUpgrade*) mod;
 			if (radarMod->isAlreadyUpgraded()) {

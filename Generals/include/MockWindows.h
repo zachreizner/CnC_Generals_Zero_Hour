@@ -8,6 +8,7 @@ typedef HANDLE HKEY;
 typedef HANDLE* PHKEY;
 typedef HANDLE HWND;
 typedef HANDLE HMODULE;
+typedef int (*FARPROC)();
 typedef char* LPSTR;
 typedef const char* LPCTSTR;
 typedef const char* LPCSTR;
@@ -116,5 +117,18 @@ typedef struct D3DXMATRIX {
 } D3DXMATRIX;
 
 extern "C" char *itoa (int value, char *str, int base);
+
+FARPROC GetProcAddress(
+    HMODULE hModule,
+    LPCSTR  lpProcName
+);
+
+HMODULE LoadLibrary(
+    LPCSTR lpLibFileName
+);
+
+BOOL FreeLibrary(
+    HMODULE hLibModule
+);
 
 #endif
