@@ -872,7 +872,7 @@ void W3DProjectedShadowManager::queueDecal(W3DProjectedShadow *shadow)
 			{
 				Drawable *draw=((DrawableInfo *)robj->Get_User_Data())->m_drawable;
 				const Object *object=draw->getObject();
-				PathfindLayerenum objectLayer : int32_t;
+				PathfindLayerEnum objectLayer;
 				if (object && (objectLayer=object->getLayer()) != LAYER_GROUND) 
 				{	//check if object that this decal belongs to is not on the ground (bridge?)
 					layerHeight=BRIDGE_OFFSET_FACTOR+TheTerrainLogic->getLayerHeight(objPos.X,objPos.Y,objectLayer);

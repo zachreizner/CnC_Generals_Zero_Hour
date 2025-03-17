@@ -6,6 +6,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} \
     -Wall \
     -Wno-char-subscripts \
     -Wno-conversion-null \
+    -Wno-nonnull-compare \
     -Wno-deprecated \
     -Wno-deprecated-copy \
     -Wno-endif-labels \
@@ -336,6 +337,17 @@ set(GENERALS_SRC
     Code/GameEngine/Source/GameLogic/System/GameLogic.cpp
     Code/GameEngine/Source/GameLogic/System/GameLogicDispatch.cpp
     Code/GameEngine/Source/GameLogic/System/RankInfo.cpp
+    Code/GameEngine/Source/GameLogic/AI/AI.cpp
+    Code/GameEngine/Source/GameLogic/AI/AIDock.cpp
+    Code/GameEngine/Source/GameLogic/AI/AIGroup.cpp
+    Code/GameEngine/Source/GameLogic/AI/AIGuard.cpp
+    Code/GameEngine/Source/GameLogic/AI/AIPathfind.cpp
+    Code/GameEngine/Source/GameLogic/AI/AIPlayer.cpp
+    Code/GameEngine/Source/GameLogic/AI/AISkirmishPlayer.cpp
+    Code/GameEngine/Source/GameLogic/AI/AIStates.cpp
+    Code/GameEngine/Source/GameLogic/AI/AITNGuard.cpp
+    Code/GameEngine/Source/GameLogic/AI/Squad.cpp
+    Code/GameEngine/Source/GameLogic/AI/TurretAI.cpp
 )
 
 target_sources(generals_lib PRIVATE ${GENERALS_SRC})

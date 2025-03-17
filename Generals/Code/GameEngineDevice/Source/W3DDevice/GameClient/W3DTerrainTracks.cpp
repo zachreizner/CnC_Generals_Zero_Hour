@@ -204,7 +204,7 @@ void TerrainTracksRenderObjClass::addCapEdgeToTrack(Real x, Real y)
 
 	Vector3	vPos,vZ;
 	Coord3D vZTmp;
-	PathfindLayerenum objectLayer : int32_t;
+	PathfindLayerEnum objectLayer;
 	Real eHeight;
 
 	if (m_ownerDrawable && (objectLayer=m_ownerDrawable->getObject()->getLayer()) != LAYER_GROUND) 
@@ -313,7 +313,7 @@ void TerrainTracksRenderObjClass::addEdgeToTrack(Real x, Real y)
 
 	if (!m_haveAnchor)
 	{	//no anchor yet, make this point an anchor.
-		PathfindLayerenum objectLayer : int32_t;
+		PathfindLayerEnum objectLayer;
 		if (m_ownerDrawable && (objectLayer=m_ownerDrawable->getObject()->getLayer()) != LAYER_GROUND) 
 			m_lastAnchor=Vector3(x,y,TheTerrainLogic->getLayerHeight(x,y,objectLayer)+BRIDGE_OFFSET_FACTOR);
 		else
@@ -330,7 +330,7 @@ void TerrainTracksRenderObjClass::addEdgeToTrack(Real x, Real y)
 	Vector3	vPos,vZ;
 	Coord3D vZTmp;
 	Real eHeight;
-	PathfindLayerenum objectLayer : int32_t;
+	PathfindLayerEnum objectLayer;
 
 	if (m_ownerDrawable && (objectLayer=m_ownerDrawable->getObject()->getLayer()) != LAYER_GROUND) 
 		eHeight=BRIDGE_OFFSET_FACTOR+TheTerrainLogic->getLayerHeight(x,y,objectLayer,&vZTmp);
