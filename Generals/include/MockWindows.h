@@ -212,4 +212,11 @@ BOOL CopyFile(
 
 void GetDesktopDirectory(char *path);
 
+#define UNLEN 256
+
+BOOL GetUserName(
+    LPSTR   lpBuffer,
+    LPDWORD pcbBuffer
+);
+
 #endif

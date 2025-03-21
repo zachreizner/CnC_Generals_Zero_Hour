@@ -249,7 +249,7 @@ void GameSpyChat::update( void )
 		{
 			TheShell->pop();
 			TheShell->push(TheGameSpyThread->getNextShellScreen());
-			TheGameSpyThread->setNextShellScreen( AsciiString.TheEmptyString );
+			TheGameSpyThread->setNextShellScreen( AsciiString::TheEmptyString );
 		}
 
 		if (TheGameSpyThread->showLocaleSelect())

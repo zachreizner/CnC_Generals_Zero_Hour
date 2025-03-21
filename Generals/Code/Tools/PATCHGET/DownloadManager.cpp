@@ -35,22 +35,22 @@ DownloadManager::DownloadManager()
 
 	// ----- Initialize Winsock -----
 	m_winsockInit = true;
-	WORD verReq = MAKEWORD(2, 2);
-	WSADATA wsadata;
+	// WORD verReq = MAKEWORD(2, 2);
+	// WSADATA wsadata;
 
-	int err = WSAStartup(verReq, &wsadata);
-	if (err != 0)
-	{
-		m_winsockInit = false;
-	}
-	else
-	{
-		if ((LOBYTE(wsadata.wVersion) != 2) || (HIBYTE(wsadata.wVersion) !=2))
-		{
-			WSACleanup();
-			m_winsockInit = false;
-		}
-	}
+	// int err = WSAStartup(verReq, &wsadata);
+	// if (err != 0)
+	// {
+	// 	m_winsockInit = false;
+	// }
+	// else
+	// {
+	// 	if ((LOBYTE(wsadata.wVersion) != 2) || (HIBYTE(wsadata.wVersion) !=2))
+	// 	{
+	// 		// WSACleanup();
+	// 		m_winsockInit = false;
+	// 	}
+	// }
 
 }
 
@@ -59,7 +59,7 @@ DownloadManager::~DownloadManager()
 	delete m_download;
 	if (m_winsockInit)
 	{
-		WSACleanup();
+		// WSACleanup();
 		m_winsockInit = false;
 	}
 }
