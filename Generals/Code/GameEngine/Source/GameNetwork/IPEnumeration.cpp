@@ -36,7 +36,7 @@ IPEnumeration::~IPEnumeration( void )
 {
 	if (m_isWinsockInitialized)
 	{
-		WSACleanup();
+		// WSACleanup();
 		m_isWinsockInitialized = false;
 	}
 
@@ -56,18 +56,18 @@ EnumeratedIP * IPEnumeration::getAddresses( void )
 
 	if (!m_isWinsockInitialized)
 	{
-		WORD verReq = MAKEWORD(2, 2);
-		WSADATA wsadata;
+		// WORD verReq = MAKEWORD(2, 2);
+		// WSADATA wsadata;
 
-		int err = WSAStartup(verReq, &wsadata);
-		if (err != 0) {
-			return NULL;
-		}
+		// int err = WSAStartup(verReq, &wsadata);
+		// if (err != 0) {
+		// 	return NULL;
+		// }
 
-		if ((LOBYTE(wsadata.wVersion) != 2) || (HIBYTE(wsadata.wVersion) !=2)) {
-			WSACleanup();
-			return NULL;
-		}
+		// if ((LOBYTE(wsadata.wVersion) != 2) || (HIBYTE(wsadata.wVersion) !=2)) {
+		// 	WSACleanup();
+		// 	return NULL;
+		// }
 		m_isWinsockInitialized = true;
 	}
 
@@ -81,7 +81,7 @@ EnumeratedIP * IPEnumeration::getAddresses( void )
 	DEBUG_LOG(("Hostname is '%s'\n", hostname));
 	
 	// get host information from the host name
-	HOSTENT* hostEnt = gethostbyname(hostname);
+	hostent* hostEnt = gethostbyname(hostname);
 	if (hostEnt == NULL)
 	{
 		DEBUG_LOG(("Failed call to gethostnyname; WSAGetLastError returned %d\n", WSAGetLastError()));
@@ -156,18 +156,18 @@ AsciiString IPEnumeration::getMachineName( void )
 {
 	if (!m_isWinsockInitialized)
 	{
-		WORD verReq = MAKEWORD(2, 2);
-		WSADATA wsadata;
+		// WORD verReq = MAKEWORD(2, 2);
+		// WSADATA wsadata;
 
-		int err = WSAStartup(verReq, &wsadata);
-		if (err != 0) {
-			return NULL;
-		}
+		// int err = WSAStartup(verReq, &wsadata);
+		// if (err != 0) {
+		// 	return NULL;
+		// }
 
-		if ((LOBYTE(wsadata.wVersion) != 2) || (HIBYTE(wsadata.wVersion) !=2)) {
-			WSACleanup();
-			return NULL;
-		}
+		// if ((LOBYTE(wsadata.wVersion) != 2) || (HIBYTE(wsadata.wVersion) !=2)) {
+		// 	WSACleanup();
+		// 	return NULL;
+		// }
 		m_isWinsockInitialized = true;
 	}
 

@@ -278,7 +278,7 @@ void BuddyThreadClass::Thread_Function()
 	gpSetCallback( con, GP_RECV_BUDDY_REQUEST,	callbackWrapper,	(void *)CALLBACK_RECVREQUEST );
 	gpSetCallback( con, GP_RECV_BUDDY_STATUS,		callbackWrapper,	(void *)CALLBACK_RECVSTATUS );
 
-	GPEnum lastStatus = GP_OFFLINE;
+	GPenum lastStatus = GP_OFFLINE;
 	std::string lastStatusString;
 
 	BuddyRequest incomingRequest;
@@ -376,7 +376,7 @@ void BuddyThreadClass::Thread_Function()
 		}
 
 		// update the network
-		GPEnum isConnected = GP_CONNECTED;
+		GPenum isConnected = GP_CONNECTED;
 		GPResult res = GP_NO_ERROR;
 		res = gpIsConnected( con, &isConnected );
 		if ( isConnected == GP_CONNECTED && res == GP_NO_ERROR )

@@ -46,11 +46,11 @@
 #define __WEBBROWSER_H__
 
 #include "Common/SubsystemInterface.h"
-#include <atlbase.h>
-#include <windows.h>
+// #include <atlbase.h>
+// #include <windows.h>
 #include <Common/GameMemory.h>
-#include "EABrowserDispatch/BrowserDispatch.h"
-#include "FEBDispatch.h"
+// #include "EABrowserDispatch/BrowserDispatch.h"
+// #include "FEBDispatch.h"
 
 class GameWindow;
 
@@ -77,7 +77,7 @@ public:
 
 
 class WebBrowser :
-		public FEBDispatch<WebBrowser, IBrowserDispatch, &IID_IBrowserDispatch>,
+		// public FEBDispatch<WebBrowser, IBrowserDispatch, &IID_IBrowserDispatch>,
 		public SubsystemInterface
 	{
 	public:
@@ -105,23 +105,24 @@ class WebBrowser :
 //		Bool RetrieveHTMLPath(char* path, int size);
 
 	protected:
-		ULONG mRefCount;
-		WebBrowserURL *m_urlList;
+		// ULONG mRefCount;
+		// WebBrowserURL *m_urlList;
 
 	//---------------------------------------------------------------------------
 	// IUnknown methods
 	//---------------------------------------------------------------------------
 	protected:
-		HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, void** ppvObject);
-		ULONG STDMETHODCALLTYPE AddRef(void);
-		ULONG STDMETHODCALLTYPE Release(void);
+		// HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid, void** ppvObject);
+		// ULONG STDMETHODCALLTYPE AddRef(void);
+		// ULONG STDMETHODCALLTYPE Release(void);
 
 	//---------------------------------------------------------------------------
 	// IBrowserDispatch methods
 	//---------------------------------------------------------------------------
 	public:
-		STDMETHOD(TestMethod)(Int num1);
+		// STDMETHOD(TestMethod)(Int num1);
 	};
 
-extern CComObject<WebBrowser> *TheWebBrowser;
+// extern CComObject<WebBrowser> *TheWebBrowser;
+extern WebBrowser *TheWebBrowser;
 #endif // __WEBBROWSER_H__

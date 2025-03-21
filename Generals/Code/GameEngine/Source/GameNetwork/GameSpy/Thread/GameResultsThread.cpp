@@ -231,11 +231,11 @@ void GameResultsThreadClass::Thread_Function()
 	_set_se_translator( DumpExceptionInfo ); // Hook that allows stack trace.
 	GameResultsRequest req;
 
-	WSADATA wsaData;
+	// WSADATA wsaData;
 
 	// Fire up winsock (prob already done, but doesn't matter)
-	WORD wVersionRequested = MAKEWORD(1, 1);
-	WSAStartup( wVersionRequested, &wsaData );
+	// WORD wVersionRequested = MAKEWORD(1, 1);
+	// WSAStartup( wVersionRequested, &wsaData );
 
 	while ( running )
 	{
@@ -254,7 +254,7 @@ void GameResultsThreadClass::Thread_Function()
 			}
 			else
 			{
-				HOSTENT *hostStruct;
+				hostent *hostStruct;
 				in_addr *hostNode;
 				hostStruct = gethostbyname(hostnameBuffer);
 				if (hostStruct == NULL)
@@ -282,7 +282,7 @@ void GameResultsThreadClass::Thread_Function()
 		Switch_Thread();
 	}
 
-	WSACleanup();
+	// WSACleanup();
 	} catch ( ... ) {
 		DEBUG_CRASH(("Exception in results thread!"));
 	}

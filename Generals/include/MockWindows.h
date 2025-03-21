@@ -6,29 +6,30 @@
 #define S_OK 0
 
 typedef uint32_t HRESULT;
-typedef void* HANDLE;
+typedef void *HANDLE;
 typedef HANDLE HKEY;
-typedef HANDLE* PHKEY;
+typedef HANDLE *PHKEY;
 typedef HANDLE HWND;
 typedef HANDLE HMODULE;
-typedef const void* LPCVOID;
+typedef const void *LPCVOID;
 typedef int (*FARPROC)();
-typedef char* LPSTR;
-typedef const char* LPCTSTR;
-typedef char* LPTSTR;
-typedef const char* LPCSTR;
-typedef const wchar_t* LPCWSTR;
-typedef wchar_t* LPWSTR;
+typedef char *LPSTR;
+typedef const char *LPCTSTR;
+typedef char *LPTSTR;
+typedef const char *LPCSTR;
+typedef const wchar_t *LPCWSTR;
+typedef wchar_t *LPWSTR;
 typedef uint8_t CHAR;
 typedef uint16_t USHORT;
 typedef uint16_t WORD;
 typedef uint32_t DWORD;
 typedef uint32_t ULONG;
 typedef uint32_t UINT;
+typedef int64_t LONGLONG;
 typedef uint32_t MMRESULT;
 typedef int32_t BOOL;
 typedef uint32_t REGSAM;
-typedef uint32_t* LPDWORD;
+typedef uint32_t *LPDWORD;
 typedef uint32_t LSTATUS;
 typedef uintptr_t SIZE_T;
 typedef uintptr_t ULONG_PTR;
@@ -44,27 +45,26 @@ void Sleep(DWORD dwMilliseconds);
 
 DWORD GetModuleFileName(
     HMODULE hModule,
-    LPSTR   lpFilename,
-    DWORD   nSize
-);
+    LPSTR lpFilename,
+    DWORD nSize);
 
 UINT GetDoubleClickTime();
 
 #define CSIDL_PERSONAL 0 // chosen arbitrarily
 
 BOOL SHGetSpecialFolderPath(
-    HWND  hwnd,
+    HWND hwnd,
     LPSTR pszPath,
-    int   csidl,
-    BOOL  fCreate
-);
+    int csidl,
+    BOOL fCreate);
 
 BOOL CreateDirectory(
-    LPCTSTR               lpPathName,
-    void * lpSecurityAttributes // Always NULL
+    LPCTSTR lpPathName,
+    void *lpSecurityAttributes // Always NULL
 );
 
-typedef struct _SYSTEMTIME {
+typedef struct _SYSTEMTIME
+{
     WORD wYear;
     WORD wMonth;
     WORD wDayOfWeek;
@@ -76,37 +76,34 @@ typedef struct _SYSTEMTIME {
 } SYSTEMTIME, *LPSYSTEMTIME;
 
 void GetLocalTime(
-    LPSYSTEMTIME lpSystemTime
-);
+    LPSYSTEMTIME lpSystemTime);
 
-#define HKEY_LOCAL_MACHINE ((void*)0 )// chosen arbitrarily
-#define HKEY_CURRENT_USER ((void*)1 )// chosen arbitrarily
+#define HKEY_LOCAL_MACHINE ((void *)0) // chosen arbitrarily
+#define HKEY_CURRENT_USER ((void *)1)  // chosen arbitrarily
 
 LSTATUS RegCreateKeyExA(
-    HKEY                        hKey,
-    LPCSTR                      lpSubKey,
-    DWORD                       Reserved,
-    LPSTR                       lpClass,
-    DWORD                       dwOptions,
-    REGSAM                      samDesired,
-    const void *                lpSecurityAttributes, // always NULL
-    PHKEY                       phkResult,
-    LPDWORD                     lpdwDisposition
-);
+    HKEY hKey,
+    LPCSTR lpSubKey,
+    DWORD Reserved,
+    LPSTR lpClass,
+    DWORD dwOptions,
+    REGSAM samDesired,
+    const void *lpSecurityAttributes, // always NULL
+    PHKEY phkResult,
+    LPDWORD lpdwDisposition);
 
 #define GMEM_FIXED 0x0000
 #define GMEM_ZEROINIT 0x0040
 
-void * GlobalAlloc(
-    UINT   uFlags,
-    SIZE_T dwBytes
-);
+void *GlobalAlloc(
+    UINT uFlags,
+    SIZE_T dwBytes);
 
-void* GlobalFree(
-    void* hMem
-);
+void *GlobalFree(
+    void *hMem);
 
-typedef struct D3DXMATRIX {
+typedef struct D3DXMATRIX
+{
     FLOAT _11;
     FLOAT _12;
     FLOAT _13;
@@ -125,29 +122,26 @@ typedef struct D3DXMATRIX {
     FLOAT _44;
 } D3DXMATRIX;
 
-extern "C" char *itoa (int value, char *str, int base);
+extern "C" char *itoa(int value, char *str, int base);
 
 FARPROC GetProcAddress(
     HMODULE hModule,
-    LPCSTR  lpProcName
-);
+    LPCSTR lpProcName);
 
 HMODULE LoadLibrary(
-    LPCSTR lpLibFileName
-);
+    LPCSTR lpLibFileName);
 
 BOOL FreeLibrary(
-    HMODULE hLibModule
-);
+    HMODULE hLibModule);
 
 BOOL SetWindowTextW(
-    HWND    hWnd,
-    LPCWSTR lpString
-);
+    HWND hWnd,
+    LPCWSTR lpString);
 
-typedef struct _MEMORYSTATUS {
-    DWORD  dwLength;
-    DWORD  dwMemoryLoad;
+typedef struct _MEMORYSTATUS
+{
+    DWORD dwLength;
+    DWORD dwMemoryLoad;
     SIZE_T dwTotalPhys;
     SIZE_T dwAvailPhys;
     SIZE_T dwTotalPageFile;
@@ -157,20 +151,16 @@ typedef struct _MEMORYSTATUS {
 } MEMORYSTATUS, *LPMEMORYSTATUS;
 
 void GlobalMemoryStatus(
-    LPMEMORYSTATUS lpBuffer
-);
+    LPMEMORYSTATUS lpBuffer);
 
 int iswascii(
-   int c
-);
+    int c);
 
 int AddFontResource(
-    LPCSTR lpFileName
-);
+    LPCSTR lpFileName);
 
 BOOL RemoveFontResource(
-    LPCSTR lpFileName
-);
+    LPCSTR lpFileName);
 
 #define VK_RETURN 0x0D
 
@@ -179,37 +169,79 @@ DWORD GetTickCount();
 #define FORMAT_MESSAGE_FROM_SYSTEM 0x00001000
 
 DWORD FormatMessageW(
-    DWORD   dwFlags,
+    DWORD dwFlags,
     LPCVOID lpSource,
-    DWORD   dwMessageId,
-    DWORD   dwLanguageId,
-    LPWSTR  lpBuffer,
-    DWORD   nSize,
+    DWORD dwMessageId,
+    DWORD dwLanguageId,
+    LPWSTR lpBuffer,
+    DWORD nSize,
     void *Arguments // always NULL
 );
 
 DWORD FormatMessage(
-    DWORD   dwFlags,
+    DWORD dwFlags,
     LPCVOID lpSource,
-    DWORD   dwMessageId,
-    DWORD   dwLanguageId,
-    LPTSTR  lpBuffer,
-    DWORD   nSize,
+    DWORD dwMessageId,
+    DWORD dwLanguageId,
+    LPTSTR lpBuffer,
+    DWORD nSize,
     void *Arguments // always NULL
 );
 
 DWORD GetLastError();
 
 BOOL DeleteFile(
-    LPCTSTR lpFileName
-);
+    LPCTSTR lpFileName);
 
 BOOL CopyFile(
     LPCTSTR lpExistingFileName,
     LPCTSTR lpNewFileName,
-    BOOL    bFailIfExists
-);
+    BOOL bFailIfExists);
 
 void GetDesktopDirectory(char *path);
+
+#define UNLEN 256
+
+BOOL GetUserName(
+    LPSTR lpBuffer,
+    LPDWORD pcbBuffer);
+
+#define MAX_COMPUTERNAME_LENGTH 256
+
+BOOL GetComputerName(
+    LPSTR lpBuffer,
+    LPDWORD nSize);
+
+typedef union _LARGE_INTEGER
+{
+    LONGLONG QuadPart;
+} LARGE_INTEGER;
+
+BOOL QueryPerformanceCounter(LARGE_INTEGER *lpPerformanceCount);
+BOOL QueryPerformanceFrequency(LARGE_INTEGER *lpFrequency);
+
+#define closesocket close
+
+#define LOCALE_SYSTEM_DEFAULT 1
+
+int GetDateFormat(
+    int Locale,
+    DWORD dwFlags,
+    const SYSTEMTIME *lpDate,
+    LPCSTR lpFormat,
+    LPSTR lpDateStr,
+    int cchDate);
+
+int GetDateFormatW(
+    int Locale,
+    DWORD dwFlags,
+    const SYSTEMTIME *lpDate,
+    LPCWSTR lpFormat,
+    LPWSTR lpDateStr,
+    int cchDate);
+
+static inline int _wtoi(const wchar_t *str) {
+    return (int)wcstol(str, 0, 10);
+}
 
 #endif

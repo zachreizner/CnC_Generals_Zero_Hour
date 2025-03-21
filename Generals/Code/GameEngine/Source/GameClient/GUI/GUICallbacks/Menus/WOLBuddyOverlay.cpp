@@ -575,7 +575,7 @@ void HandleBuddyResponses( void )
 					info.m_email = resp.arg.request.email;
 					info.m_name = resp.arg.request.nick;
 					info.m_id = resp.profile;
-					info.m_status = (GPEnum)0;
+					info.m_status = (GPenum)0;
 					info.m_statusString = resp.arg.request.text;
 					(*m)[resp.profile] = info;
 
@@ -592,8 +592,8 @@ void HandleBuddyResponses( void )
 					BuddyInfoMap *m = TheGameSpyInfo->getBuddyMap();
 					BuddyInfoMap::const_iterator bit = m->find(resp.profile);
 					Bool seenPreviously = FALSE;
-					GPEnum oldStatus = GP_OFFLINE;
-					GPEnum newStatus = resp.arg.status.status;
+					GPenum oldStatus = GP_OFFLINE;
+					GPenum newStatus = resp.arg.status.status;
 					if (bit != m->end())
 					{
 						seenPreviously = TRUE;

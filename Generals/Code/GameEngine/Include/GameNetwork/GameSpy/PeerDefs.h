@@ -33,6 +33,7 @@
 
 // #include "GameSpy/Peer/Peer.h"
 // #include "GameSpy/GP/GP.h"
+#include "game_spy.h"
 
 typedef int32_t GPenum;
 typedef uint64_t GPProfile;

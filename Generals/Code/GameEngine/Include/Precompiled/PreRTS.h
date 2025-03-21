@@ -36,6 +36,7 @@
 class STLSpecialAlloc;
 
 #define __forceinline inline
+#define _UNIX
 
 
 // We actually don't use Windows for much other than timeGetTime, but it was included in 40 

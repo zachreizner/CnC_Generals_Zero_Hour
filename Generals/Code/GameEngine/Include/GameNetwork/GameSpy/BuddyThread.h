@@ -33,23 +33,7 @@
 #define __BUDDYTHREAD_H__
 
 // #include "GameSpy/GP/GP.h"
-
-#define GP_NICK_LEN 16
-#define GP_EMAIL_LEN 64
-#define GP_PASSWORD_LEN 64
-#define GP_STATUS_STRING_LEN 32
-#define GP_LOCATION_STRING_LEN 128
-#define GP_COUNTRYCODE_LEN 2
-#define GP_REASON_LEN 16
-
-#define GP_ONLINE 0
-#define GP_OFFLINE 1
-
-typedef uint32_t GPResult;
-typedef uint32_t GPErrorCode;
-typedef int32_t GPenum;
-typedef uint64_t GPProfile;
-
+#include "game_spy.h"
 
 #define MAX_BUDDY_CHAT_LEN 128
 

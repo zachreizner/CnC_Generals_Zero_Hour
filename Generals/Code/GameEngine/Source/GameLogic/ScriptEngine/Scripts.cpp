@@ -1858,7 +1858,7 @@ AsciiString Parameter::getUiText(void) const
 			if (m_int >= KINDOF_FIRST && m_int < KINDOF_COUNT )
 				uiText.format("Kind is '%s'", KindOfMaskType::getNameFromSingleBit(m_int));
 			else 
-				uiText.format("Kind is '???'");
+				uiText.format("Kind is <unknown>");
 			break;
 		case SIDE:
 			uiText.format("Player '%s'", uiString.str());
@@ -2003,7 +2003,7 @@ AsciiString Parameter::getUiText(void) const
 		case OBJECT_STATUS:
 		{
 			if (m_string.isEmpty()) {
-				uiText.format("Object Status is '???'");
+				uiText.format("Object Status is <unknown>");
 			} else {
 				uiText.format("Object Status is '%s'", m_string.str());
 			}

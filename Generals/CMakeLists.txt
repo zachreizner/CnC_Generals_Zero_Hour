@@ -3,6 +3,7 @@ project(generals LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} \
+    -fms-extensions \
     -Wno-char-subscripts \
     -Wno-conversion-null \
     -Wno-nonnull-compare \
@@ -39,6 +40,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} \
     -Wno-unused-value \
     -Wno-unused-variable \
     -Wno-write-strings \
+    -Wno-unknown-warning-option \
 ")
 
 add_library(generals_lib STATIC)
@@ -250,19 +252,19 @@ set(GENERALS_SRC
     Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SinglePlayerMenu.cpp
     Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SkirmishGameOptionsMenu.cpp
     Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/SkirmishMapSelectMenu.cpp
-    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLBuddyOverlay.cpp
-    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLCustomScoreScreen.cpp
-    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLGameSetupMenu.cpp
-    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLadderScreen.cpp
-    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenu.cpp
-    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLocaleSelectPopup.cpp
-    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp
-    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLMapSelectMenu.cpp
-    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLMessageWindow.cpp
-    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQMScoreScreen.cpp
-    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQuickMatchMenu.cpp
-    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLStatusMenu.cpp
-    # Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLWelcomeMenu.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLBuddyOverlay.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLCustomScoreScreen.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLGameSetupMenu.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLadderScreen.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLobbyMenu.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLocaleSelectPopup.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLLoginMenu.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLMapSelectMenu.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLMessageWindow.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQMScoreScreen.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLQuickMatchMenu.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLStatusMenu.cpp
+    Code/GameEngine/Source/GameClient/GUI/GUICallbacks/Menus/WOLWelcomeMenu.cpp
     Code/GameEngine/Source/GameClient/GUI/GUICallbacks/MessageBox.cpp
     Code/GameEngine/Source/GameClient/GUI/GUICallbacks/ReplayControls.cpp
     Code/GameEngine/Source/GameClient/GUI/HeaderTemplate.cpp
@@ -532,6 +534,55 @@ set(GENERALS_SRC
     Code/GameEngine/Source/GameLogic/System/GameLogic.cpp
     Code/GameEngine/Source/GameLogic/System/GameLogicDispatch.cpp
     Code/GameEngine/Source/GameLogic/System/RankInfo.cpp
+    Code/GameEngine/Source/GameNetwork/Connection.cpp
+    Code/GameEngine/Source/GameNetwork/ConnectionManager.cpp
+    Code/GameEngine/Source/GameNetwork/DisconnectManager.cpp
+    Code/GameEngine/Source/GameNetwork/DownloadManager.cpp
+    Code/GameEngine/Source/GameNetwork/FileTransfer.cpp
+    Code/GameEngine/Source/GameNetwork/FirewallHelper.cpp
+    Code/GameEngine/Source/GameNetwork/FrameData.cpp
+    Code/GameEngine/Source/GameNetwork/FrameDataManager.cpp
+    Code/GameEngine/Source/GameNetwork/FrameMetrics.cpp
+    Code/GameEngine/Source/GameNetwork/GameInfo.cpp
+    Code/GameEngine/Source/GameNetwork/GameMessageParser.cpp
+    # Code/GameEngine/Source/GameNetwork/GameSpy.cpp
+    # Code/GameEngine/Source/GameNetwork/GameSpy/Chat.cpp
+    # Code/GameEngine/Source/GameNetwork/GameSpy/GSConfig.cpp
+    # Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp
+    # Code/GameEngine/Source/GameNetwork/GameSpy/LobbyUtils.cpp
+    # Code/GameEngine/Source/GameNetwork/GameSpy/MainMenuUtils.cpp
+    # Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp
+    # Code/GameEngine/Source/GameNetwork/GameSpy/StagingRoomGameInfo.cpp
+    # Code/GameEngine/Source/GameNetwork/GameSpy/Thread/BuddyThread.cpp
+    # Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp
+    # Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp
+    # Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PersistentStorageThread.cpp
+    # Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp
+    # Code/GameEngine/Source/GameNetwork/GameSpy/Thread/ThreadUtils.cpp
+    # Code/GameEngine/Source/GameNetwork/GameSpyChat.cpp
+    # Code/GameEngine/Source/GameNetwork/GameSpyGameInfo.cpp
+    # Code/GameEngine/Source/GameNetwork/GameSpyGP.cpp
+    # Code/GameEngine/Source/GameNetwork/GameSpyOverlay.cpp
+    # Code/GameEngine/Source/GameNetwork/GameSpyPersistentStorage.cpp
+    Code/GameEngine/Source/GameNetwork/GUIUtil.cpp
+    Code/GameEngine/Source/GameNetwork/IPEnumeration.cpp
+    Code/GameEngine/Source/GameNetwork/LANAPI.cpp
+    Code/GameEngine/Source/GameNetwork/LANAPICallbacks.cpp
+    Code/GameEngine/Source/GameNetwork/LANAPIhandlers.cpp
+    Code/GameEngine/Source/GameNetwork/LANGameInfo.cpp
+    Code/GameEngine/Source/GameNetwork/NAT.cpp
+    Code/GameEngine/Source/GameNetwork/NetCommandList.cpp
+    Code/GameEngine/Source/GameNetwork/NetCommandMsg.cpp
+    Code/GameEngine/Source/GameNetwork/NetCommandRef.cpp
+    Code/GameEngine/Source/GameNetwork/NetCommandWrapperList.cpp
+    Code/GameEngine/Source/GameNetwork/NetMessageStream.cpp
+    Code/GameEngine/Source/GameNetwork/NetPacket.cpp
+    Code/GameEngine/Source/GameNetwork/Network.cpp
+    Code/GameEngine/Source/GameNetwork/NetworkUtil.cpp
+    Code/GameEngine/Source/GameNetwork/Transport.cpp
+    Code/GameEngine/Source/GameNetwork/udp.cpp
+    Code/GameEngine/Source/GameNetwork/User.cpp
+    # Code/GameEngine/Source/GameNetwork/WOLBrowser/WebBrowser.cpp
 )
 
 target_sources(generals_lib PRIVATE ${GENERALS_SRC})

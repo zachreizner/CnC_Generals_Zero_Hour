@@ -62,7 +62,7 @@
 /*_$                      Private Data                                   */
 /*************************************************************************/
 
-//static HOSTENT  gThreadHost;
+//static hostent  gThreadHost;
 struct sockaddr_in  gThreadAddress;
 
 static int		 gThreadFlag;
@@ -245,7 +245,7 @@ void Cftp::ZeroStuff(void)
 
 DWORD WINAPI gethostbynameA( void * szName )
 {
-	HOSTENT *he = gethostbyname( (const char *)szName );
+	hostent *he = gethostbyname( (const char *)szName );
    //////DBGMSG("Hostname copy start");
 
 	if (he)

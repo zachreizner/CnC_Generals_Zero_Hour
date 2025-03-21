@@ -118,7 +118,7 @@ void LANAPI::init( void )
 	
 	m_lastGameopt = "";
 
-	unsigned long bufSize = UNLEN + 1;
+	DWORD bufSize = UNLEN + 1;
 	char userName[UNLEN + 1];
 	if (!GetUserName(userName, &bufSize))
 	{

@@ -725,7 +725,7 @@ void CheckNumPlayersOnline( void )
 
 DWORD WINAPI asyncGethostbynameThreadFunc( void * szName )
 {
-	HOSTENT *he = gethostbyname( (const char *)szName );
+	hostent *he = gethostbyname( (const char *)szName );
 
 	if (he)
 	{
