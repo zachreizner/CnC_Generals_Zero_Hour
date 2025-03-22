@@ -35,7 +35,7 @@
 #include "GameNetwork/GameSpyChat.h"
 #include "Common/QuotedPrintable.h"
 
-typedef set<AsciiString>::const_iterator AsciiSetIter;
+// typedef set<AsciiString>::const_iterator AsciiSetIter;
 
 /**
 	* handleSlashCommands looks for slash ccommands and handles them,
@@ -269,6 +269,7 @@ static Bool handleSlashCommands( UnicodeString message, Bool isAction, GameWindo
 	return false;
 }
 
+#if 0
 static handleUnicodeMessage( const char *nick, UnicodeString msg, Bool isPublic, Bool isAction );
 
 Bool GameSpySendChat( UnicodeString message, Bool isAction, GameWindow *playerListbox )
@@ -436,6 +437,7 @@ static handleUnicodeMessage( const char *nick, UnicodeString msg, Bool isPublic,
 	}
 	GameSpyAddText(fullMsg, style);
 }
+#endif
 
 void GameSpyAddText( UnicodeString message, GameSpyColors color )
 {

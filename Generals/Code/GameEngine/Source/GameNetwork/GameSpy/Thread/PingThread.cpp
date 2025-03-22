@@ -28,7 +28,7 @@
 
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
-#include <winsock.h>	// This one has to be here. Prevents collisions with windsock2.h
+// #include <winsock.h>	// This one has to be here. Prevents collisions with windsock2.h
 
 #include "GameNetwork/GameSpy/PingThread.h"
 #include "mutex.h"
@@ -98,7 +98,7 @@ public:
 	void Thread_Function();
 
 private:
-	Int doPing( UnsignedInt IP, Int timeout );
+	// Int doPing( UnsignedInt IP, Int timeout );
 };
 
 
@@ -247,8 +247,9 @@ AsciiString Pinger::getPingString( Int timeout )
 
 void PingThreadClass::Thread_Function()
 {
+#if 0
 	try {
-	_set_se_translator( DumpExceptionInfo ); // Hook that allows stack trace.
+	// _set_se_translator( DumpExceptionInfo ); // Hook that allows stack trace.
 	PingRequest req;
 
 	WSADATA wsaData;
@@ -326,6 +327,7 @@ void PingThreadClass::Thread_Function()
 	} catch ( ... ) {
 		DEBUG_CRASH(("Exception in ping thread!"));
 	}
+#endif
 }
 
 //-------------------------------------------------------------------------
@@ -334,7 +336,7 @@ void PingThreadClass::Thread_Function()
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------
-
+#if 0
 HANDLE WINAPI IcmpCreateFile(VOID); /* INVALID_HANDLE_VALUE on error */
 BOOL WINAPI IcmpCloseHandle(HANDLE IcmpHandle); /* FALSE on error */
 
@@ -570,6 +572,7 @@ cleanup:
 
    return pingTime;
 }
+#endif
 
 
 //-------------------------------------------------------------------------

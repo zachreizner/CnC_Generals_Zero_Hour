@@ -31,12 +31,13 @@
 #ifndef __GAMESPYCHAT_H__
 #define __GAMESPYCHAT_H__
 
-#include "GameSpy/Peer/Peer.h"
+// #include "GameSpy/Peer/Peer.h"
+#include "game_spy.h"
 
 class GameWindow;
 class WindowLayout;
 
-Bool GameSpySendChat(UnicodeString message, Bool isEmote, GameWindow *playerListbox = NULL);
+// Bool GameSpySendChat(UnicodeString message, Bool isEmote, GameWindow *playerListbox = NULL);
 void GameSpyAddText( UnicodeString message, GameSpyColors color = GSCOLOR_DEFAULT );
 
 extern GameWindow *progressTextWindow;				///< Text box on the progress screen
@@ -49,6 +50,7 @@ extern GameWindow *listboxLobbyChatChannels;	///< Chat channel box on the custom
 extern GameWindow *listboxGameSetupChat;			///< Chat box on the custom game setup screen
 extern WindowLayout *WOLMapSelectLayout;			///< Map selection overlay
 
+#if 0
 void RoomMessageCallback(PEER peer, RoomType roomType,
 												 const char * nick, const char * message,
 												 MessageType messageType, void * param);		///< Called when a message arrives in a room.
@@ -56,5 +58,6 @@ void RoomMessageCallback(PEER peer, RoomType roomType,
 void PlayerMessageCallback(PEER peer, const char * nick,
 													 const char * message, MessageType messageType,
 													 void * param);														///< Called when a private message is received from another player.
+#endif
 
 #endif // __GAMESPYCHAT_H__

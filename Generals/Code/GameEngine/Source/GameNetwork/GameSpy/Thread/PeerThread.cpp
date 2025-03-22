@@ -82,7 +82,7 @@ static LogClass s_stateChangedLog("StateChanged.txt");
 // we should always be using broadcast keys from now on.  Remove the old code sometime when
 // we're not in a rush, ok?
 // -MDC 2/14/2003
-#define USE_BROADCAST_KEYS
+// #define USE_BROADCAST_KEYS
 
 #ifdef _INTERNAL
 // for occasional debugging...
@@ -95,7 +95,11 @@ static UnsignedInt s_lastStateChangedHeartbeat = 0;
 static Bool s_wantStateChangedHeartbeat = FALSE;
 static UnsignedInt s_heartbeatInterval = 10000;
 
-static SOCKET qr2Sock = INVALID_SOCKET;
+#define INVALID_SOCKET -1
+
+static int qr2Sock = INVALID_SOCKET;
+
+#define NUM_RESERVED_KEYS 100
 
 enum
 {
@@ -202,7 +206,8 @@ public:
 		//
 		m_isConnecting = m_isConnected = false; 
 		m_groupRoomID = m_profileID = 0;
-		m_nextStagingServer = 1; m_stagingServers.clear();
+		m_nextStagingServer = 1;
+		// m_stagingServers.clear();
 		m_pingStr = ""; m_mapName = ""; m_ladderIP = ""; m_isHosting = false;
 		for (Int i=0; i<MAX_SLOTS; ++i)
 		{
@@ -230,11 +235,11 @@ public:
 	Bool isConnecting( void ) { return m_isConnecting; }
 	Bool isConnected( void ) { return m_isConnected; }
 
-	Int addServerToMap( SBServer server );
-	Int removeServerFromMap( SBServer server );
+	// Int addServerToMap( SBServer server );
+	// Int removeServerFromMap( SBServer server );
 	void clearServers( void );
-	SBServer findServerByID( Int id );
-	Int findServer( SBServer server );
+	// SBServer findServerByID( Int id );
+	// Int findServer( SBServer server );
 
 	// get info about the game we are hosting
 	Bool isHosting( void ) { return m_isHosting; }
@@ -325,7 +330,7 @@ private:
 	Int m_numObservers;
 
 	Int m_nextStagingServer;
-	std::map<Int, SBServer> m_stagingServers;
+	// std::map<Int, SBServer> m_stagingServers;
 	std::wstring m_localStagingServerName;
 	Int m_localRoomID;
 
@@ -400,6 +405,7 @@ void PeerThreadClass::clearPlayerStats(RoomType roomType)
 
 void PeerThreadClass::pushStatsToRoom(PEER peer)
 {
+#if 0
 	DEBUG_LOG(("PeerThreadClass::pushStatsToRoom(): stats are %s=%s,%s=%s,%s=%s,%s=%s,%s=%s,%s=%s\n",
 		s_keys[0], s_values[0],
 		s_keys[1], s_values[1],
@@ -409,6 +415,7 @@ void PeerThreadClass::pushStatsToRoom(PEER peer)
 		s_keys[5], s_values[5]));
 	peerSetRoomKeys(peer, GroupRoom, m_loginName.c_str(), 6, s_keys, s_values);
 	peerSetRoomKeys(peer, StagingRoom, m_loginName.c_str(), 6, s_keys, s_values);
+#endif
 }
 
 void getRoomKeysCallback(PEER peer, PEERBool success, RoomType roomType, const char *nick, int num, char **keys, char **values, void *param);
@@ -418,6 +425,7 @@ void PeerThreadClass::getStatsFromRoom(PEER peer, RoomType roomType)
 }
 #endif // USE_BROADCAST_KEYS
 
+#if 0
 Int PeerThreadClass::addServerToMap( SBServer server )
 {
 	Int val = m_nextStagingServer++;
@@ -506,9 +514,11 @@ Int PeerThreadClass::findServer( SBServer server )
 	}
 
 	return addServerToMap(server);
+	return 0;
 }
+#endif
 
-static enum CallbackType
+enum CallbackType
 {
 	CALLBACK_CONNECT,
 	CALLBACK_ERROR,
@@ -538,7 +548,7 @@ void nickErrorCallbackWrapper( PEER peer, Int type, const char *nick, void *para
 	}
 }
 
-static void joinRoomCallback(PEER peer, PEERBool success, PEERJoinResult result, RoomType roomType, void *param);
+// static void joinRoomCallback(PEER peer, PEERBool success, PEERJoinResult result, RoomType roomType, void *param);
 
 //-------------------------------------------------------------------------
 
@@ -646,21 +656,22 @@ PeerThreadClass* GameSpyPeerMessageQueue::getThread( void )
 }
 
 //-------------------------------------------------------------------------
-static void disconnectedCallback(PEER peer, const char * reason, void * param);
-static void roomMessageCallback(PEER peer, RoomType roomType, const char * nick, const char * message, MessageType messageType, void * param);
-static void playerMessageCallback(PEER peer, const char * nick, const char * message, MessageType messageType, void * param);
-static void playerJoinedCallback(PEER peer, RoomType roomType, const char * nick, void * param);
-static void playerLeftCallback(PEER peer, RoomType roomType, const char * nick, const char * reason, void * param);
-static void playerChangedNickCallback(PEER peer, RoomType roomType, const char * oldNick, const char * newNick, void * param);
-static void playerInfoCallback(PEER peer, RoomType roomType, const char * nick, unsigned int IP, int profileID, void * param);
-static void playerFlagsChangedCallback(PEER peer, RoomType roomType, const char * nick, int oldFlags, int newFlags, void * param);
-static void listingGamesCallback(PEER peer, PEERBool success, const char * name, SBServer server, PEERBool staging, int msg, Int percentListed, void * param);
-static void roomUTMCallback(PEER peer, RoomType roomType, const char * nick, const char * command, const char * parameters, PEERBool authenticated, void * param);
-static void playerUTMCallback(PEER peer, const char * nick, const char * command, const char * parameters, PEERBool authenticated, void * param);
-static void gameStartedCallback(PEER peer, UnsignedInt IP, const char *message, void *param);
-static void globalKeyChangedCallback(PEER peer, const char *nick, const char *key, const char *val, void *param);
-static void roomKeyChangedCallback(PEER peer, RoomType roomType, const char *nick, const char *key, const char *val, void *param);
+// static void disconnectedCallback(PEER peer, const char * reason, void * param);
+// static void roomMessageCallback(PEER peer, RoomType roomType, const char * nick, const char * message, MessageType messageType, void * param);
+// static void playerMessageCallback(PEER peer, const char * nick, const char * message, MessageType messageType, void * param);
+// static void playerJoinedCallback(PEER peer, RoomType roomType, const char * nick, void * param);
+// static void playerLeftCallback(PEER peer, RoomType roomType, const char * nick, const char * reason, void * param);
+// static void playerChangedNickCallback(PEER peer, RoomType roomType, const char * oldNick, const char * newNick, void * param);
+// static void playerInfoCallback(PEER peer, RoomType roomType, const char * nick, unsigned int IP, int profileID, void * param);
+// static void playerFlagsChangedCallback(PEER peer, RoomType roomType, const char * nick, int oldFlags, int newFlags, void * param);
+// static void listingGamesCallback(PEER peer, PEERBool success, const char * name, SBServer server, PEERBool staging, int msg, Int percentListed, void * param);
+// static void roomUTMCallback(PEER peer, RoomType roomType, const char * nick, const char * command, const char * parameters, PEERBool authenticated, void * param);
+// static void playerUTMCallback(PEER peer, const char * nick, const char * command, const char * parameters, PEERBool authenticated, void * param);
+// static void gameStartedCallback(PEER peer, UnsignedInt IP, const char *message, void *param);
+// static void globalKeyChangedCallback(PEER peer, const char *nick, const char *key, const char *val, void *param);
+// static void roomKeyChangedCallback(PEER peer, RoomType roomType, const char *nick, const char *key, const char *val, void *param);
 
+#if 0
 // convenience function to set buddy status
 static void updateBuddyStatus( GameSpyBuddyStatus status, Int groupRoom = 0, std::string gameName = "" )
 {
@@ -1153,13 +1164,15 @@ void checkQR2Queries( PEER peer, SOCKET sock )
 		}
 	}
 }
+#endif
 
 static UnsignedInt localIP = 0;
 
 void PeerThreadClass::Thread_Function()
 {
+#if 0
 	try {
-	_set_se_translator( DumpExceptionInfo ); // Hook that allows stack trace.
+	// _set_se_translator( DumpExceptionInfo ); // Hook that allows stack trace.
 
 	PEER peer;
 
@@ -1770,6 +1783,7 @@ void PeerThreadClass::Thread_Function()
 		{
 		}
 	}
+#endif
 }
 
 static void qmProfileIDCallback( PEER peer, PEERBool success, const char *nick, int profileID, void *param )
@@ -1784,6 +1798,7 @@ static void qmProfileIDCallback( PEER peer, PEERBool success, const char *nick, 
 static Int matchbotProfileID = 0;
 void quickmatchEnumPlayersCallback( PEER peer, PEERBool success, RoomType roomType, int index, const char * nick, int flags, void * param )
 {
+#if 0
 	PeerThreadClass *t = (PeerThreadClass *)param;
 	if (!t || !success || nick == NULL || nick[0] == '\0')
 	{
@@ -1806,6 +1821,7 @@ void quickmatchEnumPlayersCallback( PEER peer, PEERBool success, RoomType roomTy
 	resp.player.IP = 0;
 
 	TheGameSpyPeerMessageQueue->addResponse(resp);
+#endif
 }
 
 void PeerThreadClass::handleQMMatch(PEER peer, Int mapIndex, Int seed,
@@ -1815,6 +1831,7 @@ void PeerThreadClass::handleQMMatch(PEER peer, Int mapIndex, Int seed,
 																		char *playerColor[MAX_SLOTS],
 																		char *playerNAT[MAX_SLOTS])
 {
+#if 0
 	if (m_qmStatus == QM_WORKING)
 	{
 		m_qmStatus = QM_MATCHED;
@@ -1854,10 +1871,12 @@ void PeerThreadClass::handleQMMatch(PEER peer, Int mapIndex, Int seed,
 		resp.qmStatus.mapIdx = mapIndex;
 		TheGameSpyPeerMessageQueue->addResponse(resp);
 	}
+#endif
 }
 
 void PeerThreadClass::doQuickMatch( PEER peer )
 {
+#if 0
 	m_qmStatus = QM_JOININGQMCHANNEL;
 	Bool done = false;
 	matchbotProfileID = m_qmInfo.QM.botID;
@@ -2078,8 +2097,10 @@ void PeerThreadClass::doQuickMatch( PEER peer )
 		}
 	}
 	updateBuddyStatus( BUDDY_ONLINE );
+#endif
 }
 
+#if 0
 static void getPlayerProfileIDCallback(PEER peer,  PEERBool success,  const char * nick,  int profileID,  void * param)
 {
 	if (success && param != NULL)
@@ -2234,9 +2255,11 @@ static void listGroupRoomsCallback(PEER peer, PEERBool success,
 		DEBUG_LOG(("Failure!\n"));
 	}
 }
+#endif
 
 void PeerThreadClass::connectCallback( PEER peer, PEERBool success )
 {
+#if 0
 	PeerResponse resp;
 	if(!success)
 	{
@@ -2277,10 +2300,12 @@ void PeerThreadClass::connectCallback( PEER peer, PEERBool success )
 	DEBUG_LOG(("After peerListGroupRooms()\n"));
 	CheckServers(peer);
 #endif // SERVER_DEBUGGING
+#endif
 }
 
 void PeerThreadClass::nickErrorCallback( PEER peer, Int type, const char *nick )
 {
+#if 0
 	if(type == PEER_IN_USE)
 	{
 		Int len = strlen(nick);
@@ -2327,7 +2352,10 @@ void PeerThreadClass::nickErrorCallback( PEER peer, Int type, const char *nick )
 		// Cancel the connect.
 		peerRetryWithNick(peer, NULL);
 	}
+#endif
 }
+
+#if 0
 
 void disconnectedCallback(PEER peer, const char * reason, void * param)
 {
@@ -2961,6 +2989,8 @@ static void listingGamesCallback(PEER peer, PEERBool success, const char * name,
 
 	TheGameSpyPeerMessageQueue->addResponse(resp);
 }
+
+#endif
 
 //-------------------------------------------------------------------------
 

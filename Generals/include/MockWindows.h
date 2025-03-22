@@ -3,6 +3,11 @@
 
 #include <stdint.h>
 
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define S_OK 0
 
 typedef uint32_t HRESULT;
@@ -13,9 +18,12 @@ typedef HANDLE HWND;
 typedef HANDLE HMODULE;
 typedef const void *LPCVOID;
 typedef int (*FARPROC)();
+typedef bool *LPBOOL;
 typedef char *LPSTR;
 typedef const char *LPCTSTR;
 typedef char *LPTSTR;
+typedef const char *LPCCH;
+typedef const wchar_t *LPCWCH;
 typedef const char *LPCSTR;
 typedef const wchar_t *LPCWSTR;
 typedef wchar_t *LPWSTR;
@@ -287,5 +295,29 @@ BOOL FindNextFile(
 
 BOOL FindClose(
     HANDLE hFindFile);
+
+#define CP_UTF8 65001
+
+int MultiByteToWideChar(
+    UINT CodePage,
+    DWORD dwFlags,
+    LPCCH lpMultiByteStr,
+    int cbMultiByte,
+    LPWSTR lpWideCharStr,
+    int cchWideChar);
+
+int WideCharToMultiByte(
+    UINT CodePage,
+    DWORD dwFlags,
+    LPCWCH lpWideCharStr,
+    int cchWideChar,
+    LPSTR lpMultiByteStr,
+    int cbMultiByte,
+    LPCCH lpDefaultChar,
+    LPBOOL lpUsedDefaultChar);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

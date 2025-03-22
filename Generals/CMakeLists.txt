@@ -551,24 +551,24 @@ set(GENERALS_SRC
     Code/GameEngine/Source/GameNetwork/GameInfo.cpp
     Code/GameEngine/Source/GameNetwork/GameMessageParser.cpp
     # Code/GameEngine/Source/GameNetwork/GameSpy.cpp
-    # Code/GameEngine/Source/GameNetwork/GameSpy/Chat.cpp
-    # Code/GameEngine/Source/GameNetwork/GameSpy/GSConfig.cpp
-    # Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp
-    # Code/GameEngine/Source/GameNetwork/GameSpy/LobbyUtils.cpp
-    # Code/GameEngine/Source/GameNetwork/GameSpy/MainMenuUtils.cpp
-    # Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp
-    # Code/GameEngine/Source/GameNetwork/GameSpy/StagingRoomGameInfo.cpp
-    # Code/GameEngine/Source/GameNetwork/GameSpy/Thread/BuddyThread.cpp
-    # Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp
-    # Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp
-    # Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PersistentStorageThread.cpp
-    # Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp
-    # Code/GameEngine/Source/GameNetwork/GameSpy/Thread/ThreadUtils.cpp
-    # Code/GameEngine/Source/GameNetwork/GameSpyChat.cpp
+    Code/GameEngine/Source/GameNetwork/GameSpy/Chat.cpp
+    Code/GameEngine/Source/GameNetwork/GameSpy/GSConfig.cpp
+    Code/GameEngine/Source/GameNetwork/GameSpy/LadderDefs.cpp
+    Code/GameEngine/Source/GameNetwork/GameSpy/LobbyUtils.cpp
+    Code/GameEngine/Source/GameNetwork/GameSpy/MainMenuUtils.cpp
+    Code/GameEngine/Source/GameNetwork/GameSpy/PeerDefs.cpp
+    Code/GameEngine/Source/GameNetwork/GameSpy/StagingRoomGameInfo.cpp
+    Code/GameEngine/Source/GameNetwork/GameSpy/Thread/BuddyThread.cpp
+    Code/GameEngine/Source/GameNetwork/GameSpy/Thread/GameResultsThread.cpp
+    Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PeerThread.cpp
+    Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PersistentStorageThread.cpp
+    Code/GameEngine/Source/GameNetwork/GameSpy/Thread/PingThread.cpp
+    Code/GameEngine/Source/GameNetwork/GameSpy/Thread/ThreadUtils.cpp
+    Code/GameEngine/Source/GameNetwork/GameSpyChat.cpp
     # Code/GameEngine/Source/GameNetwork/GameSpyGameInfo.cpp
     # Code/GameEngine/Source/GameNetwork/GameSpyGP.cpp
-    # Code/GameEngine/Source/GameNetwork/GameSpyOverlay.cpp
-    # Code/GameEngine/Source/GameNetwork/GameSpyPersistentStorage.cpp
+    Code/GameEngine/Source/GameNetwork/GameSpyOverlay.cpp
+    Code/GameEngine/Source/GameNetwork/GameSpyPersistentStorage.cpp
     Code/GameEngine/Source/GameNetwork/GUIUtil.cpp
     Code/GameEngine/Source/GameNetwork/IPEnumeration.cpp
     Code/GameEngine/Source/GameNetwork/LANAPI.cpp

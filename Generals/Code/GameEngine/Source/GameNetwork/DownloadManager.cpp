@@ -35,7 +35,7 @@ DownloadManager *TheDownloadManager;
 
 DownloadManager::DownloadManager()
 {
-	m_download = NEW CDownload(this);
+	m_download = NULL; // NEW CDownload(this);
 	m_wasError = m_sawEnd = false;
 	
 	//Added By Sadullah Nader
@@ -70,7 +70,7 @@ DownloadManager::DownloadManager()
 
 DownloadManager::~DownloadManager()
 {
-	delete m_download;
+	// delete m_download;
 	if (m_winsockInit)
 	{
 		// WSACleanup();
@@ -88,12 +88,14 @@ void DownloadManager::reset( void )
 
 HRESULT DownloadManager::update( void )
 {
-	return m_download->PumpMessages();
+	// return m_download->PumpMessages();
+	return 0;
 }
 
 HRESULT DownloadManager::downloadFile( AsciiString server, AsciiString username, AsciiString password, AsciiString file, AsciiString localfile, AsciiString regkey, Bool tryResume )
 {
-	return m_download->DownloadFile( server.str(), username.str(), password.str(), file.str(), localfile.str(), regkey.str(), tryResume );
+	// return m_download->DownloadFile( server.str(), username.str(), password.str(), file.str(), localfile.str(), regkey.str(), tryResume );
+	return 0;
 }
 
 void DownloadManager::queueFileForDownload( AsciiString server, AsciiString username, AsciiString password, AsciiString file, AsciiString localfile, AsciiString regkey, Bool tryResume )
@@ -131,7 +133,7 @@ HRESULT DownloadManager::downloadNextQueuedFile( void )
 AsciiString DownloadManager::getLastLocalFile( void )
 {
 	char buf[256] = "";
-	m_download->GetLastLocalFile(buf, 256);
+	// m_download->GetLastLocalFile(buf, 256);
 	return buf;
 }
 

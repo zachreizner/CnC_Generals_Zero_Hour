@@ -582,6 +582,8 @@ PSPlayerStats GameSpyPSMessageQueue::findPlayerStatsByID( Int id )
 
 Bool PSThreadClass::tryConnect( void )
 {
+	return false;
+#if 0
 	Int result;
 
 	DEBUG_LOG(("m_opCount = %d - opening connection\n", m_opCount));
@@ -617,6 +619,7 @@ Bool PSThreadClass::tryConnect( void )
 	}
 
 	return true;
+#endif
 }
 
 static void persAuthCallback(int localid, int profileid, int authenticated, char *errmsg, void *instance)
@@ -629,6 +632,7 @@ static void persAuthCallback(int localid, int profileid, int authenticated, char
 
 Bool PSThreadClass::tryLogin( Int id, std::string nick, std::string password, std::string email )
 {
+#if 0
 	char validate[33];
 	DEBUG_LOG(("PSThreadClass::tryLogin id = %d, nick = %s, password = %s, email = %s\n", id, nick.c_str(), password.c_str(), email.c_str()));
 	/***********
@@ -657,9 +661,11 @@ Bool PSThreadClass::tryLogin( Int id, std::string nick, std::string password, st
 	while (!m_doneTryingToLogin && IsStatsConnected())
 		PersistThink();
 	DEBUG_LOG(("Persistant Storage Login success %d\n", m_loginOK));
+#endif	
 	return m_loginOK;
 }
 
+#if 0
 static void getPersistentDataCallback(int localid, int profileid, persisttype_t type, int index, int success, char *data, int len, void *instance)
 {
 	DEBUG_LOG(("Data get callback: localid: %d profileid: %d success: %d len: %d data: %s\n",localid, profileid, success, len, data));
@@ -824,11 +830,13 @@ static void getPreorderCallback(int localid, int profileid, persisttype_t type, 
 
 	TheGameSpyPSMessageQueue->addResponse(resp);
 }
+#endif
 
 void PSThreadClass::Thread_Function()
 {
+#if 0
 	try {
-	_set_se_translator( DumpExceptionInfo ); // Hook that allows stack trace.
+	// _set_se_translator( DumpExceptionInfo ); // Hook that allows stack trace.
 	/*********
 	First step, set our game authentication info
 	We could do:
@@ -845,7 +853,7 @@ void PSThreadClass::Thread_Function()
 	gcd_gamename[8]='l';gcd_gamename[9]='s';gcd_gamename[10]='b';gcd_gamename[11]='\0';
 	gcd_secret_key[0]='g';gcd_secret_key[1]='3';gcd_secret_key[2]='T';gcd_secret_key[3]='9';
 	gcd_secret_key[4]='s';gcd_secret_key[5]='2';gcd_secret_key[6]='\0';
-	/**/
+	
 	gcd_gamename[0]='c';gcd_gamename[1]='c';gcd_gamename[2]='g';gcd_gamename[3]='e';
 	gcd_gamename[4]='n';gcd_gamename[5]='e';gcd_gamename[6]='r';gcd_gamename[7]='a';
 	gcd_gamename[8]='l';gcd_gamename[9]='s';gcd_gamename[10]='\0';
@@ -867,13 +875,13 @@ void PSThreadClass::Thread_Function()
 				{
 					if (tryConnect())
 					{
-						NewGame(0);
+						// NewGame(0);
 #ifdef DEBUG_LOGGING
 						Int res = 
 #endif // DEBUG_LOGGING
-							SendGameSnapShot(NULL, req.results.c_str(), SNAP_FINAL);
+							// SendGameSnapShot(NULL, req.results.c_str(), SNAP_FINAL);
 						DEBUG_LOG(("Just sent game results - res was %d\n", res));
-						FreeGame(NULL);
+						// FreeGame(NULL);
 					}
 				}
 				break;
@@ -1101,6 +1109,7 @@ void PSThreadClass::Thread_Function()
 	} catch ( ... ) {
 		DEBUG_CRASH(("Exception in storage thread!"));
 	}
+#endif
 }
 
 //-------------------------------------------------------------------------
@@ -1397,14 +1406,14 @@ std::string GameSpyPSMessageQueueInterface::formatPlayerKVPairs( PSPlayerStats s
 
 	if (stats.options.length())
 	{
-		_snprintf(kvbuf, 256, "\\options\\%s", stats.options.c_str());
+		snprintf(kvbuf, 256, "\\options\\%s", stats.options.c_str());
 		kvbuf[255] = 0;
 		s.append(kvbuf);
 	}
 
 	if (stats.systemSpec.length())
 	{
-		_snprintf(kvbuf, 256, "\\systemSpec\\%s", stats.systemSpec.c_str());
+		snprintf(kvbuf, 256, "\\systemSpec\\%s", stats.systemSpec.c_str());
 		kvbuf[255] = 0;
 		s.append(kvbuf);
 	}
@@ -1501,7 +1510,7 @@ std::string GameSpyPSMessageQueueInterface::formatPlayerKVPairs( PSPlayerStats s
 	}
 	if (stats.lastLadderHost.length())
 	{
-		_snprintf(kvbuf, 256, "\\ladderHost\\%s", stats.lastLadderHost.c_str());
+		snprintf(kvbuf, 256, "\\ladderHost\\%s", stats.lastLadderHost.c_str());
 		kvbuf[255] = 0;
 		s.append(kvbuf);
 	}

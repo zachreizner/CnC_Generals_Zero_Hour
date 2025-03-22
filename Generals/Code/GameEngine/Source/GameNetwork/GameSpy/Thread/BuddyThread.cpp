@@ -100,11 +100,11 @@ public:
 
 	void Thread_Function();
 
-	void errorCallback( GPConnection *con, GPErrorArg *arg );
-	void messageCallback( GPConnection *con, GPRecvBuddyMessageArg *arg );
-	void connectCallback( GPConnection *con, GPConnectResponseArg *arg );
-	void requestCallback( GPConnection *con, GPRecvBuddyRequestArg *arg );
-	void statusCallback( GPConnection *con, GPRecvBuddyStatusArg *arg );
+	// void errorCallback( GPConnection *con, GPErrorArg *arg );
+	// void messageCallback( GPConnection *con, GPRecvBuddyMessageArg *arg );
+	// void connectCallback( GPConnection *con, GPConnectResponseArg *arg );
+	// void requestCallback( GPConnection *con, GPRecvBuddyRequestArg *arg );
+	// void statusCallback( GPConnection *con, GPRecvBuddyStatusArg *arg );
 
 	Bool isConnecting( void ) { return m_isConnecting; }
 	Bool isConnected( void ) { return m_isConnected; }
@@ -121,7 +121,7 @@ private:
 	std::string m_nick, m_email, m_pass;
 };
 
-static enum CallbackType
+enum CallbackType
 {
 	CALLBACK_CONNECT,
 	CALLBACK_ERROR,
@@ -133,6 +133,7 @@ static enum CallbackType
 
 void callbackWrapper( GPConnection *con, void *arg, void *param )
 {
+#if 0
 	CallbackType info = (CallbackType)(Int)param;
 	BuddyThreadClass *thread = MESSAGE_QUEUE->getThread() ? MESSAGE_QUEUE->getThread() : NULL /*(TheGameSpyBuddyMessageQueue)?TheGameSpyBuddyMessageQueue->getThread():NULL*/;
 	if (!thread)
@@ -156,6 +157,7 @@ void callbackWrapper( GPConnection *con, void *arg, void *param )
 			thread->statusCallback( con, (GPRecvBuddyStatusArg *)arg );
 			break;
 	}
+#endif
 }
 
 //-------------------------------------------------------------------------
@@ -266,8 +268,9 @@ GPProfile GameSpyBuddyMessageQueue::getLocalProfileID( void )
 
 void BuddyThreadClass::Thread_Function()
 {
+#if 0
 	try {
-	_set_se_translator( DumpExceptionInfo ); // Hook that allows stack trace.
+	// _set_se_translator( DumpExceptionInfo ); // Hook that allows stack trace.
 	GPConnection gpCon;
 	GPConnection *con = &gpCon;
 	gpInitialize( con, 0 );
@@ -390,8 +393,10 @@ void BuddyThreadClass::Thread_Function()
 	} catch ( ... ) {
 		DEBUG_CRASH(("Exception in buddy thread!"));
 	}
+#endif
 }
 
+#if 0
 void BuddyThreadClass::errorCallback( GPConnection *con, GPErrorArg *arg )
 {
 	// log the error
@@ -673,7 +678,7 @@ void BuddyThreadClass::statusCallback( GPConnection *con, GPRecvBuddyStatusArg *
 	// relay to UI
 	TheGameSpyBuddyMessageQueue->addResponse( response );
 }
-
+#endif
 
 //-------------------------------------------------------------------------
 

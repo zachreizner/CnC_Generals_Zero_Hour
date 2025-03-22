@@ -50,7 +50,7 @@ void StackDumpFromAddresses(void**addresses, unsigned int count, void (*callback
 void GetFunctionDetails(void *pointer, char*name, char*filename, unsigned int* linenumber, unsigned int* address);
 
 // Dumps out the exception info and stack trace.
-void DumpExceptionInfo( unsigned int u, EXCEPTION_POINTERS* e_info );
+// void DumpExceptionInfo( unsigned int u, EXCEPTION_POINTERS* e_info );
 
 #else
 
@@ -65,7 +65,7 @@ __inline void StackDumpFromAddresses(void**addresses, unsigned int count, void (
 __inline void GetFunctionDetails(void *pointer, char*name, char*filename, unsigned int* linenumber, unsigned int* address) {}
 
 // Dumps out the exception info and stack trace.
-__inline void DumpExceptionInfo( unsigned int u, EXCEPTION_POINTERS* e_info ) {};
+// __inline void DumpExceptionInfo( unsigned int u, EXCEPTION_POINTERS* e_info ) {};
 
 #endif
 

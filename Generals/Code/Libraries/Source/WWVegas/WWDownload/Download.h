@@ -55,7 +55,7 @@ public:
 		m_File[ 0 ]			= '\0';
 		m_LocalFile[ 0 ]	= '\0';
 		m_RegKey[ 0 ]		= '\0';
-		m_Ftp				= new( Cftp );
+		m_Ftp				= NULL; //new( Cftp );
 		m_TryResume = false;
 
 		m_predictions = 0;

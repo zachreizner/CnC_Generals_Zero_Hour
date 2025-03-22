@@ -28,7 +28,7 @@
 
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
-#include <winsock.h>	// This one has to be here. Prevents collisions with winsock2.h
+// #include <winsock.h>	// This one has to be here. Prevents collisions with winsock2.h
 
 #include "GameNetwork/GameSpy/GameResultsThread.h"
 #include "mutex.h"
@@ -208,6 +208,7 @@ Bool GameResultsQueue::areGameResultsBeingSent( void )
 
 //-------------------------------------------------------------------------
 // Wrap ladder results in HTTP POST
+#if 0
 static WrapHTTP( const std::string& hostname, std::string& results )
 {
 	const char HEADER[] =
@@ -221,14 +222,15 @@ static WrapHTTP( const std::string& hostname, std::string& results )
 	_snprintf( szHdr, 255, HEADER, hostname.c_str(), results.length() );
 	results = szHdr + results;
 } //WrapHTTP
-
+#endif
 
 //-------------------------------------------------------------------------
 
 void GameResultsThreadClass::Thread_Function()
 {
+#if 0
 	try {
-	_set_se_translator( DumpExceptionInfo ); // Hook that allows stack trace.
+	// _set_se_translator( DumpExceptionInfo ); // Hook that allows stack trace.
 	GameResultsRequest req;
 
 	// WSADATA wsaData;
@@ -286,6 +288,7 @@ void GameResultsThreadClass::Thread_Function()
 	} catch ( ... ) {
 		DEBUG_CRASH(("Exception in results thread!"));
 	}
+#endif
 }
 
 //-------------------------------------------------------------------------
@@ -294,6 +297,7 @@ void GameResultsThreadClass::Thread_Function()
 
 static const char *getWSAErrorString( Int error )
 {
+#if 0
 	switch (error)
 	{
 		CASE(WSABASEERR)
@@ -351,6 +355,7 @@ static const char *getWSAErrorString( Int error )
 		default:
 			return "Not a Winsock error";
 	}
+#endif
 }
 
 #undef CASE
@@ -359,6 +364,7 @@ static const char *getWSAErrorString( Int error )
 
 Int GameResultsThreadClass::sendGameResults( UnsignedInt IP, UnsignedShort port, const std::string& results )
 {
+#if 0
 	int error = 0;
 
 	// create the socket
@@ -404,6 +410,8 @@ Int GameResultsThreadClass::sendGameResults( UnsignedInt IP, UnsignedShort port,
 	closesocket(sock);
 
 	return results.length();
+#endif
+	return -1;
 }
 
 

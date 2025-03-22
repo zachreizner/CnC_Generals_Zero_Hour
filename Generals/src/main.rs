@@ -115,6 +115,11 @@ pub fn CreateGameEngine() -> cxx::UniquePtr<GameEngine> {
     GeneralsGameEngine::as_GameEngine_unique_ptr(GeneralsGameEngine::default_cpp_owned())
 }
 
+#[no_mangle]
+pub fn timeGetTime() -> u32 {
+    todo!()
+}
+
 fn main() {
     println!("Hello, world!");
     let s = "\x01\x01";

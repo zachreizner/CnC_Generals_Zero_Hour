@@ -28,7 +28,8 @@
 
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
-#include "GameSpy/gstats/gpersist.h"
+// #include "GameSpy/gstats/gpersist.h"
+#include "game_spy.h"
 
 #include "GameClient/Shell.h"
 #include "GameClient/MessageBox.h"
@@ -39,9 +40,9 @@
 
 static Bool isProfileAuthorized = false;
 
-static Bool gameSpyInitPersistentStorageConnection( void );
-static void getPersistentDataCallback(int localid, int profileid, persisttype_t type, int index, int success, char *data, int len, void *instance);
-static void setPersistentDataCallback(int localid, int profileid, persisttype_t type, int index, int success, void *instance);
+// static Bool gameSpyInitPersistentStorageConnection( void );
+// static void getPersistentDataCallback(int localid, int profileid, persisttype_t type, int index, int success, char *data, int len, void *instance);
+// static void setPersistentDataCallback(int localid, int profileid, persisttype_t type, int index, int success, void *instance);
 
 
 class GameSpyPlayerInfo : public GameSpyPlayerInfoInterface
@@ -68,7 +69,7 @@ public:
 	virtual void threadSetWins  ( AsciiString val );
 	virtual void threadSetLosses( AsciiString val );
 
-	void queueDisconnect( void ) { 	MutexClass::LockClass m(TheGameSpyMutex); if (IsStatsConnected()) m_shouldDisconnect = true; else m_shouldDisconnect = false; }
+	void queueDisconnect( void ) { 	MutexClass::LockClass m(TheGameSpyMutex); if (/*IsStatsConnected() */ false) m_shouldDisconnect = true; else m_shouldDisconnect = false; }
 
 private:
 	void setValue( AsciiString key, AsciiString val, Bool setOnServer );
@@ -82,6 +83,7 @@ private:
 
 void GameSpyPlayerInfo::update( void )
 {
+#if 0
 	if (IsStatsConnected())
 	{
 		if (m_shouldDisconnect)
@@ -94,6 +96,7 @@ void GameSpyPlayerInfo::update( void )
 			PersistThink();
 		}
 	}
+#endif
 }
 
 void GameSpyPlayerInfo::readFromServer( void )
@@ -103,6 +106,7 @@ void GameSpyPlayerInfo::readFromServer( void )
 
 void GameSpyPlayerInfo::threadReadFromServer( void )
 {
+#if 0
 	MutexClass::LockClass m(TheGameSpyMutex);
 	if (gameSpyInitPersistentStorageConnection())
 	{
@@ -117,6 +121,7 @@ void GameSpyPlayerInfo::threadReadFromServer( void )
 		//TheShell->pop();
 		//TheShell->push("Menus/WOLWelcomeMenu.wnd");
 	}
+#endif
 }
 
 void GameSpyPlayerInfo::setLocale( AsciiString locale, Bool setOnServer )
@@ -170,6 +175,7 @@ void GameSpyPlayerInfo::setValue( AsciiString key, AsciiString val, Bool setOnSe
 
 void GameSpyPlayerInfo::threadSetLocale( AsciiString val )
 {
+#if 0
 	MutexClass::LockClass m(TheGameSpyMutex);
 	if (!gameSpyInitPersistentStorageConnection())
 		return;
@@ -183,10 +189,12 @@ void GameSpyPlayerInfo::threadSetLocale( AsciiString val )
 	DEBUG_LOG(("GameSpyPlayerInfo::set%s() operation count = %d\n", key.str(), m_operationCount));
 	SetPersistDataValues(0, TheGameSpyChat->getProfileID(), pd_public_rw, 0, writable, setPersistentDataCallback, &m_operationCount);
 	free(writable);
+#endif
 }
 
 void GameSpyPlayerInfo::threadSetWins( AsciiString val )
 {
+#if 0
 	MutexClass::LockClass m(TheGameSpyMutex);
 	if (!gameSpyInitPersistentStorageConnection())
 		return;
@@ -200,10 +208,12 @@ void GameSpyPlayerInfo::threadSetWins( AsciiString val )
 	DEBUG_LOG(("GameSpyPlayerInfo::set%s() operation count = %d\n", key.str(), m_operationCount));
 	SetPersistDataValues(0, TheGameSpyChat->getProfileID(), pd_public_rw, 0, writable, setPersistentDataCallback, &m_operationCount);
 	free(writable);
+#endif
 }
 
 void GameSpyPlayerInfo::threadSetLosses( AsciiString val )
 {
+#if 0
 	MutexClass::LockClass m(TheGameSpyMutex);
 	if (!gameSpyInitPersistentStorageConnection())
 		return;
@@ -217,6 +227,7 @@ void GameSpyPlayerInfo::threadSetLosses( AsciiString val )
 	DEBUG_LOG(("GameSpyPlayerInfo::set%s() operation count = %d\n", key.str(), m_operationCount));
 	SetPersistDataValues(0, TheGameSpyChat->getProfileID(), pd_public_rw, 0, writable, setPersistentDataCallback, &m_operationCount);
 	free(writable);
+#endif
 }
 
 GameSpyPlayerInfoInterface *TheGameSpyPlayerInfo = NULL;
@@ -232,7 +243,7 @@ GameSpyPlayerInfoInterface *createGameSpyPlayerInfo( void )
 
 
 
-
+#if 0
 
 static void persAuthCallback(int localid, int profileid, int authenticated, char *errmsg, void *instance)
 {
@@ -390,3 +401,4 @@ static Bool gameSpyInitPersistentStorageConnection( void )
 	return isProfileAuthorized;
 }
 
+#endif

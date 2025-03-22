@@ -31,8 +31,10 @@
 #ifndef __GameSpy_H__
 #define __GameSpy_H__
 
-#include "GameSpy/Peer/Peer.h"
+// #include "GameSpy/Peer/Peer.h"
+#include "game_spy.h"
 
+#include "GameNetwork/GameSpy/PeerThread.h"
 #include "GameClient/Color.h"
 #include "Common/STLTypedefs.h"
 
@@ -58,24 +60,24 @@ public:
 	virtual void reset( void ) = 0;
 	virtual void update( void ) = 0;
 
-	virtual Bool isConnected( void ) = 0;
-	virtual void login(AsciiString loginName, AsciiString password = AsciiString::TheEmptyString, AsciiString email = AsciiString::TheEmptyString) = 0;
-	virtual void reconnectProfile( void ) = 0;
-	virtual void disconnectFromChat( void ) = 0;
+	// virtual Bool isConnected( void ) = 0;
+	// virtual void login(AsciiString loginName, AsciiString password = AsciiString::TheEmptyString, AsciiString email = AsciiString::TheEmptyString) = 0;
+	// virtual void reconnectProfile( void ) = 0;
+	// virtual void disconnectFromChat( void ) = 0;
 
-	virtual void UTMRoom( RoomType roomType, const char *key, const char *val, Bool authenticate = FALSE ) = 0;
-	virtual void UTMPlayer( const char *name, const char *key, const char *val, Bool authenticate = FALSE ) = 0;
-	virtual void startGame( void ) = 0;
-	virtual void leaveRoom( RoomType roomType ) = 0;
-	virtual void setReady( Bool ready ) = 0;
-	virtual void enumPlayers( RoomType roomType, peerEnumPlayersCallback callback, void *userData ) = 0;
-	virtual void startListingGames( peerListingGamesCallback callback ) = 0;
-	virtual void stopListingGames( void ) = 0;
+	// virtual void UTMRoom( RoomType roomType, const char *key, const char *val, Bool authenticate = FALSE ) = 0;
+	// virtual void UTMPlayer( const char *name, const char *key, const char *val, Bool authenticate = FALSE ) = 0;
+	// virtual void startGame( void ) = 0;
+	// virtual void leaveRoom( RoomType roomType ) = 0;
+	// virtual void setReady( Bool ready ) = 0;
+	// virtual void enumPlayers( RoomType roomType, peerEnumPlayersCallback callback, void *userData ) = 0;
+	// virtual void startListingGames( peerListingGamesCallback callback ) = 0;
+	// virtual void stopListingGames( void ) = 0;
 
-	virtual void joinGroupRoom( Int ID ) = 0;
-	virtual void joinStagingRoom( GServer server, AsciiString password ) = 0;
-	virtual void createStagingRoom( AsciiString gameName, AsciiString password, Int maxPlayers ) = 0;
-	virtual void joinBestGroupRoom( void ) = 0;
+	// virtual void joinGroupRoom( Int ID ) = 0;
+	// virtual void joinStagingRoom( GServer server, AsciiString password ) = 0;
+	// virtual void createStagingRoom( AsciiString gameName, AsciiString password, Int maxPlayers ) = 0;
+	// virtual void joinBestGroupRoom( void ) = 0;
 
 	inline PEER getPeer( void )									{ return m_peer; }
 	inline AsciiString getLoginName( void )			{ return m_loginName; }
@@ -108,6 +110,7 @@ GameSpyChatInterface *createGameSpyChat( void );
 extern GameSpyChatInterface *TheGameSpyChat;
 
 
+#if 0
 void JoinRoomCallback(PEER peer, PEERBool success,
 											PEERJoinResult result, RoomType roomType,
 											void *param);																	///< Called when we (fail to) join a room.  param is address of Bool to store result
@@ -117,6 +120,7 @@ void ListGroupRoomsCallback(PEER peer, PEERBool success,
 														const char * name, int numWaiting,
 														int maxWaiting, int numGames,
 														int numPlaying, void * param);					///< Called while listing group rooms
+#endif
 
 enum GameSpyColors {
 	GSCOLOR_DEFAULT = 0,

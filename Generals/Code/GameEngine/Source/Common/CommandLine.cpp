@@ -34,7 +34,7 @@
 #include "GameClient/GameText.h"
 
 Bool TheDebugIgnoreSyncErrors = FALSE;
-extern Int DX8Wrapper_PreserveFPU;
+// extern Int DX8Wrapper_PreserveFPU;
 
 #ifdef DEBUG_CRC
 Int TheCRCFirstFrameToLog = -1;
@@ -149,7 +149,7 @@ Int parseFPUPreserve(char *args[], int argc)
 {
 	if (argc > 1)
 	{
-		DX8Wrapper_PreserveFPU = atoi(args[1]);
+		// DX8Wrapper_PreserveFPU = atoi(args[1]);
 	}
 	return 2;
 }

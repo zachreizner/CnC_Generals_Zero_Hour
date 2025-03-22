@@ -11,6 +11,9 @@
 
 #define GP_ONLINE 0
 #define GP_OFFLINE 1
+#define GP_CHATTING 2
+#define GP_STAGING 3
+#define GP_PLAYING 4
 
 #define GP_RECV_BUDDY_MESSAGE 0
 #define GP_RECV_BUDDY_REQUEST 1
@@ -34,9 +37,22 @@
 
 #define PEERTrue true
 
+#define GHTTPFalse false
+#define GHTTPTrue true
+
+typedef bool GHTTPBool;
 typedef uint32_t GPResult;
 typedef uint32_t GPErrorCode;
 typedef int32_t GPenum;
 typedef uint64_t GPProfile;
+typedef bool PEERBool;
+
+enum GHTTPResult {
+    GHTTPSuccess
+};
+
+typedef void *GPConnection;
+typedef void *PEER;
+typedef void *GHTTPRequest;
 
 #endif

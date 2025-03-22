@@ -22,7 +22,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
 #include "Lib/BaseType.h"
 #include "NoxCompress.h"
 // #include "CompLibHeader/lzhl.h"

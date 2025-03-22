@@ -34,6 +34,7 @@
 
 #include <math.h>
 #include <string.h>
+#include <stdint.h>
 
 /*
 **	Turn off some unneeded warnings.

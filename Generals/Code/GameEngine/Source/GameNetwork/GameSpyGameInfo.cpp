@@ -32,7 +32,7 @@
 #include "Common/Player.h"
 #include "Common/PlayerList.h"
 #include "Common/RandomValue.h"
-#include "Common/Scorekeeper.h"
+#include "Common/ScoreKeeper.h"
 #include "GameClient/Shell.h"
 #include "GameClient/GameText.h"
 #include "GameNetwork/GameSpy/PeerDefs.h"
@@ -63,10 +63,10 @@ GameSpyGameSlot::GameSpyGameSlot()
 ** Function definitions for the MIB-II entry points.
 */
 
-BOOL (__stdcall *SnmpExtensionInitPtr)(IN DWORD dwUpTimeReference, OUT HANDLE *phSubagentTrapEvent, OUT AsnObjectIdentifier *pFirstSupportedRegion);
-BOOL (__stdcall *SnmpExtensionQueryPtr)(IN BYTE bPduType, IN OUT RFC1157VarBindList *pVarBindList, OUT AsnInteger32 *pErrorStatus, OUT AsnInteger32 *pErrorIndex);
-LPVOID (__stdcall *SnmpUtilMemAllocPtr)(IN DWORD bytes);
-VOID (__stdcall *SnmpUtilMemFreePtr)(IN LPVOID pMem);
+// BOOL (__stdcall *SnmpExtensionInitPtr)(IN DWORD dwUpTimeReference, OUT HANDLE *phSubagentTrapEvent, OUT AsnObjectIdentifier *pFirstSupportedRegion);
+// BOOL (__stdcall *SnmpExtensionQueryPtr)(IN BYTE bPduType, IN OUT RFC1157VarBindList *pVarBindList, OUT AsnInteger32 *pErrorStatus, OUT AsnInteger32 *pErrorIndex);
+// LPVOID (__stdcall *SnmpUtilMemAllocPtr)(IN DWORD bytes);
+// VOID (__stdcall *SnmpUtilMemFreePtr)(IN LPVOID pMem);
 
 typedef struct tConnInfoStruct {
 	unsigned int State;
@@ -96,6 +96,7 @@ typedef struct tConnInfoStruct {
  *=============================================================================================*/
 Bool GetLocalChatConnectionAddress(AsciiString serverName, UnsignedShort serverPort, UnsignedInt& localIP)
 {
+#if 0
 	//return false;
 	/*
 	** Local defines.
@@ -427,6 +428,8 @@ Bool GetLocalChatConnectionAddress(AsciiString serverName, UnsignedShort serverP
 	FreeLibrary(snmpapi_dll);
 	FreeLibrary(mib_ii_dll);
 	return(found);
+#endif 
+	return false;
 }
 
 

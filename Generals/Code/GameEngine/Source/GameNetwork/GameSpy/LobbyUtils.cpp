@@ -69,7 +69,7 @@
 #endif
 
 // PRIVATE DATA ///////////////////////////////////////////////////////////////////////////////////
-static enum {
+enum {
 	COLUMN_NAME = 0,
 	COLUMN_MAP,
 	COLUMN_LADDER,
@@ -498,10 +498,10 @@ struct GameSortStruct
 		switch(theGameSortType)
 		{
 		case GAMESORT_ALPHA_ASCENDING:
-			return wcsicmp(g1->getGameName().str(), g2->getGameName().str()) < 0;
+			return wcscasecmp(g1->getGameName().str(), g2->getGameName().str()) < 0;
 			break;
 		case GAMESORT_ALPHA_DESCENDING:
-			return wcsicmp(g1->getGameName().str(),g2->getGameName().str()) > 0;
+			return wcscasecmp(g1->getGameName().str(),g2->getGameName().str()) > 0;
 			break;
 		case GAMESORT_PING_ASCENDING:
 			return g1->getPingAsInt() < g2->getPingAsInt();
