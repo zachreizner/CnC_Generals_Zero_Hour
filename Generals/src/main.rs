@@ -4,6 +4,8 @@ use autocxx::prelude::*;
 use autocxx::subclass::*;
 use ffi::*;
 
+extern crate mock_windows;
+
 include_cpp! {
     #include "PreRTS.h"
     #include "Common/crc.h"
@@ -115,10 +117,6 @@ pub fn CreateGameEngine() -> cxx::UniquePtr<GameEngine> {
     GeneralsGameEngine::as_GameEngine_unique_ptr(GeneralsGameEngine::default_cpp_owned())
 }
 
-#[no_mangle]
-pub fn timeGetTime() -> u32 {
-    todo!()
-}
 
 fn main() {
     println!("Hello, world!");

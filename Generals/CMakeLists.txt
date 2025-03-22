@@ -124,6 +124,7 @@ set(GENERALS_SRC
     Code/GameEngine/Source/Common/System/KindOf.cpp
     Code/GameEngine/Source/Common/System/List.cpp
     Code/GameEngine/Source/Common/System/LocalFileSystem.cpp
+    Code/GameEngine/Source/Common/System/MapObject.cpp
     Code/GameEngine/Source/Common/System/MemoryInit.cpp
     Code/GameEngine/Source/Common/System/QuickTrig.cpp
     Code/GameEngine/Source/Common/System/QuotedPrintable.cpp

@@ -1,3 +1,6 @@
+[workspace]
+resolver = "2"
+
 [package]
 name = "generals"
 version = "0.1.0"
@@ -6,7 +9,7 @@ edition = "2021"
 [dependencies]
 autocxx = "0.30.0"
 cxx = "1.0.146"
-# generals-sys = { path = "generals-sys" }
+mock-windows = { path = "mock-windows"}
 
 [build-dependencies]
 autocxx-build = "0.30.0"

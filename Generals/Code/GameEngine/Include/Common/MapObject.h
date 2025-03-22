@@ -139,8 +139,8 @@ public:
 	void setIsWaypoint() { m_runtimeFlags |= MO_WAYPOINT; }
 	void setIsScorch() { m_runtimeFlags |= MO_SCORCH; }
 
-	void setRenderObj(RenderObjClass *pObj);
-	RenderObjClass *getRenderObj(void) const {return m_renderObj;}
+	// void setRenderObj(RenderObjClass *pObj);
+	// RenderObjClass *getRenderObj(void) const {return m_renderObj;}
 	void setShadowObj(Shadow *pObj)	{m_shadowObj=pObj;}
 	Shadow *getShadowObj(void) const {return m_shadowObj;}
 

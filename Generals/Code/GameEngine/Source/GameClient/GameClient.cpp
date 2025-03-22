@@ -92,6 +92,8 @@
 /// The GameClient singleton instance
 GameClient *TheGameClient = NULL;
 
+IMEManagerInterface *TheIMEManager = NULL;
+
 //-------------------------------------------------------------------------------------------------
 GameClient::GameClient()
 {

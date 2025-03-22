@@ -338,7 +338,7 @@ void GameEngine::init( int argc, char *argv[] )
 		initSubsystem(TheTerrainTypes,"TheTerrainTypes", MSGNEW("GameEngineSubsystem") TerrainTypeCollection(), &xferCRC, "Data\\INI\\Default\\Terrain.ini", "Data\\INI\\Terrain.ini");
 		initSubsystem(TheTerrainRoads,"TheTerrainRoads", MSGNEW("GameEngineSubsystem") TerrainRoadCollection(), &xferCRC, "Data\\INI\\Default\\Roads.ini", "Data\\INI\\Roads.ini");
 		initSubsystem(TheGlobalLanguageData,"TheGlobalLanguageData",MSGNEW("GameEngineSubsystem") GlobalLanguage, NULL); // must be before the game text
-		initSubsystem(TheCDManager,"TheCDManager", CreateCDManager(), NULL);
+		// initSubsystem(TheCDManager,"TheCDManager", CreateCDManager(), NULL);
 		initSubsystem(TheAudio,"TheAudio", createAudioManager(), NULL);
 		if (!TheAudio->isMusicAlreadyLoaded())
 			setQuitting(TRUE);
@@ -587,7 +587,7 @@ void GameEngine::update( void )
 				TheNetwork->UPDATE();
 			}
 			 
-			TheCDManager->UPDATE();
+			// TheCDManager->UPDATE();
 		}
 
 

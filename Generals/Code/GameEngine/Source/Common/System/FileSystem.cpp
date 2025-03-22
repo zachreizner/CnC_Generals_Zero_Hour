@@ -292,6 +292,7 @@ Bool FileSystem::areMusicFilesOnCD()
 //============================================================================
 void FileSystem::loadMusicFilesFromCD()
 {
+#if 0
 	if (!TheCDManager) {
 		return;
 	}
@@ -309,6 +310,7 @@ void FileSystem::loadMusicFilesFromCD()
 			break;
 		}
 	}
+#endif
 }
 
 //============================================================================

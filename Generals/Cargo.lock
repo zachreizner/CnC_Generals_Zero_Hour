@@ -386,6 +386,7 @@ dependencies = [
  "cmake",
  "cxx",
  "miette",
+ "mock-windows",
 ]
 
 [[package]]
@@ -595,6 +596,10 @@ checksum = "8e3e04debbb59698c15bacbb6d93584a8c0ca9cc3213cb423d31f760d8843ce5"
 dependencies = [
  "adler2",
 ]
+
+[[package]]
+name = "mock-windows"
+version = "0.1.0"
 
 [[package]]
 name = "moveit"

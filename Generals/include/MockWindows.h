@@ -2,7 +2,8 @@
 #define __MOCK_WINDOWS_H__
 
 #include <stdint.h>
-
+#include <stdbool.h>
+#include <wchar.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -132,7 +133,7 @@ typedef struct D3DXMATRIX
     FLOAT _44;
 } D3DXMATRIX;
 
-extern "C" char *itoa(int value, char *str, int base);
+char *itoa(int value, char *str, int base);
 
 FARPROC GetProcAddress(
     HMODULE hModule,
