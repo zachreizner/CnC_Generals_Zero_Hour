@@ -600,6 +600,7 @@ set(GENERALS_SRC
     Code/Libraries/Source/Compression/EAC/refencode.cpp
     Code/Libraries/Source/Compression/EAC/huffdecode.cpp
     Code/Libraries/Source/Compression/LZHCompress/NoxCompress.cpp
+    Code/Libraries/Source/WWVegas/WWLib/mutex.cpp
 )
 
 target_sources(generals_lib PRIVATE ${GENERALS_SRC})
@@ -608,7 +609,8 @@ target_include_directories(generals_lib PRIVATE
     Code/GameEngine/Include
     Code/GameEngine/Include/Precompiled
     Code/Libraries/Include
-    Code/Libraries/Source/WWVegas
-    Code/Libraries/Source/WWVegas/WWLib
     Code/Libraries/Source/Compression
+    Code/Libraries/Source/WWVegas
+    Code/Libraries/Source/WWVegas/WWDebug
+    Code/Libraries/Source/WWVegas/WWLib
 )

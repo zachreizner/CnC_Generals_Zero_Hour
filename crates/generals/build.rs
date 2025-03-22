@@ -48,6 +48,10 @@ fn main() -> miette::Result<()> {
         .no_default_flags(true)
         .profile("Debug")
         .generator("Ninja")
+        .define("CMAKE_C_COMPILER", "clang")
+        .define("CMAKE_CXX_COMPILER", "clang++")
+        .define("CMAKE_C_COMPILER_LAUNCHER", "sccache")
+        .define("CMAKE_CXX_COMPILER_LAUNCHER", "sccache")
         .build_target("generals_lib")
         .build();
 
@@ -55,7 +59,7 @@ fn main() -> miette::Result<()> {
     println!("cargo:rustc-link-lib=static=generals_lib");
 
     println!("cargo:rerun-if-changed=src/main.rs");
-    println!("cargo:rerun-if-changed=CMakeLists.txt");
+    println!("cargo:rerun-if-changed=../../Generals/CMakeLists.txt");
 
     Ok(())
 }

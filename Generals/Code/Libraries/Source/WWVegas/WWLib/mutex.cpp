@@ -18,7 +18,8 @@
 
 #include "mutex.h"
 #include "wwdebug.h"
-#include <windows.h>
+// #include <windows.h>
+#include "MockWindows.h"
 
 
 // ----------------------------------------------------------------------------

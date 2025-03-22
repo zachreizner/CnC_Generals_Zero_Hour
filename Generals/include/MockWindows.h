@@ -17,6 +17,8 @@ typedef HANDLE HKEY;
 typedef HANDLE *PHKEY;
 typedef HANDLE HWND;
 typedef HANDLE HMODULE;
+typedef void *CRITICAL_SECTION;
+typedef CRITICAL_SECTION LPCRITICAL_SECTION;
 typedef const void *LPCVOID;
 typedef int (*FARPROC)();
 typedef bool *LPBOOL;
@@ -316,6 +318,37 @@ int WideCharToMultiByte(
     int cbMultiByte,
     LPCCH lpDefaultChar,
     LPBOOL lpUsedDefaultChar);
+
+void InitializeCriticalSection(
+    LPCRITICAL_SECTION lpCriticalSection);
+
+void EnterCriticalSection(
+    LPCRITICAL_SECTION lpCriticalSection);
+
+void LeaveCriticalSection(
+    LPCRITICAL_SECTION lpCriticalSection);
+
+void DeleteCriticalSection(
+    LPCRITICAL_SECTION lpCriticalSection);
+
+#define WAIT_OBJECT_0 0
+#define INFINITE 0xFFFFFFFF
+
+DWORD WaitForSingleObject(
+    HANDLE hHandle,
+    DWORD dwMilliseconds);
+
+HANDLE CreateMutex(
+    void * lpMutexAttributes, // Always NULL
+    BOOL                  bInitialOwner,
+    LPCSTR                lpName
+);
+
+BOOL ReleaseMutex(
+    HANDLE hMutex);
+
+BOOL CloseHandle(
+    HANDLE hObject);
 
 #ifdef __cplusplus
 }
