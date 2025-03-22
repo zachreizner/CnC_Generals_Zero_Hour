@@ -42,6 +42,8 @@
 //
 //-----------------------------------------------------------------------------
 
+#define INSTANTIATE_WELL_KNOWN_KEYS
+
 #include "PreRTS.h"	// This must go first in EVERY cpp file int the GameEngine
 
 #define DEFINE_SCIENCE_AVAILABILITY_NAMES

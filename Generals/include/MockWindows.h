@@ -19,7 +19,7 @@ typedef char *LPTSTR;
 typedef const char *LPCSTR;
 typedef const wchar_t *LPCWSTR;
 typedef wchar_t *LPWSTR;
-typedef uint8_t CHAR;
+typedef char CHAR;
 typedef uint16_t USHORT;
 typedef uint16_t WORD;
 typedef uint32_t DWORD;
@@ -39,6 +39,8 @@ MMRESULT timeBeginPeriod(UINT uPeriod);
 MMRESULT timeEndPeriod(UINT uPeriod);
 DWORD timeGetTime();
 void Sleep(DWORD dwMilliseconds);
+
+#define INVALID_HANDLE_VALUE ((HANDLE)(uintptr_t)-1)
 
 #define _MAX_PATH 260
 #define MAX_PATH _MAX_PATH
@@ -223,6 +225,7 @@ BOOL QueryPerformanceFrequency(LARGE_INTEGER *lpFrequency);
 #define closesocket close
 
 #define LOCALE_SYSTEM_DEFAULT 1
+#define DATE_SHORTDATE 1
 
 int GetDateFormat(
     int Locale,
@@ -240,8 +243,49 @@ int GetDateFormatW(
     LPWSTR lpDateStr,
     int cchDate);
 
-static inline int _wtoi(const wchar_t *str) {
+#define TIME_NOSECONDS 1
+
+int GetTimeFormatW(
+    int Locale,
+    DWORD dwFlags,
+    const SYSTEMTIME *lpTime,
+    LPCWSTR lpFormat,
+    LPWSTR lpTimeStr,
+    int cchTime);
+
+static inline int _wtoi(const wchar_t *str)
+{
     return (int)wcstol(str, 0, 10);
 }
+
+int _access(
+    const char *path,
+    int mode);
+
+DWORD GetCurrentDirectory(
+    DWORD nBufferLength,
+    LPTSTR lpBuffer);
+
+BOOL SetCurrentDirectory(
+    LPCTSTR lpPathName);
+
+#define FILE_ATTRIBUTE_DIRECTORY 0x10
+
+typedef struct _WIN32_FIND_DATA
+{
+    DWORD dwFileAttributes;
+    CHAR cFileName[MAX_PATH];
+} WIN32_FIND_DATA, *LPWIN32_FIND_DATA;
+
+HANDLE FindFirstFile(
+    LPCSTR lpFileName,
+    LPWIN32_FIND_DATA lpFindFileData);
+
+BOOL FindNextFile(
+    HANDLE hFindFile,
+    LPWIN32_FIND_DATA lpFindFileData);
+
+BOOL FindClose(
+    HANDLE hFindFile);
 
 #endif

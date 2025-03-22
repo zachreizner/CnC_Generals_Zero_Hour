@@ -22,9 +22,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include "Lib/BaseType.h"
-#include "Noxcompress.h"
-#include "CompLibHeader/lzhl.h"
+#include "NoxCompress.h"
+// #include "CompLibHeader/lzhl.h"
 
 #ifdef _INTERNAL
 // for occasional debugging...
@@ -40,6 +41,7 @@
 
 Bool DecompressFile		(char *infile, char *outfile)
 {
+#if 0
 	UnsignedInt	rawSize = 0, compressedSize = 0;
 	FILE *inFilePtr = NULL;
 	FILE *outFilePtr= NULL;
@@ -118,13 +120,14 @@ Bool DecompressFile		(char *infile, char *outfile)
 		return TRUE;
 
 	} // End of if fileptr
-
+#endif
 	return FALSE;
 }
 
 
 Bool CompressFile			(char *infile, char *outfile)
 {
+#if 0
 	UnsignedInt	rawSize = 0;
 	UnsignedInt compressedSize = 0, compressed = 0, i = 0;
 	FILE *inFilePtr = NULL;
@@ -187,7 +190,7 @@ Bool CompressFile			(char *infile, char *outfile)
 		DbgFree(outBlock);
 		return TRUE;
 	}
-
+#endif
 	return FALSE;
 }
 
@@ -214,11 +217,13 @@ Bool DecompressPacket	(char *inPacket, char *outPacket)
 
 UnsignedInt CalcNewSize		(UnsignedInt rawSize)
 {
-	return LZHLCompressorCalcMaxBuf(rawSize);
+	// return LZHLCompressorCalcMaxBuf(rawSize);
+	return 0;
 }
 
 Bool DecompressMemory		(void *inBufferVoid, Int inSize, void *outBufferVoid, Int& outSize)
 {
+#if 0
 	UnsignedByte *inBuffer = (UnsignedByte *)inBufferVoid;
 	UnsignedByte *outBuffer = (UnsignedByte *)outBufferVoid;
 	UnsignedInt	rawSize = 0, compressedSize = 0;
@@ -261,11 +266,13 @@ Bool DecompressMemory		(void *inBufferVoid, Int inSize, void *outBufferVoid, Int
 	outSize = rawSize;
 
 	return TRUE;
-
+#endif
+	return FALSE;
 }
 
 Bool CompressMemory			(void *inBufferVoid, Int inSize, void *outBufferVoid, Int& outSize)
 {
+#if 0
 	UnsignedByte *inBuffer = (UnsignedByte *)inBufferVoid;
 	UnsignedByte *outBuffer = (UnsignedByte *)outBufferVoid;
 	UnsignedInt	rawSize = 0;
@@ -294,4 +301,6 @@ Bool CompressMemory			(void *inBufferVoid, Int inSize, void *outBufferVoid, Int&
 	outSize = compressedSize;
 
 	return TRUE;
+#endif
+	return FALSE;
 }

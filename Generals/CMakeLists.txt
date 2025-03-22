@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.25)
 project(generals LANGUAGES C CXX)
 
+find_package(ZLIB)
+add_compile_definitions(Z_PREFIX)
+
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} \
     -fms-extensions \
@@ -126,6 +129,8 @@ set(GENERALS_SRC
     Code/GameEngine/Source/Common/System/QuotedPrintable.cpp
     Code/GameEngine/Source/Common/System/RAMFile.cpp
     Code/GameEngine/Source/Common/System/Radar.cpp
+    Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp
+    Code/GameEngine/Source/Common/System/SaveGame/GameStateMap.cpp
     Code/GameEngine/Source/Common/System/Snapshot.cpp
     Code/GameEngine/Source/Common/System/StackDump.cpp
     Code/GameEngine/Source/Common/System/StreamingArchiveFile.cpp
@@ -583,6 +588,17 @@ set(GENERALS_SRC
     Code/GameEngine/Source/GameNetwork/udp.cpp
     Code/GameEngine/Source/GameNetwork/User.cpp
     # Code/GameEngine/Source/GameNetwork/WOLBrowser/WebBrowser.cpp
+    Code/Libraries/Source/Compression/CompressionManager.cpp
+    Code/Libraries/Source/Compression/EAC/btreeabout.cpp
+    Code/Libraries/Source/Compression/EAC/btreedecode.cpp
+    Code/Libraries/Source/Compression/EAC/btreeencode.cpp
+    Code/Libraries/Source/Compression/EAC/huffabout.cpp
+    Code/Libraries/Source/Compression/EAC/huffencode.cpp
+    Code/Libraries/Source/Compression/EAC/refabout.cpp
+    Code/Libraries/Source/Compression/EAC/refdecode.cpp
+    Code/Libraries/Source/Compression/EAC/refencode.cpp
+    Code/Libraries/Source/Compression/EAC/huffdecode.cpp
+    Code/Libraries/Source/Compression/LZHCompress/NoxCompress.cpp
 )
 
 target_sources(generals_lib PRIVATE ${GENERALS_SRC})

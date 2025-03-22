@@ -230,22 +230,22 @@ UnicodeString getUnicodeTimeBuffer(SYSTEMTIME timeVal)
 {
 	// setup time buffer for local region time format
 	UnicodeString displayTimeBuffer;
-	OSVERSIONINFO	osvi;
-	osvi.dwOSVersionInfoSize=sizeof(OSVERSIONINFO);
-	if (GetVersionEx(&osvi))
-	{	//check if we're running Win9x variant since they may need different characters
-		if (osvi.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS)
-		{		
-			char timeBuffer[ DATE_BUFFER_SIZE ];
-			GetTimeFormat( LOCALE_SYSTEM_DEFAULT,
-										 TIME_NOSECONDS|TIME_FORCE24HOURFORMAT|TIME_NOTIMEMARKER,
-										 &timeVal,
-										 NULL,
-										 timeBuffer, sizeof(timeBuffer) );
-			displayTimeBuffer.translate(timeBuffer);
-			return displayTimeBuffer;
-		}
-	}
+	// OSVERSIONINFO	osvi;
+	// osvi.dwOSVersionInfoSize=sizeof(OSVERSIONINFO);
+	// if (GetVersionEx(&osvi))
+	// {	//check if we're running Win9x variant since they may need different characters
+	// 	if (osvi.dwPlatformId == VER_PLATFORM_WIN32_WINDOWS)
+	// 	{
+	// 		char timeBuffer[ DATE_BUFFER_SIZE ];
+	// 		GetTimeFormat( LOCALE_SYSTEM_DEFAULT,
+	// 									 TIME_NOSECONDS|TIME_FORCE24HOURFORMAT|TIME_NOTIMEMARKER,
+	// 									 &timeVal,
+	// 									 NULL,
+	// 									 timeBuffer, sizeof(timeBuffer) );
+	// 		displayTimeBuffer.translate(timeBuffer);
+	// 		return displayTimeBuffer;
+	// 	}
+	// }
 	// setup time buffer for local region time format
 	#define TIME_BUFFER_SIZE 256
 	wchar_t timeBuffer[ TIME_BUFFER_SIZE ];
@@ -773,7 +773,7 @@ Bool GameState::isInSaveDirectory(const AsciiString& path) const
 // ------------------------------------------------------------------------------------------------
 AsciiString GameState::getMapLeafName(const AsciiString& in) const
 {
-	char* p = strrchr(in.str(), '\\');
+	const char* p = strrchr(in.str(), '\\');
 	if (p)
 	{
 		//
