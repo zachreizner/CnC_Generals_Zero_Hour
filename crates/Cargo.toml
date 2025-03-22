@@ -1,0 +1,23 @@
+[workspace]
+resolver = "2"
+members = [
+    "generals",
+    "mock-windows",
+]
+default-members = [
+    "generals",
+]
+
+[workspace.package]
+rust-version = "1.85.0"
+edition = "2024"
+
+[workspace.dependencies]
+mock-windows = { path = "mock-windows" }
+
+[profile.dev]
+opt-level = 1
+debug = false
+
+[profile.dev.package."*"]
+opt-level = 3

@@ -2,13 +2,13 @@ use std::path::PathBuf;
 
 fn main() -> miette::Result<()> {
     let incs: Vec<_> = [
-        "include",
-        "Code/GameEngine/Include",
-        "Code/GameEngine/Include/Precompiled",
-        "Code/Libraries/Include",
-        "Code/Libraries/Source/WWVegas",
-        "Code/Libraries/Source/WWVegas/WWLib",
-        "Code/Libraries/Source/Compression/",
+        "../../Generals/include",
+        "../../Generals/Code/GameEngine/Include",
+        "../../Generals/Code/GameEngine/Include/Precompiled",
+        "../../Generals/Code/Libraries/Include",
+        "../../Generals/Code/Libraries/Source/WWVegas",
+        "../../Generals/Code/Libraries/Source/WWVegas/WWLib",
+        "../../Generals/Code/Libraries/Source/Compression/",
     ]
     .iter()
     .map(PathBuf::from)
@@ -44,7 +44,7 @@ fn main() -> miette::Result<()> {
         .flag_if_supported("-Wno-narrowing") // This one affects Trig.cpp
         .compile("autocxx-demo"); // arbitrary library name, pick anything
 
-    let dst = cmake::Config::new(".")
+    let dst = cmake::Config::new("../../Generals")
         .no_default_flags(true)
         .profile("Debug")
         .generator("Ninja")
