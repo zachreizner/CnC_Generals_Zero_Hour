@@ -19,6 +19,28 @@ pub const FILE_ATTRIBUTE_DIRECTORY: u32 = 16;
 pub const CP_UTF8: u32 = 65001;
 pub const WAIT_OBJECT_0: u32 = 0;
 pub const INFINITE: u32 = 4294967295;
+pub const TRUE: u32 = 1;
+pub const FALSE: u32 = 0;
+pub const THREAD_PRIORITY_NORMAL: u32 = 4;
+pub const MB_ABORTRETRYIGNORE: u32 = 2;
+pub const MB_ICONWARNING: u32 = 48;
+pub const MB_TASKMODAL: u32 = 8192;
+pub const MB_OK: u32 = 0;
+pub const MB_SYSTEMMODAL: u32 = 4096;
+pub const MB_ICONERROR: u32 = 16;
+pub const IDABORT: u32 = 3;
+pub const IDRETRY: u32 = 4;
+pub const IDIGNORE: u32 = 5;
+pub const IDYES: u32 = 6;
+pub const SW_HIDE: u32 = 0;
+pub const SWP_NOSIZE: u32 = 1;
+pub const SWP_NOMOVE: u32 = 2;
+pub const KEY_READ: u32 = 131097;
+pub const KEY_WRITE: u32 = 131078;
+pub const REG_SZ: u32 = 1;
+pub const REG_DWORD: u32 = 4;
+pub const REG_OPTION_NON_VOLATILE: u32 = 0;
+pub const ERROR_SUCCESS: u32 = 0;
 pub type wchar_t = ::std::os::raw::c_int;
 pub type HRESULT = u32;
 pub type HANDLE = *mut ::std::os::raw::c_void;
@@ -39,6 +61,9 @@ pub type LPCWCH = *const wchar_t;
 pub type LPCSTR = *const ::std::os::raw::c_char;
 pub type LPCWSTR = *const wchar_t;
 pub type LPWSTR = *mut wchar_t;
+pub type BYTE = ::std::os::raw::c_uchar;
+pub type PBYTE = *mut ::std::os::raw::c_uchar;
+pub type LPBYTE = *mut ::std::os::raw::c_uchar;
 pub type CHAR = ::std::os::raw::c_char;
 pub type USHORT = u16;
 pub type WORD = u16;
@@ -134,20 +159,6 @@ pub type SYSTEMTIME = _SYSTEMTIME;
 pub type LPSYSTEMTIME = *mut _SYSTEMTIME;
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn GetLocalTime(lpSystemTime: LPSYSTEMTIME) {
-    todo!()
-}
-#[unsafe(no_mangle)]
-pub unsafe extern "C" fn RegCreateKeyExA(
-    hKey: HKEY,
-    lpSubKey: LPCSTR,
-    Reserved: DWORD,
-    lpClass: LPSTR,
-    dwOptions: DWORD,
-    samDesired: REGSAM,
-    lpSecurityAttributes: *const ::std::os::raw::c_void,
-    phkResult: PHKEY,
-    lpdwDisposition: LPDWORD,
-) -> LSTATUS {
     todo!()
 }
 #[unsafe(no_mangle)]
@@ -601,5 +612,60 @@ pub unsafe extern "C" fn MessageBox(
 
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn DebugBreak() {
+    todo!()
+}
+
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn RegOpenKeyEx(
+    hKey: HKEY,
+    lpSubKey: LPCSTR,
+    ulOptions: DWORD,
+    samDesired: REGSAM,
+    phkResult: PHKEY,
+) -> LSTATUS {
+    todo!()
+}
+
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn RegCreateKeyEx(
+    hKey: HKEY,
+    lpSubKey: LPCSTR,
+    Reserved: DWORD,
+    lpClass: LPSTR,
+    dwOptions: DWORD,
+    samDesired: REGSAM,
+    lpSecurityAttributes: *const ::std::os::raw::c_void,
+    phkResult: PHKEY,
+    lpdwDisposition: LPDWORD,
+) -> LSTATUS {
+    todo!()
+}
+
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn RegCloseKey(hKey: HKEY) -> LSTATUS {
+    todo!()
+}
+
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn RegQueryValueEx(
+    hKey: HKEY,
+    lpValueName: LPCSTR,
+    lpReserved: LPDWORD,
+    lpType: LPDWORD,
+    lpData: LPBYTE,
+    lpcbData: LPDWORD,
+) -> LSTATUS {
+    todo!()
+}
+
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn RegSetValueEx(
+    hKey: HKEY,
+    lpValueName: LPCSTR,
+    Reserved: DWORD,
+    dwType: DWORD,
+    lpData: *const BYTE,
+    cbData: DWORD,
+) -> LSTATUS {
     todo!()
 }

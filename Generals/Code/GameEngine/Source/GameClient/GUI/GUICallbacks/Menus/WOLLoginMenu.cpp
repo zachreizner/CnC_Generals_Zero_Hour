@@ -721,10 +721,10 @@ void WOLLoginMenuShutdown( WindowLayout *layout, void *userData )
 	TheWindowManager->clearTabList();
 	if (webBrowserActive)
 	{
-		if (TheWebBrowser != NULL)
-		{
-			TheWebBrowser->closeBrowserWindow(listboxTOS);
-		}
+		// if (TheWebBrowser != NULL)
+		// {
+		// 	TheWebBrowser->closeBrowserWindow(listboxTOS);
+		// }
 		webBrowserActive = FALSE;
 	}
 
@@ -1419,10 +1419,10 @@ WindowMsgHandledType WOLLoginMenuSystem( GameWindow *window, UnsignedInt msg,
 				{
 					parentTOS->winHide(FALSE);
 					useWebBrowserForTOS = FALSE;//loginPref->getBool("UseTOSBrowser", TRUE);
-					if (useWebBrowserForTOS && (TheWebBrowser != NULL))
+					if (useWebBrowserForTOS /* && (TheWebBrowser != NULL) */)
 					{
-						TheWebBrowser->createBrowserWindow("TermsOfService", listboxTOS);
-						webBrowserActive = TRUE;
+						// TheWebBrowser->createBrowserWindow("TermsOfService", listboxTOS);
+						// webBrowserActive = TRUE;
 					}
 					else
 					{
@@ -1483,11 +1483,11 @@ WindowMsgHandledType WOLLoginMenuSystem( GameWindow *window, UnsignedInt msg,
 					EnableLoginControls( TRUE );
 
 					parentTOS->winHide(TRUE);
-					if (useWebBrowserForTOS && (TheWebBrowser != NULL))
+					if (useWebBrowserForTOS && false /* (TheWebBrowser != NULL) */)
 					{
 						if (listboxTOS != NULL)
 						{
-							TheWebBrowser->closeBrowserWindow(listboxTOS);
+							// TheWebBrowser->closeBrowserWindow(listboxTOS);
 						}
 					}
 

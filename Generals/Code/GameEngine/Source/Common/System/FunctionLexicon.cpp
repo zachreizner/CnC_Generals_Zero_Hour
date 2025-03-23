@@ -93,7 +93,7 @@ static FunctionLexicon::TableEntry gameWinSystemTable[] =
 
 	{ NAMEKEY_INVALID, "ExtendedMessageBoxSystem",					(void*)ExtendedMessageBoxSystem },
 
-	{ NAMEKEY_INVALID, "MOTDSystem",										(void*)MOTDSystem },
+	// { NAMEKEY_INVALID, "MOTDSystem",										(void*)MOTDSystem },
 	{ NAMEKEY_INVALID, "MainMenuSystem",								(void*)MainMenuSystem },
 	{ NAMEKEY_INVALID, "OptionsMenuSystem",							(void*)OptionsMenuSystem },
 	{ NAMEKEY_INVALID, "SinglePlayerMenuSystem",				(void*)SinglePlayerMenuSystem },

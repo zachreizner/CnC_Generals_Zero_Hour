@@ -284,7 +284,7 @@ void GameLODManager::init(void)
 	m_idealDetailLevel=(StaticGameLODLevel)optionPref.getIdealStaticGameDetail();
 
 	//always get this data in case we need it later.
-	testMinimumRequirements(NULL,&m_cpuType,&m_cpuFreq,&m_numRAM,NULL,NULL,NULL);
+	// testMinimumRequirements(NULL,&m_cpuType,&m_cpuFreq,&m_numRAM,NULL,NULL,NULL);
 
 	if ((Real)(m_numRAM)/(Real)(256*1024*1024) >= PROFILE_ERROR_LIMIT)
 		m_memPassed=TRUE;	//check if they have at least 256 MB
@@ -294,7 +294,7 @@ void GameLODManager::init(void)
 		if (m_cpuType == XX || TheGlobalData->m_forceBenchmark)
 		{
 			//need to run the benchmark
-			testMinimumRequirements(NULL,NULL,NULL,NULL,&m_intBenchIndex,&m_floatBenchIndex,&m_memBenchIndex);
+			// testMinimumRequirements(NULL,NULL,NULL,NULL,&m_intBenchIndex,&m_floatBenchIndex,&m_memBenchIndex);
 			
 			if (TheGlobalData->m_forceBenchmark)
 			{	//we want to see the numbers.  So dump them to a logfile.
@@ -447,7 +447,7 @@ StaticGameLODLevel GameLODManager::findStaticLODLevel(void)
 		m_idealDetailLevel = STATIC_GAME_LOD_LOW;
 
 		//get system configuration - only need vide chip type, got rest in ::init().
-		testMinimumRequirements(&m_videoChipType,NULL,NULL,NULL,NULL,NULL,NULL);
+		// testMinimumRequirements(&m_videoChipType,NULL,NULL,NULL,NULL,NULL,NULL);
 		if (m_videoChipType == DC_UNKNOWN)
 			m_videoChipType = DC_TNT2;	//presume it's at least TNT2 level
 

@@ -30,6 +30,7 @@ typedef const wchar_t *LPCWCH;
 typedef const char *LPCSTR;
 typedef const wchar_t *LPCWSTR;
 typedef wchar_t *LPWSTR;
+typedef unsigned char BYTE, *PBYTE, *LPBYTE;
 typedef char CHAR;
 typedef uint16_t USHORT;
 typedef uint16_t WORD;
@@ -93,17 +94,6 @@ void GetLocalTime(
 
 #define HKEY_LOCAL_MACHINE ((void *)0) // chosen arbitrarily
 #define HKEY_CURRENT_USER ((void *)1)  // chosen arbitrarily
-
-LSTATUS RegCreateKeyExA(
-    HKEY hKey,
-    LPCSTR lpSubKey,
-    DWORD Reserved,
-    LPSTR lpClass,
-    DWORD dwOptions,
-    REGSAM samDesired,
-    const void *lpSecurityAttributes, // always NULL
-    PHKEY phkResult,
-    LPDWORD lpdwDisposition);
 
 #define GMEM_FIXED 0x0000
 #define GMEM_ZEROINIT 0x0040
@@ -500,6 +490,53 @@ int MessageBox(
 
 void DebugBreak();
 
+#define KEY_READ 0x20019
+#define KEY_WRITE 0x20006
+#define REG_SZ 1
+#define REG_DWORD 4
+#define REG_OPTION_NON_VOLATILE 0
+#define ERROR_SUCCESS 0
+
+LSTATUS RegOpenKeyEx(
+    HKEY   hKey,
+    LPCSTR lpSubKey,
+    DWORD  ulOptions,
+    REGSAM samDesired,
+    PHKEY  phkResult
+);
+
+LSTATUS RegCreateKeyEx(
+    HKEY hKey,
+    LPCSTR lpSubKey,
+    DWORD Reserved,
+    LPSTR lpClass,
+    DWORD dwOptions,
+    REGSAM samDesired,
+    const void *lpSecurityAttributes, // always NULL
+    PHKEY phkResult,
+    LPDWORD lpdwDisposition);
+
+LSTATUS RegCloseKey(
+    HKEY hKey
+);
+
+LSTATUS RegQueryValueEx(
+    HKEY    hKey,
+    LPCSTR  lpValueName,
+    LPDWORD lpReserved,
+    LPDWORD lpType,
+    LPBYTE  lpData,
+    LPDWORD lpcbData
+);
+
+LSTATUS RegSetValueEx(
+    HKEY       hKey,
+    LPCSTR     lpValueName,
+    DWORD      Reserved,
+    DWORD      dwType,
+    const BYTE *lpData,
+    DWORD      cbData
+);
 
 #ifdef __cplusplus
 }

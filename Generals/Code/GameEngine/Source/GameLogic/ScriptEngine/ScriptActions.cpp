@@ -803,7 +803,7 @@ void ScriptActions::doPitchCamera(Real pitch, Real sec)
 //-------------------------------------------------------------------------------------------------
 void ScriptActions::doOversizeTheTerrain(Int amount)
 {
-	oversizeTheTerrain(amount);
+	// oversizeTheTerrain(amount);
 	Coord2D offset;
 	offset.x = 0.0001f;
 	offset.y = 0.0001f;

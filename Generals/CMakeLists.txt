@@ -52,7 +52,7 @@ set(GENERALS_SRC
     Code/GameEngine/Source/Common/Audio/AudioRequest.cpp
     Code/GameEngine/Source/Common/Audio/GameAudio.cpp
     Code/GameEngine/Source/Common/Audio/GameMusic.cpp
-    # Code/GameEngine/Source/Common/Audio/GameSounds.cpp
+    Code/GameEngine/Source/Common/Audio/GameSounds.cpp
     Code/GameEngine/Source/Common/Bezier/BezFwdIterator.cpp
     Code/GameEngine/Source/Common/Bezier/BezierSegment.cpp
     Code/GameEngine/Source/Common/INI/INI.cpp
@@ -132,6 +132,7 @@ set(GENERALS_SRC
     Code/GameEngine/Source/Common/System/QuotedPrintable.cpp
     Code/GameEngine/Source/Common/System/RAMFile.cpp
     Code/GameEngine/Source/Common/System/Radar.cpp
+    Code/GameEngine/Source/Common/System/registry.cpp
     Code/GameEngine/Source/Common/System/SaveGame/GameState.cpp
     Code/GameEngine/Source/Common/System/SaveGame/GameStateMap.cpp
     Code/GameEngine/Source/Common/System/Snapshot.cpp
@@ -602,9 +603,12 @@ set(GENERALS_SRC
     Code/Libraries/Source/Compression/EAC/refencode.cpp
     Code/Libraries/Source/Compression/EAC/huffdecode.cpp
     Code/Libraries/Source/Compression/LZHCompress/NoxCompress.cpp
+    Code/Libraries/Source/WWVegas/WWDownload/registry.cpp
     Code/Libraries/Source/WWVegas/WWLib/mutex.cpp
     Code/Libraries/Source/WWVegas/WWLib/thread.cpp
     Code/Libraries/Source/WWVegas/WWMath/matrix3d.cpp
+    Code/Libraries/Source/WWVegas/WWMath/quat.cpp
+    Code/Libraries/Source/WWVegas/WWMath/wwmath.cpp
 )
 
 target_sources(generals_lib PRIVATE ${GENERALS_SRC})

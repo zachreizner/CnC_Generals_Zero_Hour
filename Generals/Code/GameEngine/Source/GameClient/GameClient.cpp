@@ -345,7 +345,7 @@ void GameClient::init( void )
 	}  // end if
 
 	// create the IME manager
-	TheIMEManager = CreateIMEManagerInterface();
+	// TheIMEManager = CreateIMEManagerInterface();
 	if ( TheIMEManager )
 	{
 		TheIMEManager->init();

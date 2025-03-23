@@ -253,10 +253,10 @@ void AudioManager::init()
 			{
 				// Display the warning.
 				
-				if (OSDisplayWarningBox("GUI:InsertCDPrompt", "GUI:InsertCDMessage", OSDBT_OK | OSDBT_CANCEL, OSDOF_SYSTEMMODAL | OSDOF_EXCLAMATIONICON) == OSDBT_CANCEL) {
+				// if (OSDisplayWarningBox("GUI:InsertCDPrompt", "GUI:InsertCDMessage", OSDBT_OK | OSDBT_CANCEL, OSDOF_SYSTEMMODAL | OSDOF_EXCLAMATIONICON) == OSDBT_CANCEL) {
 					//TheGameEngine->setQuitting(TRUE);  // Can't do this to WorldBuilder
 					break;
-				}
+				// }
 			}
 //#endif
 		}

@@ -93,14 +93,14 @@ void MapObject::setRenderObj(RenderObjClass *pObj)
 	REF_PTR_SET(m_renderObj, pObj);
 }
 
+#endif
 void MapObject::setBridgeRenderObject( BridgeTowerType type, RenderObjClass* renderObj )
 {
 
-	if( type >= 0 && type < BRIDGE_MAX_TOWERS )
-		REF_PTR_SET( m_bridgeTowers[ type ], renderObj );
+	// if( type >= 0 && type < BRIDGE_MAX_TOWERS )
+	// 	REF_PTR_SET( m_bridgeTowers[ type ], renderObj );
 
 }
-#endif
 
 RenderObjClass* MapObject::getBridgeRenderObject( BridgeTowerType type )
 {

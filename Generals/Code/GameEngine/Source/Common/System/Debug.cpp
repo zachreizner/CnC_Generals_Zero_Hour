@@ -141,7 +141,8 @@ inline Bool ignoringAsserts()
 #if defined(_DEBUG) || defined(_INTERNAL)
 	return !DX8Wrapper_IsWindowed || TheGlobalData->m_debugIgnoreAsserts;
 #else
-	return !DX8Wrapper_IsWindowed;
+	// return !DX8Wrapper_IsWindowed;
+	return false;
 #endif
 }
 
@@ -671,23 +672,23 @@ void ReleaseCrash(const char *reason)
 	if (theReleaseCrashLogFile)
 	{
 		fprintf(theReleaseCrashLogFile, "Release Crash at %s; Reason %s\n", getCurrentTimeString(), reason);
-		fprintf(theReleaseCrashLogFile, "\nLast error:\n%s\n\nCurrent stack:\n", g_LastErrorDump.str());
+		// fprintf(theReleaseCrashLogFile, "\nLast error:\n%s\n\nCurrent stack:\n", g_LastErrorDump.str());
 		const int STACKTRACE_SIZE	= 12;
 		const int STACKTRACE_SKIP = 6;
 		void* stacktrace[STACKTRACE_SIZE];
-		::FillStackAddresses(stacktrace, STACKTRACE_SIZE, STACKTRACE_SKIP);
-		::StackDumpFromAddresses(stacktrace, STACKTRACE_SIZE, releaseCrashLogOutput);
+		// ::FillStackAddresses(stacktrace, STACKTRACE_SIZE, STACKTRACE_SKIP);
+		// ::StackDumpFromAddresses(stacktrace, STACKTRACE_SIZE, releaseCrashLogOutput);
 
 		fflush(theReleaseCrashLogFile);
 		fclose(theReleaseCrashLogFile);
 		theReleaseCrashLogFile = NULL;
 	}
 
-	if (!DX8Wrapper_IsWindowed) {
-		if (ApplicationHWnd) {
-			ShowWindow(ApplicationHWnd, SW_HIDE);
-		}
-	}
+	// if (!DX8Wrapper_IsWindowed) {
+	// 	if (ApplicationHWnd) {
+	// 		ShowWindow(ApplicationHWnd, SW_HIDE);
+	// 	}
+	// }
 
 #if defined(_DEBUG) || defined(_INTERNAL)
 	/* static */ char buff[8192]; // not so static so we can be threadsafe
@@ -726,11 +727,11 @@ void ReleaseCrashLocalized(const AsciiString& p, const AsciiString& m)
 
 	/// do additional reporting on the crash, if possible
 
-	if (!DX8Wrapper_IsWindowed) {
-		if (ApplicationHWnd) {
-			ShowWindow(ApplicationHWnd, SW_HIDE);
-		}
-	}
+	// if (!DX8Wrapper_IsWindowed) {
+	// 	if (ApplicationHWnd) {
+	// 		ShowWindow(ApplicationHWnd, SW_HIDE);
+	// 	}
+	// }
 
 	if (/* TheSystemIsUnicode */ false)
 	{
@@ -767,8 +768,8 @@ void ReleaseCrashLocalized(const AsciiString& p, const AsciiString& m)
 		const int STACKTRACE_SIZE	= 12;
 		const int STACKTRACE_SKIP = 6;
 		void* stacktrace[STACKTRACE_SIZE];
-		::FillStackAddresses(stacktrace, STACKTRACE_SIZE, STACKTRACE_SKIP);
-		::StackDumpFromAddresses(stacktrace, STACKTRACE_SIZE, releaseCrashLogOutput);
+		// ::FillStackAddresses(stacktrace, STACKTRACE_SIZE, STACKTRACE_SKIP);
+		// ::StackDumpFromAddresses(stacktrace, STACKTRACE_SIZE, releaseCrashLogOutput);
 
 		fflush(theReleaseCrashLogFile);
 		fclose(theReleaseCrashLogFile);

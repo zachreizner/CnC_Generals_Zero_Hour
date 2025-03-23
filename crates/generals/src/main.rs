@@ -3,6 +3,7 @@ use std::ptr::null_mut;
 use autocxx::prelude::*;
 use autocxx::subclass::*;
 use ffi::*;
+use mock_windows::HWND;
 
 extern crate mock_windows;
 
@@ -117,6 +118,18 @@ pub fn CreateGameEngine() -> cxx::UniquePtr<GameEngine> {
     GeneralsGameEngine::as_GameEngine_unique_ptr(GeneralsGameEngine::default_cpp_owned())
 }
 
+#[repr(transparent)]
+struct GlobalCstr(*const std::ffi::c_char);
+unsafe impl Sync for GlobalCstr {}
+
+#[no_mangle]
+static g_strFile: GlobalCstr = GlobalCstr(c"data/Generals.str".as_ptr());
+
+#[no_mangle]
+static g_csfFile: GlobalCstr = GlobalCstr(c"data/%s/Generals.csf".as_ptr());
+
+#[no_mangle]
+static mut ApplicationHWnd: HWND = null_mut();
 
 fn main() {
     println!("Hello, world!");

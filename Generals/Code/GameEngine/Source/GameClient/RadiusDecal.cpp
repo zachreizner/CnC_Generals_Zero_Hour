@@ -82,7 +82,7 @@ void RadiusDecalTemplate::createRadiusDecal(const Coord3D& pos, Real radius, con
 		decalInfo.m_sizeX = radius*2;									// world space dimensions
 		decalInfo.m_sizeY = radius*2;									// world space dimensions
 
-		result.m_decal = TheProjectedShadowManager->addDecal(&decalInfo);
+		// result.m_decal = TheProjectedShadowManager->addDecal(&decalInfo);
 		if (result.m_decal)
 		{
 			result.m_decal->setAngle(0.0f);
