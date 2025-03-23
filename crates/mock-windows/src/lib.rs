@@ -496,3 +496,35 @@ pub unsafe extern "C" fn ReleaseMutex(hMutex: HANDLE) -> BOOL {
 pub unsafe extern "C" fn CloseHandle(hObject: HANDLE) -> BOOL {
     todo!()
 }
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn GetCurrentThreadId() -> DWORD {
+    todo!()
+}
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn TerminateThread(hThread: HANDLE, dwExitCode: DWORD) -> BOOL {
+    todo!()
+}
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn _beginthread(
+    start_address: ::std::option::Option<unsafe extern "C" fn(arg1: *mut ::std::os::raw::c_void)>,
+    stack_size: ::std::os::raw::c_uint,
+    arglist: *mut ::std::os::raw::c_void,
+) -> usize {
+    todo!()
+}
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn SetThreadPriority(
+    hThread: HANDLE,
+    nPriority: ::std::os::raw::c_int,
+) -> BOOL {
+    todo!()
+}
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn CreateEvent(
+    lpEventAttributes: *mut ::std::os::raw::c_void,
+    bManualReset: BOOL,
+    bInitialState: BOOL,
+    lpName: LPCSTR,
+) -> HANDLE {
+    todo!()
+}

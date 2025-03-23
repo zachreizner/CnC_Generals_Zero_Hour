@@ -601,6 +601,7 @@ set(GENERALS_SRC
     Code/Libraries/Source/Compression/EAC/huffdecode.cpp
     Code/Libraries/Source/Compression/LZHCompress/NoxCompress.cpp
     Code/Libraries/Source/WWVegas/WWLib/mutex.cpp
+    Code/Libraries/Source/WWVegas/WWLib/thread.cpp
 )
 
 target_sources(generals_lib PRIVATE ${GENERALS_SRC})

@@ -350,6 +350,42 @@ BOOL ReleaseMutex(
 BOOL CloseHandle(
     HANDLE hObject);
 
+#ifndef TRUE
+#define TRUE 1
+#endif
+
+#ifndef FALSE
+#define FALSE 0
+#endif
+#define THREAD_PRIORITY_NORMAL 4
+
+
+DWORD GetCurrentThreadId();
+
+BOOL TerminateThread(
+    HANDLE hThread, 
+    DWORD  dwExitCode
+);
+
+uintptr_t _beginthread(
+    void( *start_address )( void * ),
+    unsigned stack_size,
+    void *arglist
+);
+
+BOOL SetThreadPriority(
+    HANDLE hThread,
+    int    nPriority
+  );
+  
+
+HANDLE CreateEvent(
+    void* lpEventAttributes, // Always NULL
+    BOOL                  bManualReset,
+    BOOL                  bInitialState,
+    LPCSTR                lpName
+  );
+
 #ifdef __cplusplus
 }
 #endif

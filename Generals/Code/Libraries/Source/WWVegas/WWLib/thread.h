@@ -78,7 +78,7 @@ protected:
 	volatile bool running;
 
 private:
-	static void __cdecl Internal_Thread_Function(void*);
+	static void Internal_Thread_Function(void*);
 	volatile unsigned long handle;
 	int thread_priority;
 };

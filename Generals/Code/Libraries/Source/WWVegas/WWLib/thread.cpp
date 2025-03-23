@@ -20,11 +20,12 @@
 
 #include "thread.h"
 #include "wwdebug.h"
-#include <process.h>
-#include <windows.h>
+// #include <process.h>
+// #include <windows.h>
+#include "MockWindows.h"
 #pragma warning ( push )
 #pragma warning ( disable : 4201 ) 
-#include <mmsystem.h>
+// #include <mmsystem.h>
 #pragma warning ( pop )
 
 ThreadClass::ThreadClass() : handle(0), running(false), thread_priority(0)
