@@ -3559,11 +3559,11 @@ void ScriptActions::doSkyBox(Bool startDraw)
 {
 	if (startDraw)
 	{
-		doSkyBoxSet(1);
+		// doSkyBoxSet(1);
 	}
 	else
 	{
-		doSkyBoxSet(0);
+		// doSkyBoxSet(0);
 	}
 }
 

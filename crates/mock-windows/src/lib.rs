@@ -561,3 +561,36 @@ pub unsafe extern "C" fn CreateEvent(
 ) -> HANDLE {
     todo!()
 }
+
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn ShowWindow(hWnd: HWND, nCmdShow: ::std::os::raw::c_int) -> BOOL {
+    todo!()
+}
+
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn SetWindowPos(
+    hWnd: HWND,
+    hWndInsertAfter: HWND,
+    X: ::std::os::raw::c_int,
+    Y: ::std::os::raw::c_int,
+    cx: ::std::os::raw::c_int,
+    cy: ::std::os::raw::c_int,
+    uFlags: UINT,
+) -> BOOL {
+    todo!()
+}
+
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn MessageBox(
+    hWnd: HWND,
+    lpText: LPCTSTR,
+    lpCaption: LPCTSTR,
+    uType: UINT,
+) -> ::std::os::raw::c_int {
+    todo!()
+}
+
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn DebugBreak() {
+    todo!()
+}

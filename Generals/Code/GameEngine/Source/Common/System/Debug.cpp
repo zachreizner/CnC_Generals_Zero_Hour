@@ -262,7 +262,7 @@ static int doCrashBox(const char *buffer, Bool logResult)
 			if (logResult)
 				DebugLog("[Abort]\n");
 #endif
-			_exit(1);
+			exit(1);
 			break;
 		case IDRETRY:
 #ifdef DEBUG_LOGGING
@@ -709,7 +709,7 @@ void ReleaseCrash(const char *reason)
 
 #endif
 
-	_exit(1);
+	exit(1);
 }  
 
 void ReleaseCrashLocalized(const AsciiString& p, const AsciiString& m)
@@ -732,9 +732,9 @@ void ReleaseCrashLocalized(const AsciiString& p, const AsciiString& m)
 		}
 	}
 
-	if (TheSystemIsUnicode) 
+	if (/* TheSystemIsUnicode */ false)
 	{
-		::MessageBoxW(NULL, mesg.str(), prompt.str(), MB_OK|MB_SYSTEMMODAL|MB_ICONERROR);
+		// ::MessageBoxW(NULL, mesg.str(), prompt.str(), MB_OK|MB_SYSTEMMODAL|MB_ICONERROR);
 	} 
 	else 
 	{
@@ -745,7 +745,7 @@ void ReleaseCrashLocalized(const AsciiString& p, const AsciiString& m)
 		mesgA.translate(mesg);
 		//Make sure main window is not TOP_MOST
 		::SetWindowPos(ApplicationHWnd, HWND_NOTOPMOST, 0, 0, 0, 0,SWP_NOSIZE |SWP_NOMOVE);
-		::MessageBoxA(NULL, mesgA.str(), promptA.str(), MB_OK|MB_TASKMODAL|MB_ICONERROR);
+		::MessageBox(NULL, mesgA.str(), promptA.str(), MB_OK|MB_TASKMODAL|MB_ICONERROR);
 	}
 
 	char prevbuf[ _MAX_PATH ];
@@ -775,5 +775,5 @@ void ReleaseCrashLocalized(const AsciiString& p, const AsciiString& m)
 		theReleaseCrashLogFile = NULL;
 	}
 
-	_exit(1);
+	exit(1);
 }

@@ -451,6 +451,50 @@ HANDLE CreateEvent(
     LPCSTR                lpName
   );
 
+#define MB_ABORTRETRYIGNORE 0x2
+#define MB_ICONWARNING 0x30
+#define MB_TASKMODAL 0x2000
+#define MB_OK 0x0
+#define MB_SYSTEMMODAL 0x1000
+#define MB_ICONERROR 0x10
+
+#define IDABORT 3
+#define IDRETRY 4
+#define IDIGNORE 5
+#define IDYES 6
+#define IDIGNORE 5
+
+#define SW_HIDE 0
+
+#define HWND_NOTOPMOST ((HWND)-2)
+#define SWP_NOSIZE 1
+#define SWP_NOMOVE 2
+
+BOOL ShowWindow(
+    HWND hWnd,
+    int  nCmdShow
+);
+
+BOOL SetWindowPos(
+    HWND hWnd,
+    HWND hWndInsertAfter,
+    int  X,
+    int  Y,
+    int  cx,
+    int  cy,
+    UINT uFlags
+);
+
+int MessageBox(
+    HWND    hWnd,
+    LPCTSTR lpText,
+    LPCTSTR lpCaption,
+    UINT    uType
+);
+
+void DebugBreak();
+
+
 #ifdef __cplusplus
 }
 #endif

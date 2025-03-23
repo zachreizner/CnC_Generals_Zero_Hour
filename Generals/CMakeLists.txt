@@ -114,6 +114,7 @@ set(GENERALS_SRC
     Code/GameEngine/Source/Common/System/CopyProtection.cpp
     Code/GameEngine/Source/Common/System/CriticalSection.cpp
     Code/GameEngine/Source/Common/System/DataChunk.cpp
+    Code/GameEngine/Source/Common/System/Debug.cpp
     Code/GameEngine/Source/Common/System/Directory.cpp
     Code/GameEngine/Source/Common/System/DisabledTypes.cpp
     Code/GameEngine/Source/Common/System/File.cpp

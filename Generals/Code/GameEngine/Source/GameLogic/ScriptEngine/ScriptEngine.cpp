@@ -9573,7 +9573,7 @@ static void _updateCurrentParticleCount( void )
 static void _reloadTextures( void )
 {
 	// Need no interaction with the particle editor now.
-	ReloadAllTextures();
+	// ReloadAllTextures();
 }
 
 #ifdef DO_VTUNE_STUFF
