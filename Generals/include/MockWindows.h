@@ -115,6 +115,29 @@ void *GlobalAlloc(
 void *GlobalFree(
     void *hMem);
 
+typedef struct D3DXVECTOR4
+{
+    FLOAT x;
+    FLOAT y;
+    FLOAT z;
+    FLOAT w;
+#ifdef __cplusplus
+    D3DXVECTOR4() = default;
+    D3DXVECTOR4(FLOAT _x, FLOAT _y, FLOAT _z, FLOAT _w)
+    : x(_x),
+      y(_y),
+      z(_z),
+      w(_w)
+    {
+    }
+#endif
+} D3DXVECTOR4;
+
+FLOAT D3DXVec4Dot(
+    const D3DXVECTOR4 *pV1,
+    const D3DXVECTOR4 *pV2
+);
+
 typedef struct D3DXMATRIX
 {
     FLOAT _11;
@@ -133,7 +156,49 @@ typedef struct D3DXMATRIX
     FLOAT _42;
     FLOAT _43;
     FLOAT _44;
+#ifdef __cplusplus
+    D3DXMATRIX(
+        FLOAT __11,
+        FLOAT __12,
+        FLOAT __13,
+        FLOAT __14,
+        FLOAT __21,
+        FLOAT __22,
+        FLOAT __23,
+        FLOAT __24,
+        FLOAT __31,
+        FLOAT __32,
+        FLOAT __33,
+        FLOAT __34,
+        FLOAT __41,
+        FLOAT __42,
+        FLOAT __43,
+        FLOAT __44) : _11(__11),
+                      _12(__12),
+                      _13(__13),
+                      _14(__14),
+                      _21(__21),
+                      _22(__22),
+                      _23(__23),
+                      _24(__24),
+                      _31(__31),
+                      _32(__32),
+                      _33(__33),
+                      _34(__34),
+                      _41(__41),
+                      _42(__42),
+                      _43(__43),
+                      _44(__44)
+    {
+    }
+#endif
 } D3DXMATRIX;
+
+D3DXVECTOR4* D3DXVec4Transform(
+    D3DXVECTOR4 *pOut,
+    const D3DXVECTOR4 *pV,
+    const D3DXMATRIX  *pM
+);
 
 char *itoa(int value, char *str, int base);
 

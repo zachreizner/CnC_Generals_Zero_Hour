@@ -54,6 +54,8 @@ set(GENERALS_SRC
     Code/GameEngine/Source/Common/Audio/GameAudio.cpp
     Code/GameEngine/Source/Common/Audio/GameMusic.cpp
     # Code/GameEngine/Source/Common/Audio/GameSounds.cpp
+    Code/GameEngine/Source/Common/Bezier/BezFwdIterator.cpp
+    Code/GameEngine/Source/Common/Bezier/BezierSegment.cpp
     Code/GameEngine/Source/Common/INI/INI.cpp
     Code/GameEngine/Source/Common/INI/INIAiData.cpp
     Code/GameEngine/Source/Common/INI/INIAnimation.cpp

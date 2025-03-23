@@ -162,6 +162,29 @@ pub unsafe extern "C" fn GlobalFree(
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+pub struct D3DXVECTOR4 {
+    pub x: FLOAT,
+    pub y: FLOAT,
+    pub z: FLOAT,
+    pub w: FLOAT,
+}
+#[allow(clippy::unnecessary_operation, clippy::identity_op)]
+const _: () = {
+    ["Size of D3DXVECTOR4"][::std::mem::size_of::<D3DXVECTOR4>() - 16usize];
+    ["Alignment of D3DXVECTOR4"][::std::mem::align_of::<D3DXVECTOR4>() - 4usize];
+    ["Offset of field: D3DXVECTOR4::x"][::std::mem::offset_of!(D3DXVECTOR4, x) - 0usize];
+    ["Offset of field: D3DXVECTOR4::y"][::std::mem::offset_of!(D3DXVECTOR4, y) - 4usize];
+    ["Offset of field: D3DXVECTOR4::z"][::std::mem::offset_of!(D3DXVECTOR4, z) - 8usize];
+    ["Offset of field: D3DXVECTOR4::w"][::std::mem::offset_of!(D3DXVECTOR4, w) - 12usize];
+};
+
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn D3DXVec4Dot(pV1: *const D3DXVECTOR4, pV2: *const D3DXVECTOR4) -> FLOAT {
+    todo!()
+}
+
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
 pub struct D3DXMATRIX {
     pub _11: FLOAT,
     pub _12: FLOAT,
@@ -201,6 +224,16 @@ const _: () = {
     ["Offset of field: D3DXMATRIX::_43"][::std::mem::offset_of!(D3DXMATRIX, _43) - 56usize];
     ["Offset of field: D3DXMATRIX::_44"][::std::mem::offset_of!(D3DXMATRIX, _44) - 60usize];
 };
+
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn D3DXVec4Transform(
+    pOut: *mut D3DXVECTOR4,
+    pV: *const D3DXVECTOR4,
+    pM: *const D3DXMATRIX,
+) -> *mut D3DXVECTOR4 {
+    todo!()
+}
+
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn itoa(
     value: ::std::os::raw::c_int,
