@@ -235,6 +235,15 @@ pub unsafe extern "C" fn D3DXVec4Transform(
 }
 
 #[unsafe(no_mangle)]
+pub unsafe extern "C" fn D3DXMatrixInverse(
+    pOut: *mut D3DXMATRIX,
+    pDeterminant: *mut FLOAT,
+    pM: *const D3DXMATRIX,
+) -> *mut D3DXMATRIX {
+    todo!()
+}
+
+#[unsafe(no_mangle)]
 pub unsafe extern "C" fn itoa(
     value: ::std::os::raw::c_int,
     str_: *mut ::std::os::raw::c_char,

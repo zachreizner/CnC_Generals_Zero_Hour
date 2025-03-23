@@ -200,6 +200,12 @@ D3DXVECTOR4* D3DXVec4Transform(
     const D3DXMATRIX  *pM
 );
 
+D3DXMATRIX* D3DXMatrixInverse(
+    D3DXMATRIX *pOut,
+    FLOAT      *pDeterminant,
+    const D3DXMATRIX *pM
+);
+
 char *itoa(int value, char *str, int base);
 
 FARPROC GetProcAddress(
