@@ -57,6 +57,7 @@ fn main() -> miette::Result<()> {
 
     println!("cargo:rustc-link-search=native={}/build", dst.display());
     println!("cargo:rustc-link-lib=static=generals_lib");
+    println!("cargo:rustc-link-lib=static=z");
 
     println!("cargo:rerun-if-changed=src/main.rs");
     println!("cargo:rerun-if-changed=../../Generals/CMakeLists.txt");

@@ -24,7 +24,9 @@
 #include "Compression.h"
 #include "LZHCompress/NoxCompress.h"
 extern "C" {
+#define __MACTYPES__
 #include "zlib.h"
+#undef __MACTYPES__
 }
 #include "EAC/codex.h"
 #include "EAC/btreecodex.h"
@@ -262,7 +264,7 @@ Int CompressionManager::compressData( CompressionType compType, void *srcVoid, I
 		*(Int *)(dest+4) = 0;
 
 		unsigned long outLen = destLen;
-		Int err = z_compress2( dest+8, &outLen, src, srcLen, level );
+		Int err = compress2( (Bytef *)(dest+8), &outLen, (const Bytef *)src, srcLen, level );
 
 		if (err == Z_OK || err == Z_STREAM_END)
 		{
@@ -333,7 +335,7 @@ Int CompressionManager::decompressData( void *srcVoid, Int srcLen, void *destVoi
 #endif
 
 		unsigned long outLen = destLen;
-		Int err = z_uncompress(dest, &outLen, src+8, srcLen-8);
+		Int err = uncompress((Bytef *)dest, &outLen, (const Bytef*)src+8, srcLen-8);
 		if (err == Z_OK || err == Z_STREAM_END)
 		{
 			return outLen;

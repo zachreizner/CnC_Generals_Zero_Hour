@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.25)
 project(generals LANGUAGES C CXX)
 
 find_package(ZLIB)
-add_compile_definitions(Z_PREFIX)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} \
