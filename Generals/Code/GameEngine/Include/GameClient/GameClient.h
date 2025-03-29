@@ -168,12 +168,6 @@ protected:
 	UnsignedInt m_numTranslators;																///< number of translators in m_translators[]
 	CommandTranslator *m_commandTranslator;											///< the command translator on the message stream
 
-private:
-
-	UnsignedInt m_renderedObjectCount;													///< Keeps track of the number of rendered objects -- resets each frame.
-
-	//---------------------------------------------------------------------------
-
 	virtual Display *createGameDisplay( void ) = 0;							///< Factory for Display classes. Called during init to instantiate TheDisplay.
 	virtual InGameUI *createInGameUI( void ) = 0;								///< Factory for InGameUI classes. Called during init to instantiate TheInGameUI
 	virtual GameWindowManager *createWindowManager( void ) = 0; ///< Factory to window manager
@@ -183,6 +177,13 @@ private:
 	virtual TerrainVisual *createTerrainVisual( void ) = 0;			///< Factory for TerrainVisual classes. Called during init to instance TheTerrainVisual
 	virtual Keyboard *createKeyboard( void ) = 0;								///< factory for the keyboard
 	virtual Mouse *createMouse( void ) = 0;											///< factory for the mouse
+
+private:
+
+	UnsignedInt m_renderedObjectCount;													///< Keeps track of the number of rendered objects -- resets each frame.
+
+	//---------------------------------------------------------------------------
+
 
 	virtual void setFrameRate(Real msecsPerFrame) = 0;
 

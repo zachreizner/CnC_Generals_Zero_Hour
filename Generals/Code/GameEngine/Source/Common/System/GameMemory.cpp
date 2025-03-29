@@ -348,7 +348,7 @@ static void doStackDump(void **stacktrace, int size)
 {
 	::doStackDumpOutput("Allocation Stack Trace:");
 	::doStackDumpOutput("\n");
-	::StackDumpFromAddresses(stacktrace, size, ::doStackDumpOutput);
+	// ::StackDumpFromAddresses(stacktrace, size, ::doStackDumpOutput);
 }
 #endif
 
@@ -3462,8 +3462,8 @@ void initMemoryManager()
 	linktest = new char[8];
 	delete [] linktest;
 
-	// linktest = new char("",1);
-	// delete linktest;
+	linktest = new char[1];
+	delete linktest;
 
 #ifdef MEMORYPOOL_OVERRIDE_MALLOC
 	linktest = (char*)malloc(1);

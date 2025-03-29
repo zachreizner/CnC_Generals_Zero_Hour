@@ -60,8 +60,13 @@
 #include "GameClient/Mouse.h"
 #include "Common/StackDump.h"
 
+extern "C" {
+	void log_backtrace();
+	void log_crash_buffer(const char *buf);
+}
+
 // Horrible reference, but we really, really need to know if we are windowed.
-extern bool DX8Wrapper_IsWindowed;
+// extern bool DX8Wrapper_IsWindowed;
 extern HWND ApplicationHWnd;
 
 extern char *gAppPrefix; /// So WB can have a different log file name.
@@ -138,11 +143,13 @@ static void doStackDump();
 // ----------------------------------------------------------------------------
 inline Bool ignoringAsserts()
 {
+	return false;
+#if 0
 #if defined(_DEBUG) || defined(_INTERNAL)
 	return !DX8Wrapper_IsWindowed || TheGlobalData->m_debugIgnoreAsserts;
 #else
-	// return !DX8Wrapper_IsWindowed;
-	return false;
+	return !DX8Wrapper_IsWindowed;
+#endif
 #endif
 }
 
@@ -186,7 +193,7 @@ static const char *getCurrentTimeString(void)
 static const char *getCurrentTickString(void)
 {
 	static char TheTickString[32];
-	sprintf(TheTickString, "(T=%08lx)",::GetTickCount());
+	sprintf(TheTickString, "(T=%08x)",::GetTickCount());
 	return TheTickString;
 }
 
@@ -220,6 +227,7 @@ static const char *prepBuffer(const char* format, char *buffer)
 #ifdef DEBUG_LOGGING
 static void doLogOutput(const char *buffer)
 {
+#if 0
 	// log message to file
 	if (theDebugFlags & DEBUG_FLAG_LOG_TO_FILE)
 	{
@@ -229,9 +237,9 @@ static void doLogOutput(const char *buffer)
 			fflush(theLogFile);
 		}
 	}
-
+#endif
 	// log message to dev studio output window
-	if (theDebugFlags & DEBUG_FLAG_LOG_TO_CONSOLE)
+	if (theDebugFlags & DEBUG_FLAG_LOG_TO_CONSOLE || true)
 	{
 		::OutputDebugString(buffer);
 	}
@@ -247,6 +255,8 @@ static void doLogOutput(const char *buffer)
 // ----------------------------------------------------------------------------
 static int doCrashBox(const char *buffer, Bool logResult)
 {
+	::DebugBreak();
+#if 0
 	int result;
 
 	if (!ignoringAsserts()) {
@@ -281,6 +291,7 @@ static int doCrashBox(const char *buffer, Bool logResult)
 			break;
 	}
 	return result;
+#endif
 }
 
 #ifdef DEBUG_STACKTRACE
@@ -288,6 +299,7 @@ static int doCrashBox(const char *buffer, Bool logResult)
 /**
 	Dumps a stack trace (from the current PC) to logfile and/or console.
 */
+
 static void doStackDump()
 {
 	const int STACKTRACE_SIZE	= 24;
@@ -295,8 +307,9 @@ static void doStackDump()
 	void* stacktrace[STACKTRACE_SIZE];
 
 	doLogOutput("\nStack Dump:\n");
-	::FillStackAddresses(stacktrace, STACKTRACE_SIZE, STACKTRACE_SKIP);
-	::StackDumpFromAddresses(stacktrace, STACKTRACE_SIZE, doLogOutput);
+	// ::FillStackAddresses(stacktrace, STACKTRACE_SIZE, STACKTRACE_SKIP);
+	// ::StackDumpFromAddresses(stacktrace, STACKTRACE_SIZE, doLogOutput);
+	log_backtrace();
 }
 #endif
 
@@ -336,6 +349,7 @@ void DebugInit(int flags)
 //		::MessageBox(NULL, "Debug already inited", "", MB_OK|MB_APPLMODAL);
 
 	// just quietly allow multiple calls to this, so that static ctors can call it.
+#if 0
 	if (theDebugFlags == 0 && strcmp(gAppPrefix, "wb_") != 0) 
 	{
 		theDebugFlags = flags;
@@ -376,6 +390,7 @@ void DebugInit(int flags)
 		} 
 	#endif
 	}
+#endif
 
 }  
 #endif
@@ -430,11 +445,13 @@ void DebugCrash(const char *format, ...)
 	char theCrashBuffer[ LARGE_BUFFER ];	
 	if (theDebugFlags == 0)
 	{
+#if 0
 		if (!DX8Wrapper_IsWindowed) {
 			if (ApplicationHWnd) {
 				ShowWindow(ApplicationHWnd, SW_HIDE);
 			}
 		}
+#endif
 		MessageBoxWrapper("DebugCrash - Debug not inited properly", "", MB_OK|MB_TASKMODAL);
 	}
 
@@ -448,11 +465,13 @@ void DebugCrash(const char *format, ...)
 
 	if (strlen(theCrashBuffer) >= sizeof(theCrashBuffer))
 	{
+#if 0
 		if (!DX8Wrapper_IsWindowed) {
 			if (ApplicationHWnd) {
 				ShowWindow(ApplicationHWnd, SW_HIDE);
 			}
 		}
+#endif
 		MessageBoxWrapper("String too long for debug buffers", "", MB_OK|MB_TASKMODAL);
 	}
 
@@ -462,7 +481,8 @@ void DebugCrash(const char *format, ...)
 		doLogOutput("**** CRASH IN FULL SCREEN - Auto-ignored, CHECK THIS LOG!\n");
 	}
 	whackFunnyCharacters(theCrashBuffer);
-	doLogOutput(theCrashBuffer);
+	// doLogOutput(theCrashBuffer);
+	log_crash_buffer(theCrashBuffer);
 #endif
 #ifdef DEBUG_STACKTRACE
 	if (!TheGlobalData->m_debugIgnoreStackTrace)
@@ -656,7 +676,7 @@ void ReleaseCrash(const char *reason)
 {
 	/// do additional reporting on the crash, if possible
 
-
+#if 0
 	char prevbuf[ _MAX_PATH ];
 	char curbuf[ _MAX_PATH ];
 
@@ -683,6 +703,7 @@ void ReleaseCrash(const char *reason)
 		fclose(theReleaseCrashLogFile);
 		theReleaseCrashLogFile = NULL;
 	}
+#endif
 
 	// if (!DX8Wrapper_IsWindowed) {
 	// 	if (ApplicationHWnd) {
@@ -690,7 +711,8 @@ void ReleaseCrash(const char *reason)
 	// 	}
 	// }
 
-#if defined(_DEBUG) || defined(_INTERNAL)
+// #if defined(_DEBUG) || defined(_INTERNAL)
+#if 0
 	/* static */ char buff[8192]; // not so static so we can be threadsafe
 	_snprintf(buff, 8192, "Sorry, a serious error occurred. (%s)", reason);
 	buff[8191] = 0;
@@ -707,6 +729,8 @@ void ReleaseCrash(const char *reason)
 	{
 		::MessageBox(NULL, "You have encountered a serious error.  Serious errors can be caused by many things including viruses, overheated hardware and hardware that does not meet the minimum specifications for the game. Please visit the forums at www.generals.ea.com for suggested courses of action or consult your manual for Technical Support contact information.", "Technical Difficulties...", MB_OK|MB_TASKMODAL|MB_ICONERROR);
 	}
+
+	DebugBreak();
 
 #endif
 
@@ -749,6 +773,7 @@ void ReleaseCrashLocalized(const AsciiString& p, const AsciiString& m)
 		::MessageBox(NULL, mesgA.str(), promptA.str(), MB_OK|MB_TASKMODAL|MB_ICONERROR);
 	}
 
+#if 0
 	char prevbuf[ _MAX_PATH ];
 	char curbuf[ _MAX_PATH ];
 
@@ -775,6 +800,9 @@ void ReleaseCrashLocalized(const AsciiString& p, const AsciiString& m)
 		fclose(theReleaseCrashLogFile);
 		theReleaseCrashLogFile = NULL;
 	}
+#endif
+
+	DebugBreak();
 
 	exit(1);
 }

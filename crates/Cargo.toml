@@ -1,5 +1,5 @@
 [workspace]
-resolver = "2"
+resolver = "3"
 members = [
     "generals",
     "mock-windows",
@@ -13,11 +13,12 @@ rust-version = "1.85.0"
 edition = "2024"
 
 [workspace.dependencies]
+log = "0.4.26"
 mock-windows = { path = "mock-windows" }
 
 [profile.dev]
-opt-level = 1
-debug = false
+opt-level = 0
+debug = true
 
 [profile.dev.package."*"]
 opt-level = 3

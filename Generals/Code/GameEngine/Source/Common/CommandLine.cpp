@@ -830,6 +830,7 @@ Int parseSelectAll( char *args[], int num )
 	return 1;
 }
 
+#if 0
 Int parseRunAhead( char *args[], Int num )
 {
 	if (num > 2)
@@ -840,6 +841,7 @@ Int parseRunAhead( char *args[], Int num )
 	}
 	return 3;
 }
+#endif
 #endif
 
 
@@ -1164,7 +1166,7 @@ static CommandLineParam params[] =
 	{ "-logToCon", parseLogToConsole },
 	{ "-vTune", parseVTune },
 	{ "-selectTheUnselectable", parseSelectAll },
-	{ "-RunAhead", parseRunAhead },
+	// { "-RunAhead", parseRunAhead },
 	{ "-noshroud", parseNoShroud },
 	{ "-setDebugLevel", parseSetDebugLevel },
 	{ "-clearDebugLevel", parseClearDebugLevel },

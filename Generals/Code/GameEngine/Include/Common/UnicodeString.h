@@ -94,6 +94,7 @@ private:
 #endif
 		unsigned short	m_refCount;						// reference count
 		unsigned short	m_numCharsAllocated;  // length of data allocated
+		unsigned int m_padding;
 		// WideChar m_stringdata[];
 
 		inline WideChar* peek() { return (WideChar*)(this+1); }

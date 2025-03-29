@@ -15,9 +15,13 @@ fn main() -> miette::Result<()> {
     .collect();
 
     // This assumes all your C++ bindings are in main.rs
-    let mut b = autocxx_build::Builder::new("src/main.rs", &incs).build()?;
+    let mut b = autocxx_build::Builder::new("src/main.rs", &incs)
+        .extra_clang_args(&["-D_DEBUG", "-DDEBUG_CRASHING"])
+        .build()?;
     b.flag_if_supported("-std=c++14")
         .extra_warnings(false)
+        .define("_DEBUG", None)
+        .define("DEBUG_CRASHING", None)
         .flag_if_supported("-Wno-deprecated-copy")
         .flag_if_supported("-Wno-deprecated")
         .flag_if_supported("-Wno-endif-labels")
@@ -60,6 +64,7 @@ fn main() -> miette::Result<()> {
     println!("cargo:rustc-link-lib=static=z");
 
     println!("cargo:rerun-if-changed=src/main.rs");
+    println!("cargo:rerun-if-changed=../../Generals/src/Hybrid.cpp");
     println!("cargo:rerun-if-changed=../../Generals/CMakeLists.txt");
 
     Ok(())

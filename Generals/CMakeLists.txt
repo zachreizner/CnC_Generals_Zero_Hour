@@ -3,13 +3,13 @@ project(generals LANGUAGES C CXX)
 
 find_package(ZLIB)
 
+add_compile_definitions(DEBUG_CRASHING _DEBUG)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} \
+    -g \
     -fms-extensions \
     -Wno-char-subscripts \
     -Wno-conversion-null \
-    -Wno-nonnull-compare \
-    -Wno-int-to-pointer-cast \
     -Wno-deprecated \
     -Wno-deprecated-copy \
     -Wno-endif-labels \
@@ -17,32 +17,35 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} \
     -Wno-ignored-qualifiers \
     -Wno-implicit-exception-spec-mismatch \
     -Wno-implicit-fallthrough \
+    -Wno-inconsistent-missing-override \
+    -Wno-int-to-pointer-cast \
     -Wno-int-to-void-pointer-cast \
     -Wno-invalid-offsetof \
     -Wno-logical-not-parentheses \
     -Wno-logical-not-parentheses \
     -Wno-narrowing \
+    -Wno-nonnull-compare \
     -Wno-overloaded-virtual \
     -Wno-parentheses \
     -Wno-pointer-bool-conversion \
     -Wno-reorder \
     -Wno-sign-compare \
     -Wno-sometimes-uninitialized \
+    -Wno-strict-aliasing \
     -Wno-switch \
     -Wno-tautological-constant-out-of-range-compare \
     -Wno-type-limits \
     -Wno-undefined-bool-conversion \
     -Wno-undefined-var-template \
     -Wno-unknown-pragmas \
+    -Wno-unknown-warning-option \
     -Wno-unused-but-set-variable \
     -Wno-unused-function \
     -Wno-unused-parameter \
-    -Wno-strict-aliasing \
     -Wno-unused-private-field \
     -Wno-unused-value \
     -Wno-unused-variable \
     -Wno-write-strings \
-    -Wno-unknown-warning-option \
 ")
 
 add_library(generals_lib STATIC)
@@ -609,6 +612,8 @@ set(GENERALS_SRC
     Code/Libraries/Source/WWVegas/WWMath/matrix3d.cpp
     Code/Libraries/Source/WWVegas/WWMath/quat.cpp
     Code/Libraries/Source/WWVegas/WWMath/wwmath.cpp
+
+    src/Hybrid.cpp
 )
 
 target_sources(generals_lib PRIVATE ${GENERALS_SRC})

@@ -75,7 +75,8 @@ EnumeratedIP * IPEnumeration::getAddresses( void )
 	char hostname[256];
 	if (gethostname(hostname, sizeof(hostname)))
 	{
-		DEBUG_LOG(("Failed call to gethostname; WSAGetLastError returned %d\n", WSAGetLastError()));
+		// DEBUG_LOG(("Failed call to gethostname; WSAGetLastError returned %d\n", WSAGetLastError()));
+		DEBUG_LOG(("Failed call to gethostname\n"));
 		return NULL;
 	}
 	DEBUG_LOG(("Hostname is '%s'\n", hostname));
@@ -84,7 +85,8 @@ EnumeratedIP * IPEnumeration::getAddresses( void )
 	hostent* hostEnt = gethostbyname(hostname);
 	if (hostEnt == NULL)
 	{
-		DEBUG_LOG(("Failed call to gethostnyname; WSAGetLastError returned %d\n", WSAGetLastError()));
+		// DEBUG_LOG(("Failed call to gethostnyname; WSAGetLastError returned %d\n", WSAGetLastError()));
+		DEBUG_LOG(("Failed call to gethostnyname\n"));
 		return NULL;
 	}
 	
@@ -175,7 +177,8 @@ AsciiString IPEnumeration::getMachineName( void )
 	char hostname[256];
 	if (gethostname(hostname, sizeof(hostname)))
 	{
-		DEBUG_LOG(("Failed call to gethostname; WSAGetLastError returned %d\n", WSAGetLastError()));
+		// DEBUG_LOG(("Failed call to gethostname; WSAGetLastError returned %d\n", WSAGetLastError()));
+		DEBUG_LOG(("Failed call to gethostname\n"));
 		return NULL;
 	}
 

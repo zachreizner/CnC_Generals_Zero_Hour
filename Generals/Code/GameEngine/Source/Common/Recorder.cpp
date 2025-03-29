@@ -84,12 +84,13 @@ void RecorderClass::logGameStart(AsciiString options)
 		fseek(m_file, fileSize, SEEK_SET);
 	DEBUG_ASSERTCRASH(res == 0, ("Could not seek to end of file!"));
 
+// #if defined(_DEBUG) || defined(_INTERNAL)
 #if defined(_DEBUG) || defined(_INTERNAL)
 	if (TheNetwork && TheGlobalData->m_saveStats)
 	{
 		//if (TheLAN)
 		{
-			unsigned long bufSize = MAX_COMPUTERNAME_LENGTH + 1;
+			DWORD bufSize = MAX_COMPUTERNAME_LENGTH + 1;
 			char computerName[MAX_COMPUTERNAME_LENGTH + 1];
 			if (!GetComputerName(computerName, &bufSize))
 			{
@@ -148,7 +149,7 @@ void RecorderClass::logPlayerDisconnect(UnicodeString player, Int slot)
 #if defined(_DEBUG) || defined(_INTERNAL)
 	if (TheGlobalData->m_saveStats)
 	{
-		unsigned long bufSize = MAX_COMPUTERNAME_LENGTH + 1;
+		DWORD bufSize = MAX_COMPUTERNAME_LENGTH + 1;
 		char computerName[MAX_COMPUTERNAME_LENGTH + 1];
 		if (!GetComputerName(computerName, &bufSize))
 		{
@@ -194,7 +195,7 @@ void RecorderClass::logCRCMismatch( void )
 	if (TheGlobalData->m_saveStats)
 	{
 		m_wasDesync = TRUE;
-		unsigned long bufSize = MAX_COMPUTERNAME_LENGTH + 1;
+		DWORD bufSize = MAX_COMPUTERNAME_LENGTH + 1;
 		char computerName[MAX_COMPUTERNAME_LENGTH + 1];
 		if (!GetComputerName(computerName, &bufSize))
 		{
@@ -249,7 +250,7 @@ void RecorderClass::logGameEnd( void )
 	{
 		//if (TheLAN)
 		{
-			unsigned long bufSize = MAX_COMPUTERNAME_LENGTH + 1;
+			DWORD bufSize = MAX_COMPUTERNAME_LENGTH + 1;
 			char computerName[MAX_COMPUTERNAME_LENGTH + 1];
 			if (!GetComputerName(computerName, &bufSize))
 			{

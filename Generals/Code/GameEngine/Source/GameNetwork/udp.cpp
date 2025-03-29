@@ -43,7 +43,8 @@
 
 //-------------------------------------------------------------------------
 
-#if defined(_DEBUG) || defined(_INTERNAL)
+// #if defined(_DEBUG) || defined(_INTERNAL)
+#if 0
 
 #define CASE(x) case (x): return #x;
 
@@ -260,7 +261,8 @@ Int UDP::Write(const unsigned char *msg,UnsignedInt len,UnsignedInt IP,UnsignedS
 #ifdef DEBUG_LOGGING
 		static Int errCount = 0;
 #endif
-		DEBUG_ASSERTLOG(errCount++ > 100, ("UDP::Write() - WSA error is %s\n", GetWSAErrorString(WSAGetLastError()).str()));
+		// DEBUG_ASSERTLOG(errCount++ > 100, ("UDP::Write() - WSA error is %s\n", GetWSAErrorString(WSAGetLastError()).str()));
+		DEBUG_ASSERTLOG(errCount++ > 100, ("UDP::Write()\n"));
 	}
   #endif
   
@@ -285,7 +287,8 @@ Int UDP::Read(unsigned char *msg,UnsignedInt len,sockaddr_in *from)
 #ifdef DEBUG_LOGGING
 				static Int errCount = 0;
 #endif
-				DEBUG_ASSERTLOG(errCount++ > 100, ("UDP::Read() - WSA error is %s\n", GetWSAErrorString(WSAGetLastError()).str()));
+				// DEBUG_ASSERTLOG(errCount++ > 100, ("UDP::Read() - WSA error is %s\n", GetWSAErrorString(WSAGetLastError()).str()));
+				DEBUG_ASSERTLOG(errCount++ > 100, ("UDP::Read()\n"));
 				retval = -1;
 			} else {
 				retval = 0;
@@ -306,7 +309,8 @@ Int UDP::Read(unsigned char *msg,UnsignedInt len,sockaddr_in *from)
 #ifdef DEBUG_LOGGING
 				static Int errCount = 0;
 #endif
-				DEBUG_ASSERTLOG(errCount++ > 100, ("UDP::Read() - WSA error is %s\n", GetWSAErrorString(WSAGetLastError()).str()));
+				// DEBUG_ASSERTLOG(errCount++ > 100, ("UDP::Read() - WSA error is %s\n", GetWSAErrorString(WSAGetLastError()).str()));
+				DEBUG_ASSERTLOG(errCount++ > 100, ("UDP::Read()\n"));
 				retval = -1;
 			} else {
 				retval = 0;

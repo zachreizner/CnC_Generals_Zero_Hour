@@ -74,8 +74,12 @@ void WOLDisplaySlotList( void );
 extern std::list<PeerResponse> TheLobbyQueuedUTMs;
 extern void MapSelectorTooltip(GameWindow *window, WinInstanceData *instData,	UnsignedInt mouse);
 
-
 #if defined(_DEBUG) || defined(_INTERNAL)
+extern Bool g_debugSlots;
+#endif
+
+// #if defined(_DEBUG) || defined(_INTERNAL)
+#if 0
 extern Bool g_debugSlots;
 void slotListDebugLog(const char *fmt, ...)
 {

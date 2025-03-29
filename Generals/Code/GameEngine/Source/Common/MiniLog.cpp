@@ -32,8 +32,9 @@
 
 #ifdef DEBUG_LOGGING
 
-LogClass::LogClass(const char *fname)
+LogClass::LogClass(const char *fname) : m_fname(fname)
 {
+#if 0
 	char buffer[ _MAX_PATH ];
 	GetModuleFileName( NULL, buffer, sizeof( buffer ) );
 	char *pEnd = buffer + strlen( buffer );
@@ -49,14 +50,19 @@ LogClass::LogClass(const char *fname)
 	AsciiString fullPath;
 	fullPath.format("%s\\%s", buffer, fname);
 	m_fp = fopen(fullPath.str(), "wt");
+#endif
 }
 
 LogClass::~LogClass()
 {
-	if (m_fp)
-	{
-		fclose(m_fp);
-	}
+	// if (m_fp)
+	// {
+	// 	fclose(m_fp);
+	// }
+}
+
+extern "C" {
+void emit_mini_log(const char *fname, const char *buf);
 }
 
 void LogClass::log(const char *fmt, ...)
@@ -72,7 +78,7 @@ void LogClass::log(const char *fmt, ...)
 
 	va_list va;
 	va_start( va, fmt );
-	_vsnprintf(buf, 1024, fmt, va );
+	vsnprintf(buf, 1024, fmt, va );
 	buf[1023] = 0;
 	va_end( va );
 
@@ -86,8 +92,10 @@ void LogClass::log(const char *fmt, ...)
 		++tmp;
 	}
 
-	fprintf(m_fp, "%d:%d %s\n", lastFrame, lastIndex++, buf);
-	fflush(m_fp);
+	emit_mini_log(m_fname, buf);
+
+	// fprintf(m_fp, "%d:%d %s\n", lastFrame, lastIndex++, buf);
+	// fflush(m_fp);
 }
 
 #endif // DEBUG_LOGGING

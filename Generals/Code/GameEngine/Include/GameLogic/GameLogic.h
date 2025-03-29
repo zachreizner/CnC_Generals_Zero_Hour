@@ -246,6 +246,10 @@ protected:
 	virtual void xfer( Xfer *xfer );
 	virtual void loadPostProcess( void );
 
+	/// factory for TheTerrainLogic, called from init()
+	virtual TerrainLogic *createTerrainLogic( void );
+	virtual GhostObjectManager *createGhostObjectManager(void);
+
 private:
 
 	void pushSleepyUpdate(UpdateModulePtr u);
@@ -324,10 +328,6 @@ private:
 	void processDestroyList( void );												///< Destroy all pending objects on the destroy list
 
 	void destroyAllObjectsImmediate();											///< destroy, and process destroy list immediately
-
-	/// factory for TheTerrainLogic, called from init()
-	virtual TerrainLogic *createTerrainLogic( void );
-	virtual GhostObjectManager *createGhostObjectManager(void);
 
 	Int m_gameMode;
 	Int m_rankLevelLimit;

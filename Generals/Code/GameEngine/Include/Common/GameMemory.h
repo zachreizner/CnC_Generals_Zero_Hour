@@ -52,12 +52,12 @@
 #define DISABLE_MEMORYPOOL_CHECKPOINTING 1
 
 #if (defined(_DEBUG) || defined(_INTERNAL)) && !defined(MEMORYPOOL_DEBUG_CUSTOM_NEW) && !defined(DISABLE_MEMORYPOOL_DEBUG_CUSTOM_NEW)
-	#define MEMORYPOOL_DEBUG_CUSTOM_NEW
+	// #define MEMORYPOOL_DEBUG_CUSTOM_NEW
 #endif
 
 //#if (defined(_DEBUG) || defined(_INTERNAL)) && !defined(MEMORYPOOL_DEBUG) && !defined(DISABLE_MEMORYPOOL_DEBUG)
 #if (defined(_DEBUG)) && !defined(MEMORYPOOL_DEBUG) && !defined(DISABLE_MEMORYPOOL_DEBUG)
-	#define MEMORYPOOL_DEBUG
+	// #define MEMORYPOOL_DEBUG
 #endif
 
 // SYSTEM INCLUDES ////////////////////////////////////////////////////////////
@@ -628,7 +628,7 @@ public: \
 	{ \
 		ARGCLASS::getClassMemoryPool()->freeBlock(p); \
 	} \
-protected: \
+public: \
 	/* \
 		Make normal new and delete protected, so they can't be called by the outside world. \
 		Note that delete is funny, in that it can still be called by the class itself; \
@@ -643,6 +643,12 @@ protected: \
 		runtime seems to be the best we can do... \
 	*/ \
 	inline void *operator new(size_t s) \
+	{ \
+		DEBUG_CRASH(("This operator new should normally never be called... please use new(char*) instead.")); \
+		DEBUG_ASSERTCRASH(s == sizeof(ARGCLASS), ("The wrong operator new is being called; ensure all objects in the hierarchy have MemoryPoolGlue set up correctly")); \
+		throw ERROR_BUG; \
+	} \
+	inline void *operator new(size_t s, ARGCLASS* e) \
 	{ \
 		DEBUG_CRASH(("This operator new should normally never be called... please use new(char*) instead.")); \
 		DEBUG_ASSERTCRASH(s == sizeof(ARGCLASS), ("The wrong operator new is being called; ensure all objects in the hierarchy have MemoryPoolGlue set up correctly")); \

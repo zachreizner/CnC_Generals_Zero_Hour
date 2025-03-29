@@ -73,7 +73,7 @@ class STLSpecialAlloc;
 // srj sez: no, include STLTypesdefs below, instead, thanks
 #include <algorithm>
 #include <bitset>
-#include <hash_map>
+// #include <hash_map>
 #include <list>
 #include <map>
 #include <queue>

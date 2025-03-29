@@ -42,7 +42,8 @@ public:
 	void log(const char *fmt, ...);
 
 protected:
-	FILE *m_fp;
+	const char *m_fname;
+	// FILE *m_fp;
 };
 
 #endif // DEBUG_LOGGING

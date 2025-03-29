@@ -92,8 +92,8 @@ typedef struct _SYSTEMTIME
 void GetLocalTime(
     LPSYSTEMTIME lpSystemTime);
 
-#define HKEY_LOCAL_MACHINE ((void *)0) // chosen arbitrarily
-#define HKEY_CURRENT_USER ((void *)1)  // chosen arbitrarily
+#define HKEY_LOCAL_MACHINE ((void *)0x80000000)
+#define HKEY_CURRENT_USER ((void *)0x80000001)
 
 #define GMEM_FIXED 0x0000
 #define GMEM_ZEROINIT 0x0040
@@ -453,6 +453,7 @@ HANDLE CreateEvent(
 #define MB_OK 0x0
 #define MB_SYSTEMMODAL 0x1000
 #define MB_ICONERROR 0x10
+#define MB_YESNO 0x4
 
 #define IDABORT 3
 #define IDRETRY 4
@@ -536,6 +537,10 @@ LSTATUS RegSetValueEx(
     DWORD      dwType,
     const BYTE *lpData,
     DWORD      cbData
+);
+
+void OutputDebugString(
+    LPCSTR lpOutputString
 );
 
 #ifdef __cplusplus

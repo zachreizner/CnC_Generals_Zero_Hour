@@ -218,9 +218,11 @@ GameMessageDisposition WindowTranslator::translateGameMessage(const GameMessage 
 		{
 			// all window events have the position of the mouse as arg 0
 			ICoord2D mousePos = msg->getArgument( 0 )->pixel;
+#if 0
 #if defined(_DEBUG) || defined(_INTERNAL)	//debug hack to view object under mouse stats
 			TheMousePos.x = mousePos.x;
 			TheMousePos.y = mousePos.y;
+#endif
 #endif
 
 			// process the mouse event position

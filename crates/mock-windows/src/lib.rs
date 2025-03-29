@@ -2,6 +2,16 @@
 #![allow(unused_variables)]
 #![allow(non_snake_case)]
 
+mod handle;
+mod registry;
+mod util;
+
+use std::{
+    alloc::{GlobalAlloc, Layout, System},
+    ffi::CStr,
+    os::raw::c_int,
+};
+
 pub const S_OK: u32 = 0;
 pub const _MAX_PATH: u32 = 260;
 pub const MAX_PATH: u32 = 260;
@@ -83,11 +93,13 @@ pub type FLOAT = f32;
 
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn timeBeginPeriod(uPeriod: UINT) -> MMRESULT {
-    todo!()
+    log::debug!("timeBeginPeriod uPeriod={uPeriod}");
+    0
 }
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn timeEndPeriod(uPeriod: UINT) -> MMRESULT {
-    todo!()
+    log::debug!("timeEndPeriod uPeriod={uPeriod}");
+    0
 }
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn timeGetTime() -> DWORD {
@@ -104,11 +116,25 @@ pub unsafe extern "C" fn GetModuleFileName(
     lpFilename: LPSTR,
     nSize: DWORD,
 ) -> DWORD {
-    todo!()
+    if nSize == 0 {
+        return 0;
+    }
+    if hModule.is_null() {
+        let current_exe = std::env::current_exe().unwrap();
+        let p = current_exe.to_str().unwrap();
+        // eprintln!("current_exe = {}", p);
+        // let max_copy = p.len().min((nSize - 1) as _);
+        // unsafe {
+        //     lpFilename.copy_from(p.as_ptr().cast(), max_copy);
+        //     lpFilename.add(max_copy).write(0);
+        // }
+        return unsafe { util::cstr_copy(p, lpFilename, nSize as _) as _ };
+    }
+    panic!("invalid module for GetModuleFileName")
 }
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn GetDoubleClickTime() -> UINT {
-    todo!()
+    500
 }
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn SHGetSpecialFolderPath(
@@ -161,10 +187,21 @@ pub type LPSYSTEMTIME = *mut _SYSTEMTIME;
 pub unsafe extern "C" fn GetLocalTime(lpSystemTime: LPSYSTEMTIME) {
     todo!()
 }
+
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn GlobalAlloc(uFlags: UINT, dwBytes: SIZE_T) -> *mut ::std::os::raw::c_void {
-    todo!()
+    // eprintln!("GlobalAlloc flags=0x{uFlags:x} size={dwBytes}");
+    log::debug!("GlobalAlloc flags=0x{uFlags:x} size={dwBytes}");
+    unsafe {
+        let layout = Layout::from_size_align_unchecked(dwBytes, 8);
+        match uFlags {
+            GMEM_FIXED => System.alloc(layout).cast(),
+            GMEM_ZEROINIT => System.alloc_zeroed(layout).cast(),
+            _ => panic!("invalid flag 0x{uFlags:x} for GlobalAlloc"),
+        }
+    }
 }
+
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn GlobalFree(
     hMem: *mut ::std::os::raw::c_void,
@@ -551,7 +588,10 @@ pub unsafe extern "C" fn CloseHandle(hObject: HANDLE) -> BOOL {
 }
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn GetCurrentThreadId() -> DWORD {
-    todo!()
+    unsafe extern "C" {
+        fn gettid() -> u32;
+    }
+    unsafe { gettid() }
 }
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn TerminateThread(hThread: HANDLE, dwExitCode: DWORD) -> BOOL {
@@ -579,7 +619,10 @@ pub unsafe extern "C" fn CreateEvent(
     bInitialState: BOOL,
     lpName: LPCSTR,
 ) -> HANDLE {
-    todo!()
+    unsafe {
+        eprintln!("CreateEvent name={:?}", CStr::from_ptr(lpName));
+    }
+    1 as _
 }
 
 #[unsafe(no_mangle)]
@@ -606,13 +649,22 @@ pub unsafe extern "C" fn MessageBox(
     lpText: LPCTSTR,
     lpCaption: LPCTSTR,
     uType: UINT,
-) -> ::std::os::raw::c_int {
-    todo!()
+) -> c_int {
+    const IDOK: c_int = 0;
+
+    let text = unsafe { CStr::from_ptr(lpText).to_str().unwrap() };
+    let caption = unsafe { CStr::from_ptr(lpCaption).to_str().unwrap() };
+    log::debug!(
+        "MessageBox hWnd={hWnd:?} text={text:?} caption={caption:?} samDesired=0x{uType:x}"
+    );
+
+    IDOK
 }
 
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn DebugBreak() {
-    todo!()
+    log::error!("DebugBreak");
+    std::process::exit(1);
 }
 
 #[unsafe(no_mangle)]
@@ -623,7 +675,21 @@ pub unsafe extern "C" fn RegOpenKeyEx(
     samDesired: REGSAM,
     phkResult: PHKEY,
 ) -> LSTATUS {
-    todo!()
+    const HKEY_LOCAL_MACHINE: usize = 0x80000000;
+    const HKEY_CURRENT_USER: usize = 0x80000001;
+    let sub_key = unsafe { CStr::from_ptr(lpSubKey).to_str().unwrap() };
+    log::debug!(
+        "RegOpenKeyEx key={hKey:?} lpSubKey={sub_key:?} options=0x{ulOptions:x} samDesired=0x{samDesired:x}"
+    );
+    let reg_key = match hKey as usize {
+        HKEY_LOCAL_MACHINE | HKEY_CURRENT_USER => registry::RegistryKey::open(sub_key),
+        _ => todo!(),
+    };
+    let handle = handle::open(reg_key);
+    unsafe {
+        phkResult.write(handle as _);
+    }
+    ERROR_SUCCESS
 }
 
 #[unsafe(no_mangle)]
@@ -643,7 +709,8 @@ pub unsafe extern "C" fn RegCreateKeyEx(
 
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn RegCloseKey(hKey: HKEY) -> LSTATUS {
-    todo!()
+    handle::close(hKey as _);
+    ERROR_SUCCESS
 }
 
 #[unsafe(no_mangle)]
@@ -655,7 +722,21 @@ pub unsafe extern "C" fn RegQueryValueEx(
     lpData: LPBYTE,
     lpcbData: LPDWORD,
 ) -> LSTATUS {
-    todo!()
+    let value_name = unsafe { CStr::from_ptr(lpValueName).to_str().unwrap() };
+    log::debug!(
+        "RegQueryValueEx key={hKey:?} lpValueName={value_name:?} lpType={lpType:p} lpData={lpData:?}"
+    );
+
+    if value_name == "Language" {
+        unsafe {
+            lpType.write(REG_SZ);
+            let data_len = lpcbData.read();
+            let written_len = util::cstr_copy("english", lpData.cast(), data_len as _);
+            lpcbData.write(written_len as _);
+        }
+    }
+
+    ERROR_SUCCESS
 }
 
 #[unsafe(no_mangle)]
@@ -668,4 +749,10 @@ pub unsafe extern "C" fn RegSetValueEx(
     cbData: DWORD,
 ) -> LSTATUS {
     todo!()
+}
+
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn OutputDebugString(lpOutputString: LPCSTR) {
+    let output = unsafe { CStr::from_ptr(lpOutputString).to_str().unwrap().trim() };
+    log::debug!(target: "Generals", "{output}");
 }
