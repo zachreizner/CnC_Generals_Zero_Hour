@@ -508,6 +508,7 @@ static PoolSizeRec sizes[] =
 	{ "ScriptList", 32, 32 },
 	{ "AttackPriorityInfo", 32, 32 },
 	{ "SequentialScript", 32, 32 },
+	{ "HybridFile", 1024, 256 },
 	{ "Win32LocalFile", 1024, 256 },
 	{ "RAMFile", 32, 32 },
 	{ "BattlePlanBonuses", 32, 32 },

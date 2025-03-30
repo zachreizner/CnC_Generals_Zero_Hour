@@ -459,6 +459,7 @@ dependencies = [
  "cmake",
  "cxx",
  "env_logger 0.11.7",
+ "glob",
  "log",
  "miette",
  "mock-windows",

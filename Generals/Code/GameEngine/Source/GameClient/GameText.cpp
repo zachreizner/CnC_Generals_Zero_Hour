@@ -162,7 +162,7 @@ class GameTextManager : public GameTextInterface
 		Char						m_buffer[MAX_UITEXT_LENGTH];
 		Char						m_buffer2[MAX_UITEXT_LENGTH];
 		Char						m_buffer3[MAX_UITEXT_LENGTH];
-		WideChar				m_tbuffer[MAX_UITEXT_LENGTH*2];
+		uint16_t				m_tbuffer[MAX_UITEXT_LENGTH*2];
 		
 		StringInfo			*m_stringInfo;
 		StringLookUp		*m_stringLUT;
@@ -184,11 +184,11 @@ class GameTextManager : public GameTextInterface
 		/// so don't simply store a pointer to it.
 		AsciiStringVec			m_asciiStringVec;
 
-		void						stripSpaces ( WideChar *string );
+		void						stripSpaces ( uint16_t *string );
 		void						removeLeadingAndTrailing ( Char *m_buffer );
 		void						readToEndOfQuote( File *file, Char *in, Char *out, Char *wavefile, Int maxBufLen );
 		void						reverseWord ( Char *file, Char *lp );
-		void						translateCopy( WideChar *outbuf, Char *inbuf );
+		void						translateCopy( uint16_t *outbuf, Char *inbuf );
 		Bool						getStringCount( const Char *filename, Int& textCount );
 		Bool						getCSFInfo ( const Char *filename );
 		Bool						parseCSF(  const Char *filename );
@@ -439,10 +439,10 @@ void GameTextManager::reset( void )
 // GameTextManager::stripSpaces 
 //============================================================================
 
-void GameTextManager::stripSpaces ( WideChar *string )
+void GameTextManager::stripSpaces ( uint16_t *string )
 {
-	WideChar *str, *ptr;
-	WideChar ch, last = 0;
+	uint16_t *str, *ptr;
+	uint16_t ch, last = 0;
 	Int skipall = TRUE;
 
 	str = ptr = string;
@@ -686,11 +686,12 @@ void GameTextManager::reverseWord ( Char *file, Char *lp )
 // GameTextManager::translateCopy
 //============================================================================
 
-void GameTextManager::translateCopy( WideChar *outbuf, Char *inbuf )
+void GameTextManager::translateCopy( uint16_t *outbuf, Char *inbuf )
 {
 	Int slash = FALSE;
 
-#if defined(_DEBUG) || defined(_INTERNAL)
+// #if defined(_DEBUG) || defined(_INTERNAL)
+#if 0
 	if ( m_jabberWockie )
 	{
 		static Char buffer[MAX_UITEXT_LENGTH*2];
@@ -961,7 +962,7 @@ Bool GameTextManager::parseCSF( const Char *filename )
 
 			if ( len )
 			{
-				file->read ( m_tbuffer, len*sizeof(WideChar) );
+				file->read ( m_tbuffer, len*sizeof(uint16_t) );
 			}
 
 			if ( num == 0 )
@@ -970,7 +971,7 @@ Bool GameTextManager::parseCSF( const Char *filename )
 				m_tbuffer[len] = 0;
 				
 				{
-					WideChar *ptr;
+					uint16_t *ptr;
 				
 					ptr = m_tbuffer;
 				
@@ -982,7 +983,7 @@ Bool GameTextManager::parseCSF( const Char *filename )
 				}
 				
 				stripSpaces ( m_tbuffer );
-				m_stringInfo[listCount].text = m_tbuffer;
+				m_stringInfo[listCount].text.set(m_tbuffer);
 			}
 
 			if ( id == CSF_STRINGWITHWAVE )
@@ -1098,7 +1099,7 @@ Bool GameTextManager::parseStringFile( const char *filename )
 					translateCopy( m_tbuffer, m_buffer2 );
 					stripSpaces ( m_tbuffer );
 					
-					m_stringInfo[listCount].text = m_tbuffer ;
+					m_stringInfo[listCount].text.set(m_tbuffer);
 					m_stringInfo[listCount].speech = m_buffer3;
 					readString = TRUE;
 				}
@@ -1229,7 +1230,8 @@ Bool GameTextManager::parseMapStringFile( const char *filename )
 					translateCopy( m_tbuffer, m_buffer2 );
 					stripSpaces ( m_tbuffer );
 
-					UnicodeString text = UnicodeString(m_tbuffer);
+					UnicodeString text;
+					text.set(m_tbuffer);
 					if (TheLanguageFilter)
 						TheLanguageFilter->filterLine(text);
 					

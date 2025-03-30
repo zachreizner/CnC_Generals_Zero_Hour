@@ -10,6 +10,8 @@ use std::{
     alloc::{GlobalAlloc, Layout, System},
     ffi::CStr,
     os::raw::c_int,
+    path::Path,
+    ptr::null_mut,
 };
 
 pub const S_OK: u32 = 0;
@@ -91,6 +93,8 @@ pub type ULONG_PTR = usize;
 pub type DWORD_PTR = usize;
 pub type FLOAT = f32;
 
+const PERSONAL_FOLDER_PATH: &str = "/tmp/generals/personal";
+
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn timeBeginPeriod(uPeriod: UINT) -> MMRESULT {
     log::debug!("timeBeginPeriod uPeriod={uPeriod}");
@@ -143,13 +147,32 @@ pub unsafe extern "C" fn SHGetSpecialFolderPath(
     csidl: ::std::os::raw::c_int,
     fCreate: BOOL,
 ) -> BOOL {
-    todo!()
+    assert!(csidl == CSIDL_PERSONAL as i32);
+
+    if fCreate != 0 {
+        log::debug!("creating special folder {}", PERSONAL_FOLDER_PATH);
+        std::fs::create_dir_all(PERSONAL_FOLDER_PATH).unwrap();
+    }
+    unsafe {
+        util::cstr_copy(PERSONAL_FOLDER_PATH, pszPath, MAX_PATH as _);
+    }
+    true as _
 }
 #[unsafe(no_mangle)]
 pub unsafe extern "C" fn CreateDirectory(
     lpPathName: LPCTSTR,
     lpSecurityAttributes: *mut ::std::os::raw::c_void,
 ) -> BOOL {
+    assert!(lpSecurityAttributes.is_null());
+    let raw_path = unsafe { CStr::from_ptr(lpPathName).to_str().unwrap() };
+    let normalized_path = raw_path.replace('\\', "/");
+    assert!(!normalized_path.contains(".."));
+    let path = Path::new(&normalized_path);
+    log::debug!("creating directory {}", path.display());
+    if path.starts_with(PERSONAL_FOLDER_PATH) {
+        std::fs::create_dir_all(path).unwrap();
+        return true as _;
+    }
     todo!()
 }
 #[repr(C)]
@@ -206,7 +229,8 @@ pub unsafe extern "C" fn GlobalAlloc(uFlags: UINT, dwBytes: SIZE_T) -> *mut ::st
 pub unsafe extern "C" fn GlobalFree(
     hMem: *mut ::std::os::raw::c_void,
 ) -> *mut ::std::os::raw::c_void {
-    todo!()
+    log::warn!("leaking memory at {hMem:p}");
+    null_mut()
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]

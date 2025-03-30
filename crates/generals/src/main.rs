@@ -1,6 +1,8 @@
 use std::ffi::CStr;
+use std::io::{Read, Seek, SeekFrom};
+use std::os::raw::{c_char, c_int, c_void};
+use std::path::PathBuf;
 use std::pin::Pin;
-use std::ptr::null;
 use std::ptr::null_mut;
 
 use autocxx::prelude::*;
@@ -21,22 +23,47 @@ pub unsafe extern "C" fn log_backtrace() {
     log::debug!(target: "", "\n{}", std::backtrace::Backtrace::force_capture());
 }
 #[unsafe(no_mangle)]
-pub unsafe extern "C" fn log_crash_buffer(buf: *const ::std::os::raw::c_char) {
+pub unsafe extern "C" fn log_crash_buffer(buf: *const c_char) {
     let log_message = unsafe { CStr::from_ptr(buf).to_str().unwrap().trim() };
     log::error!(target: "Generals", "{}", log_message);
 }
 #[unsafe(no_mangle)]
-pub unsafe extern "C" fn emit_mini_log(
-    fname: *const ::std::os::raw::c_char,
-    buf: *const ::std::os::raw::c_char,
-) {
+pub unsafe extern "C" fn emit_mini_log(fname: *const c_char, buf: *const c_char) {
     let filename = unsafe { CStr::from_ptr(fname).to_str().unwrap() };
     let log_message = unsafe { CStr::from_ptr(buf).to_str().unwrap() };
     log::info!(target: filename, "{log_message}")
 }
 
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn HybridFileRead(
+    handle: *mut c_void,
+    buffer: *mut c_void,
+    bytes: c_int,
+) -> c_int {
+    let file = unsafe { &mut *handle.cast::<std::fs::File>() };
+    let buffer = std::slice::from_raw_parts_mut(buffer.cast(), bytes as _);
+    file.read(buffer).unwrap() as _
+}
+
+#[unsafe(no_mangle)]
+pub unsafe extern "C" fn HybridFileSeek(
+    handle: *mut c_void,
+    new_pos: c_int,
+    seek_mode: c_int,
+) -> c_int {
+    let file = unsafe { &mut *handle.cast::<std::fs::File>() };
+    let pos = match seek_mode {
+        0 => SeekFrom::Start(new_pos as _),
+        1 => SeekFrom::Current(new_pos as _),
+        2 => SeekFrom::End(new_pos as _),
+        _ => panic!("unknown seek_mode {seek_mode}"),
+    };
+    file.seek(pos).unwrap() as _
+}
+
 include_cpp! {
     #include "PreRTS.h"
+    #include "Hybrid.h"
     #include "Common/crc.h"
     #include "Common/GameEngine.h"
     #include "Common/LocalFileSystem.h"
@@ -56,9 +83,12 @@ include_cpp! {
     // block!("DisplayStringManager")
     safety!(unsafe)
     generate!("CRC")
+    generate!("InsertFilenameList")
     generate!("GameMain")
     generate!("initMemoryManager")
     generate!("File")
+    generate!("FilenameList")
+    generate_pod!("FileInfo")
     generate!("AsciiString")
     subclass!("GameEngine", GeneralsGameEngine)
     subclass!("LocalFileSystem", HybridLocalFileSystem)
@@ -74,7 +104,7 @@ include_cpp! {
 }
 
 unsafe extern "C" {
-    pub fn CreateHybridFile() -> *mut File;
+    pub fn CreateHybridFile(handle: *mut c_void) -> *mut File;
     pub fn CreateHybridArchiveFileSystem() -> *mut ArchiveFileSystem;
     pub fn CreateHybridGameLogic() -> *mut GameLogic;
 }
@@ -189,11 +219,24 @@ impl GameEngine_methods for GeneralsGameEngine {
 
 #[subclass]
 #[derive(Default)]
-pub struct HybridLocalFileSystem;
+pub struct HybridLocalFileSystem {
+    root_path: PathBuf,
+}
 
 impl LocalFileSystem_methods for HybridLocalFileSystem {
     fn init(&mut self) {
         log::debug!("LocalFileSystem init");
+
+        let generals_root = std::env::var_os("GENERALS_ROOT").expect("GENERALS_ROOT must be set");
+        log::info!("root path={:?}", generals_root);
+        self.root_path = PathBuf::from(generals_root);
+
+        if !matches!(
+            std::fs::exists(self.root_path.join("Data/Scripts/SkirmishScripts.scb")),
+            Ok(true)
+        ) {
+            log::warn!("sanity check for root path (GENERALS_ROOT) failed");
+        }
     }
 
     fn reset(&mut self) {
@@ -204,17 +247,19 @@ impl LocalFileSystem_methods for HybridLocalFileSystem {
         log::debug!("LocalFileSystem update");
     }
 
-    unsafe fn openFile(
-        &mut self,
-        filename: *const ::std::os::raw::c_char,
-        access: autocxx::c_int,
-    ) -> *mut File {
-        let filename = unsafe { CStr::from_ptr(filename) };
-        log::debug!("openFile filename={:?}", filename);
-        CreateHybridFile()
+    unsafe fn openFile(&mut self, filename: *const c_char, access: autocxx::c_int) -> *mut File {
+        let filename = unsafe { CStr::from_ptr(filename).to_str().unwrap() };
+        log::debug!("openFile filename={}", filename);
+        match std::fs::File::open(self.root_path.join(filename)) {
+            Ok(f) => CreateHybridFile(Box::into_raw(Box::new(f)).cast()),
+            Err(e) => {
+                log::warn!("failed to open file {filename:?}: {e}");
+                null_mut()
+            }
+        }
     }
 
-    unsafe fn doesFileExist(&self, filename: *const ::std::os::raw::c_char) -> bool {
+    unsafe fn doesFileExist(&self, filename: *const c_char) -> bool {
         todo!()
     }
 
@@ -223,17 +268,37 @@ impl LocalFileSystem_methods for HybridLocalFileSystem {
         currentDirectory: &AsciiString,
         originalDirectory: &AsciiString,
         searchName: &AsciiString,
-        filenameList: Pin<&mut FilenameList>,
+        mut filenameList: Pin<&mut FilenameList>,
         searchSubdirectories: bool,
     ) {
         let current = unsafe { CStr::from_ptr(currentDirectory.str()) };
         let original = unsafe { CStr::from_ptr(originalDirectory.str()) };
-        let name = unsafe { CStr::from_ptr(searchName.str()) };
+        let name = unsafe { CStr::from_ptr(searchName.str()).to_str().unwrap() };
         log::debug!("LocalFileSystem::getFileListInDirectory current={current:?} original={original:?} name={name:?}");
-        panic!();
+        assert!(current.is_empty());
+        assert!(original.is_empty());
+
+        let pattern = if searchSubdirectories {
+            self.root_path.join("**").join(name)
+        } else {
+            self.root_path.join(name)
+        };
+
+        log::debug!("globbing for pattern {pattern:?}");
+
+        for path in glob::glob(&pattern.into_os_string().into_string().unwrap()).unwrap() {
+            let Ok(path) = path else {
+                continue;
+            };
+            log::debug!("glob found file {path:?}");
+            cxx::let_cxx_string!(s = path.as_os_str().as_encoded_bytes());
+            InsertFilenameList(filenameList.as_mut(), &s);
+        }
     }
 
     unsafe fn getFileInfo(&self, filename: &AsciiString, fileInfo: *mut FileInfo) -> bool {
+        // fileInfo.write(FileInfo::);
+        let file_info = unsafe { &mut *fileInfo };
         todo!()
     }
 
@@ -266,12 +331,12 @@ impl LocalFileSystem_methods for HybridLocalFileSystem {
 
 //     unsafe fn openArchiveFile(
 //         &mut self,
-//         filename: *const ::std::os::raw::c_char,
+//         filename: *const c_char,
 //     ) -> *mut ArchiveFile {
 //         todo!()
 //     }
 
-//     unsafe fn closeArchiveFile(&mut self, filename: *const ::std::os::raw::c_char) {
+//     unsafe fn closeArchiveFile(&mut self, filename: *const c_char) {
 //         todo!()
 //     }
 
@@ -409,7 +474,7 @@ pub fn CreateGameEngine() -> cxx::UniquePtr<GameEngine> {
 }
 
 #[repr(transparent)]
-struct GlobalCstr(*const std::ffi::c_char);
+struct GlobalCstr(*const c_char);
 unsafe impl Sync for GlobalCstr {}
 
 #[no_mangle]

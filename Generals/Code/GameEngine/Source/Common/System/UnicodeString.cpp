@@ -219,6 +219,18 @@ void UnicodeString::set(const WideChar* s)
 }
 
 // -----------------------------------------------------
+void UnicodeString::set(const uint16_t* s)
+{
+	validate();
+	clear();
+	// Extreme hack that works for ASCII
+	Int i;
+	for (i = 0; s[i] != '\0'; i++)
+		concat((WideChar)s[i]);
+	validate();
+}
+
+// -----------------------------------------------------
 WideChar* UnicodeString::getBufferForRead(Int len)
 {
 	validate();

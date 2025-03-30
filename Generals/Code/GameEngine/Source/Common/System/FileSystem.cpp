@@ -184,6 +184,9 @@ File*		FileSystem::openFile( const Char *filename, Int access )
 	if ( (TheArchiveFileSystem != NULL) && (file == NULL) )
 	{
 		file = TheArchiveFileSystem->openFile( filename );
+		if (file) {
+			DEBUG_LOG(("opened file via archive: %s", filename));
+		}
 	}
 
 	return file;

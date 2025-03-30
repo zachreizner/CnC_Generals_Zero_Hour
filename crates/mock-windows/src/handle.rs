@@ -9,7 +9,7 @@ use parking_lot::{Mutex, MutexGuard};
 pub trait HandleImpl: Any + Send + Sync {}
 
 pub struct HandleObject {
-    inner: Box<dyn HandleImpl>,
+    _inner: Box<dyn HandleImpl>,
 }
 
 static NEXT_HANDLE: AtomicUsize = AtomicUsize::new(1);
@@ -22,7 +22,12 @@ fn global_handles() -> MutexGuard<'static, HandlesMap> {
 
 pub fn open<T: HandleImpl>(h: T) -> usize {
     let handle = NEXT_HANDLE.fetch_add(1, SeqCst);
-    global_handles().insert(handle, HandleObject { inner: Box::new(h) });
+    global_handles().insert(
+        handle,
+        HandleObject {
+            _inner: Box::new(h),
+        },
+    );
     handle
 }
 
