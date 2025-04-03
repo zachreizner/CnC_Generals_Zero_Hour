@@ -437,3 +437,101 @@ extern "C"
         return new HybridGameLogic;
     }
 }
+
+class HybridAudioManager : public AudioManager {
+    virtual void audioDebugDisplay(DebugDisplayInterface *dd, void *userData, FILE *fp = NULL );
+    virtual void stopAudio( AudioAffect which );
+    virtual void pauseAudio( AudioAffect which );
+    virtual void resumeAudio( AudioAffect which );
+    virtual void pauseAmbient( Bool shouldPause );
+    virtual void stopAllAmbientsBy( Object* obj );
+    virtual void stopAllAmbientsBy( Drawable* draw );
+    virtual void killAudioEventImmediately( AudioHandle audioEvent );
+    virtual void nextMusicTrack( void );
+    virtual void prevMusicTrack( void );
+    virtual Bool isMusicPlaying( void ) const;
+    virtual Bool hasMusicTrackCompleted( const AsciiString& trackName, Int numberOfTimes ) const;
+    virtual AsciiString getMusicTrackName( void ) const;
+    virtual void openDevice( void );
+    virtual void closeDevice( void );
+    virtual void *getDevice( void );
+    virtual void notifyOfAudioCompletion( UnsignedInt audioCompleted, UnsignedInt flags );
+    virtual UnsignedInt getProviderCount( void ) const;
+    virtual AsciiString getProviderName( UnsignedInt providerNum ) const;
+    virtual UnsignedInt getProviderIndex( AsciiString providerName ) const;
+    virtual void selectProvider( UnsignedInt providerNdx );
+    virtual void unselectProvider( void );
+    virtual UnsignedInt getSelectedProvider( void ) const;
+    virtual void setSpeakerType( UnsignedInt speakerType );
+    virtual UnsignedInt getSpeakerType( void );
+    virtual UnsignedInt getNum2DSamples( void ) const;
+    virtual UnsignedInt getNum3DSamples( void ) const;
+    virtual UnsignedInt getNumStreams( void ) const;
+    virtual Bool doesViolateLimit( AudioEventRTS *event ) const;
+    virtual Bool isPlayingLowerPriority( AudioEventRTS *event ) const;
+    virtual Bool isPlayingAlready( AudioEventRTS *event ) const;
+    virtual Bool isObjectPlayingVoice( UnsignedInt objID ) const;
+    virtual void adjustVolumeOfPlayingAudio(AsciiString eventName, Real newVolume);
+    virtual void removePlayingAudio( AsciiString eventName );
+    virtual void removeAllDisabledAudio();
+    virtual void *getHandleForBink( void );
+    virtual void releaseHandleForBink( void );
+    virtual void friend_forcePlayAudioEventRTS(const AudioEventRTS* eventToPlay);
+    virtual void setPreferredProvider(AsciiString providerNdx);
+    virtual void setPreferredSpeaker(AsciiString speakerType);
+    virtual Real getFileLengthMS( AsciiString strToLoad ) const;
+    virtual void closeAnySamplesUsingFile( const void *fileToClose );
+    virtual void setDeviceListenerPosition( void );
+};
+
+void HybridAudioManager::audioDebugDisplay(DebugDisplayInterface *dd, void *userData, FILE *fp ) { TODO; }
+void HybridAudioManager::stopAudio( AudioAffect which ) { TODO; }
+void HybridAudioManager::pauseAudio( AudioAffect which ) { TODO; }
+void HybridAudioManager::resumeAudio( AudioAffect which ) { TODO; }
+void HybridAudioManager::pauseAmbient( Bool shouldPause ) { TODO; }
+void HybridAudioManager::stopAllAmbientsBy( Object* obj ) { TODO; }
+void HybridAudioManager::stopAllAmbientsBy( Drawable* draw ) { TODO; }
+void HybridAudioManager::killAudioEventImmediately( AudioHandle audioEvent ) { TODO; }
+void HybridAudioManager::nextMusicTrack( void ) { TODO; }
+void HybridAudioManager::prevMusicTrack( void ) { TODO; }
+Bool HybridAudioManager::isMusicPlaying( void ) const { TODO; }
+Bool HybridAudioManager::hasMusicTrackCompleted( const AsciiString& trackName, Int numberOfTimes ) const { TODO; }
+AsciiString HybridAudioManager::getMusicTrackName( void ) const { TODO; }
+void HybridAudioManager::openDevice( void ) { TODO; }
+void HybridAudioManager::closeDevice( void ) { TODO; }
+void * HybridAudioManager::getDevice( void ) { TODO; }
+void HybridAudioManager::notifyOfAudioCompletion( UnsignedInt audioCompleted, UnsignedInt flags ) { TODO; }
+UnsignedInt HybridAudioManager::getProviderCount( void ) const { TODO; }
+AsciiString HybridAudioManager::getProviderName( UnsignedInt providerNum ) const { TODO; }
+UnsignedInt HybridAudioManager::getProviderIndex( AsciiString providerName ) const { TODO; }
+void HybridAudioManager::selectProvider( UnsignedInt providerNdx ) { TODO; }
+void HybridAudioManager::unselectProvider( void ) { TODO; }
+UnsignedInt HybridAudioManager::getSelectedProvider( void ) const { TODO; }
+void HybridAudioManager::setSpeakerType( UnsignedInt speakerType ) { TODO; }
+UnsignedInt HybridAudioManager::getSpeakerType( void ) { TODO; }
+UnsignedInt HybridAudioManager::getNum2DSamples( void ) const { TODO; }
+UnsignedInt HybridAudioManager::getNum3DSamples( void ) const { TODO; }
+UnsignedInt HybridAudioManager::getNumStreams( void ) const { TODO; }
+Bool HybridAudioManager::doesViolateLimit( AudioEventRTS *event ) const { TODO; }
+Bool HybridAudioManager::isPlayingLowerPriority( AudioEventRTS *event ) const { TODO; }
+Bool HybridAudioManager::isPlayingAlready( AudioEventRTS *event ) const { TODO; }
+Bool HybridAudioManager::isObjectPlayingVoice( UnsignedInt objID ) const { TODO; }
+void HybridAudioManager::adjustVolumeOfPlayingAudio(AsciiString eventName, Real newVolume) { TODO; }
+void HybridAudioManager::removePlayingAudio( AsciiString eventName ) { TODO; }
+void HybridAudioManager::removeAllDisabledAudio() { TODO; }
+void * HybridAudioManager::getHandleForBink( void ) { TODO; }
+void HybridAudioManager::releaseHandleForBink( void ) { TODO; }
+void HybridAudioManager::friend_forcePlayAudioEventRTS(const AudioEventRTS* eventToPlay) { TODO; }
+void HybridAudioManager::setPreferredProvider(AsciiString providerNdx) {
+    DEBUG_LOG(("HybridAudioManager setPreferredProvider \"%s\"", providerNdx.str()));
+}
+void HybridAudioManager::setPreferredSpeaker(AsciiString speakerType) {
+    DEBUG_LOG(("HybridAudioManager setPreferredSpeaker \"%s\"", speakerType.str()));
+}
+Real HybridAudioManager::getFileLengthMS( AsciiString strToLoad ) const { TODO; }
+void HybridAudioManager::closeAnySamplesUsingFile( const void *fileToClose ) { TODO; }
+void HybridAudioManager::setDeviceListenerPosition( void ) { TODO; }
+
+AudioManager *CreateAudioManager() {
+    return new HybridAudioManager;
+}
