@@ -82,8 +82,10 @@ include_cpp! {
     // block!("FontLibrary")
     // block!("DisplayStringManager")
     safety!(unsafe)
+    opaque!("AudioManager")
     generate!("CRC")
     generate!("InsertFilenameList")
+    generate!("CreateAudioManager")
     generate!("GameMain")
     generate!("initMemoryManager")
     generate!("File")
@@ -163,10 +165,6 @@ impl GameEngine_methods for GeneralsGameEngine {
         todo!()
     }
 
-    fn createAudioManager(&mut self) -> *mut AudioManager {
-        todo!()
-    }
-
     // fn createGameClient(&mut self) -> *mut GameClient {
     //     GeneralsGameClient::as_GameClient_unique_ptr(
     //         GeneralsGameClient::default_cpp_owned(),
@@ -209,12 +207,13 @@ impl GameEngine_methods for GeneralsGameEngine {
     //     .into_raw()
     // }
 
-    // fn createAudioManager(&mut self) -> *mut AudioManager {
-    //     GeneralsAudioManager::as_AudioManager_unique_ptr(
-    //         GeneralsAudioManager::default_cpp_owned(),
-    //     )
-    //     .into_raw()
-    // }
+    fn createAudioManager(&mut self) -> *mut AudioManager {
+        CreateAudioManager()
+        // GeneralsAudioManager::as_AudioManager_unique_ptr(
+        //     GeneralsAudioManager::default_cpp_owned(),
+        // )
+        // .into_raw()
+    }
 }
 
 #[subclass]
@@ -463,9 +462,200 @@ impl Radar_methods for GeneralsRadar {
 // pub struct GeneralsAudioManager;
 
 // impl AudioManager_methods for GeneralsAudioManager {
-//     fn init(&mut self) { log::debug!("AudioManager init"); }
-//     fn update(&mut self) { log::debug!("AudioManager update"); }
-//     fn reset(&mut self) { log::debug!("AudioManager reset"); }
+//     fn init(&mut self) {
+//         log::debug!("AudioManager init");
+//     }
+//     fn update(&mut self) {
+//         log::debug!("AudioManager update");
+//     }
+//     fn reset(&mut self) {
+//         log::debug!("AudioManager reset");
+//     }
+
+//     unsafe fn audioDebugDisplay(
+//         &mut self,
+//         dd: *mut DebugDisplayInterface,
+//         userData: *mut autocxx::c_void,
+//         fp: *mut _IO_FILE,
+//     ) {
+//         todo!()
+//     }
+
+//     fn stopAudio(&mut self, which: AudioAffect) {
+//         todo!()
+//     }
+
+//     fn pauseAudio(&mut self, which: AudioAffect) {
+//         todo!()
+//     }
+
+//     fn resumeAudio(&mut self, which: AudioAffect) {
+//         todo!()
+//     }
+
+//     fn pauseAmbient(&mut self, shouldPause: bool) {
+//         todo!()
+//     }
+
+//     unsafe fn stopAllAmbientsBy(&mut self, obj: *mut Object) {
+//         todo!()
+//     }
+
+//     unsafe fn stopAllAmbientsBy1(&mut self, draw: *mut Drawable) {
+//         todo!()
+//     }
+
+//     fn killAudioEventImmediately(&mut self, audioEvent: autocxx::c_uint) {
+//         todo!()
+//     }
+
+//     fn nextMusicTrack(&mut self) {
+//         todo!()
+//     }
+
+//     fn prevMusicTrack(&mut self) {
+//         todo!()
+//     }
+
+//     fn isMusicPlaying(&self) -> bool {
+//         todo!()
+//     }
+
+//     fn hasMusicTrackCompleted(
+//         &self,
+//         trackName: &AsciiString,
+//         numberOfTimes: autocxx::c_int,
+//     ) -> bool {
+//         todo!()
+//     }
+
+//     fn getMusicTrackName(&self) -> cxx::UniquePtr<AsciiString> {
+//         todo!()
+//     }
+
+//     fn openDevice(&mut self) {
+//         todo!()
+//     }
+
+//     fn closeDevice(&mut self) {
+//         todo!()
+//     }
+
+//     fn getDevice(&mut self) -> *mut autocxx::c_void {
+//         todo!()
+//     }
+
+//     fn notifyOfAudioCompletion(&mut self, audioCompleted: autocxx::c_uint, flags: autocxx::c_uint) {
+//         todo!()
+//     }
+
+//     fn getProviderCount(&self) -> autocxx::c_uint {
+//         todo!()
+//     }
+
+//     fn getProviderName(&self, providerNum: autocxx::c_uint) -> cxx::UniquePtr<AsciiString> {
+//         todo!()
+//     }
+
+//     fn getProviderIndex(&self, providerName: cxx::UniquePtr<AsciiString>) -> autocxx::c_uint {
+//         todo!()
+//     }
+
+//     fn selectProvider(&mut self, providerNdx: autocxx::c_uint) {
+//         todo!()
+//     }
+
+//     fn unselectProvider(&mut self) {
+//         todo!()
+//     }
+
+//     fn getSelectedProvider(&self) -> autocxx::c_uint {
+//         todo!()
+//     }
+
+//     fn setSpeakerType(&mut self, speakerType: autocxx::c_uint) {
+//         todo!()
+//     }
+
+//     fn getSpeakerType(&mut self) -> autocxx::c_uint {
+//         todo!()
+//     }
+
+//     fn getNum2DSamples(&self) -> autocxx::c_uint {
+//         todo!()
+//     }
+
+//     fn getNum3DSamples(&self) -> autocxx::c_uint {
+//         todo!()
+//     }
+
+//     fn getNumStreams(&self) -> autocxx::c_uint {
+//         todo!()
+//     }
+
+//     unsafe fn doesViolateLimit(&self, event: *mut AudioEventRTS) -> bool {
+//         todo!()
+//     }
+
+//     unsafe fn isPlayingLowerPriority(&self, event: *mut AudioEventRTS) -> bool {
+//         todo!()
+//     }
+
+//     unsafe fn isPlayingAlready(&self, event: *mut AudioEventRTS) -> bool {
+//         todo!()
+//     }
+
+//     fn isObjectPlayingVoice(&self, objID: autocxx::c_uint) -> bool {
+//         todo!()
+//     }
+
+//     fn adjustVolumeOfPlayingAudio(
+//         &mut self,
+//         eventName: cxx::UniquePtr<AsciiString>,
+//         newVolume: f32,
+//     ) {
+//         todo!()
+//     }
+
+//     fn removePlayingAudio(&mut self, eventName: cxx::UniquePtr<AsciiString>) {
+//         todo!()
+//     }
+
+//     fn removeAllDisabledAudio(&mut self) {
+//         todo!()
+//     }
+
+//     fn getHandleForBink(&mut self) -> *mut autocxx::c_void {
+//         todo!()
+//     }
+
+//     fn releaseHandleForBink(&mut self) {
+//         todo!()
+//     }
+
+//     unsafe fn friend_forcePlayAudioEventRTS(&mut self, eventToPlay: *const AudioEventRTS) {
+//         todo!()
+//     }
+
+//     fn setPreferredProvider(&mut self, providerNdx: cxx::UniquePtr<AsciiString>) {
+//         todo!()
+//     }
+
+//     fn setPreferredSpeaker(&mut self, speakerType: cxx::UniquePtr<AsciiString>) {
+//         todo!()
+//     }
+
+//     fn getFileLengthMS(&self, strToLoad: cxx::UniquePtr<AsciiString>) -> f32 {
+//         todo!()
+//     }
+
+//     unsafe fn closeAnySamplesUsingFile(&mut self, fileToClose: *const autocxx::c_void) {
+//         todo!()
+//     }
+
+//     fn setDeviceListenerPosition(&mut self) {
+//         todo!()
+//     }
 // }
 
 #[no_mangle]

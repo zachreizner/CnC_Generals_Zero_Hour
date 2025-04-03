@@ -437,3 +437,53 @@ extern "C"
         return new HybridGameLogic;
     }
 }
+
+class HybridAudioManager : public AudioManager {
+    virtual void audioDebugDisplay(DebugDisplayInterface *dd, void *userData, FILE *fp = NULL ) = 0;
+    virtual void stopAudio( AudioAffect which ) = 0;
+    virtual void pauseAudio( AudioAffect which ) = 0;
+    virtual void resumeAudio( AudioAffect which ) = 0;
+    virtual void pauseAmbient( Bool shouldPause ) = 0;
+    virtual void stopAllAmbientsBy( Object* obj ) = 0;
+    virtual void stopAllAmbientsBy( Drawable* draw ) = 0;
+    virtual void killAudioEventImmediately( AudioHandle audioEvent ) = 0;
+    virtual void nextMusicTrack( void ) = 0;
+    virtual void prevMusicTrack( void ) = 0;
+    virtual Bool isMusicPlaying( void ) const = 0;
+    virtual Bool hasMusicTrackCompleted( const AsciiString& trackName, Int numberOfTimes ) const = 0;
+    virtual AsciiString getMusicTrackName( void ) const = 0;
+    virtual void openDevice( void ) = 0;
+    virtual void closeDevice( void ) = 0;
+    virtual void *getDevice( void ) = 0;
+    virtual void notifyOfAudioCompletion( UnsignedInt audioCompleted, UnsignedInt flags ) = 0;
+    virtual UnsignedInt getProviderCount( void ) const = 0;
+    virtual AsciiString getProviderName( UnsignedInt providerNum ) const = 0;
+    virtual UnsignedInt getProviderIndex( AsciiString providerName ) const = 0;
+    virtual void selectProvider( UnsignedInt providerNdx ) = 0;
+    virtual void unselectProvider( void ) = 0;
+    virtual UnsignedInt getSelectedProvider( void ) const = 0;
+    virtual void setSpeakerType( UnsignedInt speakerType ) = 0;
+    virtual UnsignedInt getSpeakerType( void ) = 0;
+    virtual UnsignedInt getNum2DSamples( void ) const = 0;
+    virtual UnsignedInt getNum3DSamples( void ) const = 0;
+    virtual UnsignedInt getNumStreams( void ) const = 0;
+    virtual Bool doesViolateLimit( AudioEventRTS *event ) const = 0;
+    virtual Bool isPlayingLowerPriority( AudioEventRTS *event ) const = 0;
+    virtual Bool isPlayingAlready( AudioEventRTS *event ) const = 0;
+    virtual Bool isObjectPlayingVoice( UnsignedInt objID ) const = 0;
+    virtual void adjustVolumeOfPlayingAudio(AsciiString eventName, Real newVolume) = 0;
+    virtual void removePlayingAudio( AsciiString eventName ) = 0;
+    virtual void removeAllDisabledAudio() = 0;
+    virtual void *getHandleForBink( void ) = 0;
+    virtual void releaseHandleForBink( void ) = 0;
+    virtual void friend_forcePlayAudioEventRTS(const AudioEventRTS* eventToPlay) = 0;
+    virtual void setPreferredProvider(AsciiString providerNdx) = 0;
+    virtual void setPreferredSpeaker(AsciiString speakerType) = 0;
+    virtual Real getFileLengthMS( AsciiString strToLoad ) const = 0;
+    virtual void closeAnySamplesUsingFile( const void *fileToClose ) = 0;
+    virtual void setDeviceListenerPosition( void ) = 0;
+};
+
+AudioManager *CreateAudioManager() {
+    return new HybridAudioManager;
+}
