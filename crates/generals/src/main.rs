@@ -259,7 +259,9 @@ impl LocalFileSystem_methods for HybridLocalFileSystem {
     }
 
     unsafe fn doesFileExist(&self, filename: *const c_char) -> bool {
-        todo!()
+        let filename = unsafe { CStr::from_ptr(filename).to_str().unwrap() };
+        log::debug!("doesFileExist filename={}", filename);
+        self.root_path.join(filename).exists()
     }
 
     fn getFileListInDirectory(

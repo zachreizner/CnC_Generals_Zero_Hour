@@ -203,6 +203,7 @@ Bool FileSystem::doesFileExist(const Char *filename) const
 		return TRUE;
 	}
 	if (TheArchiveFileSystem->doesFileExist(filename)) {
+		DEBUG_LOG(("file %s exists in archive", filename));
 		return TRUE;
 	}
 	return FALSE;
