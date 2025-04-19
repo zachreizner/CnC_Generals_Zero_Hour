@@ -70,7 +70,7 @@ include_cpp! {
     #include "Common/ArchiveFileSystem.h"
     // #include "GameLogic/GameLogic.h"
     // #include "GameClient/GameClient.h"
-    // #include "Common/ModuleFactory.h"
+    #include "Common/ModuleFactory.h"
     // #include "Common/ThingFactory.h"
     #include "Common/FunctionLexicon.h"
     #include "Common/Radar.h"
@@ -83,15 +83,19 @@ include_cpp! {
     // block!("DisplayStringManager")
     safety!(unsafe)
     opaque!("AudioManager")
+    opaque!("ParticleSystemManager")
     generate!("CRC")
     generate!("InsertFilenameList")
     generate!("CreateAudioManager")
+    generate!("CreateFunctionLexicon")
+    generate!("CreateParticleSystemManager")
     generate!("GameMain")
     generate!("initMemoryManager")
     generate!("File")
     generate!("FilenameList")
     generate_pod!("FileInfo")
     generate!("AsciiString")
+    generate!("ModuleFactory")
     subclass!("GameEngine", GeneralsGameEngine)
     subclass!("LocalFileSystem", HybridLocalFileSystem)
     // subclass!("ArchiveFileSystem", GeneralsArchiveFileSystem)
@@ -146,7 +150,7 @@ impl GameEngine_methods for GeneralsGameEngine {
     }
 
     fn createModuleFactory(&mut self) -> *mut ModuleFactory {
-        todo!()
+        ModuleFactory::new().within_unique_ptr().into_raw()
     }
 
     fn createThingFactory(&mut self) -> *mut ThingFactory {
@@ -154,7 +158,7 @@ impl GameEngine_methods for GeneralsGameEngine {
     }
 
     fn createFunctionLexicon(&mut self) -> *mut FunctionLexicon {
-        todo!()
+        CreateFunctionLexicon()
     }
 
     fn createRadar(&mut self) -> *mut Radar {
@@ -162,7 +166,7 @@ impl GameEngine_methods for GeneralsGameEngine {
     }
 
     fn createParticleSystemManager(&mut self) -> *mut ParticleSystemManager {
-        todo!()
+        CreateParticleSystemManager()
     }
 
     // fn createGameClient(&mut self) -> *mut GameClient {
