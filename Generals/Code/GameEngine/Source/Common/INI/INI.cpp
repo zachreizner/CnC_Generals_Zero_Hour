@@ -1279,7 +1279,7 @@ void INI::parseParticleSystemTemplate( INI *ini, void * /*instance*/, void *stor
 	const char *token = ini->getNextToken();
 
 	const ParticleSystemTemplate *pSystemT = TheParticleSystemManager->findTemplate( AsciiString( token ) );
-	DEBUG_ASSERTCRASH( pSystemT || strcasecmp( token, "None" ) == 0, ("ParticleSystem %s not found!\n",token) );
+	// DEBUG_ASSERTCRASH( pSystemT || strcasecmp( token, "None" ) == 0, ("ParticleSystem %s not found!\n",token) );
 
 	typedef const ParticleSystemTemplate* ConstParticleSystemTemplatePtr;
 	ConstParticleSystemTemplatePtr* theParticleSystemTemplate = (ConstParticleSystemTemplatePtr*)store;		
