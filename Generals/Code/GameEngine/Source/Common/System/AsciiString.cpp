@@ -131,7 +131,7 @@ void AsciiString::ensureUniqueBufferOfSize(int numCharsNeeded, Bool preserveData
 	{
 		// no buffer manhandling is needed (it's already large enough, and unique to us)
 		if (strToCopy)
-			strcpy(m_data->peek(), strToCopy);
+			memmove(m_data->peek(), strToCopy, strlen(strToCopy) + 1);
 		if (strToCat)
 			strcat(m_data->peek(), strToCat);
 		return;
@@ -157,7 +157,7 @@ void AsciiString::ensureUniqueBufferOfSize(int numCharsNeeded, Bool preserveData
 	// do these BEFORE releasing the old buffer, so that self-copies
 	// or self-cats will work correctly.
 	if (strToCopy)
-		strcpy(newData->peek(), strToCopy);
+		memmove(newData->peek(), strToCopy, strlen(strToCopy) + 1);
 	if (strToCat)
 		strcat(newData->peek(), strToCat);
 
